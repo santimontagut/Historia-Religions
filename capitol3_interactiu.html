@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capítol 3 – Mesopotàmia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --paper: #f5f0e8;
+    --cream: #ede7d4;
+    --gold: #b8860b;
+    --accent: #7a6b4a;
+    --rust: #8b3a1e;
+    --line: rgba(26,18,9,0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--paper); color: var(--ink); font-family: 'Source Serif 4', Georgia, serif; font-size: 17px; line-height: 1.75; }
+
+  /* GLOBAL NAV */
+  .global-nav { background: #0e0c09; border-bottom: 1px solid rgba(201,168,76,0.15); padding: 0.7rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .global-nav a { font-family: 'Source Serif 4', serif; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(201,168,76,0.7); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+  .global-nav a:hover { color: #c9a84c; }
+  .global-nav .gn-center { font-family: 'Source Serif 4', serif; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(201,168,76,0.35); text-align: center; }
+  .global-nav .gn-center span { display: block; font-size: 0.65rem; color: rgba(201,168,76,0.2); letter-spacing: 0.1em; }
+
+  /* HEADER */
+  header { background: var(--accent); color: var(--paper); padding: 3.5rem 2rem 2.5rem; text-align: center; position: relative; overflow: hidden; }
+  header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 18px, rgba(255,255,255,0.04) 18px, rgba(255,255,255,0.04) 19px); }
+  header .chapter-num { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 700; color: rgba(255,255,255,0.08); position: absolute; top: 1rem; right: 2rem; line-height: 1; pointer-events: none; }
+  header .eyebrow { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.6); margin-bottom: 0.5rem; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 400; line-height: 1.2; max-width: 700px; margin: 0 auto 1rem; }
+  header p.subtitle { font-size: 1rem; color: rgba(245,240,232,0.65); font-style: italic; max-width: 520px; margin: 0 auto; }
+
+  /* NAV */
+  nav { background: var(--cream); border-bottom: 1px solid var(--line); padding: 0 1rem; display: flex; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  nav::-webkit-scrollbar { display: none; }
+  nav button { background: none; border: none; font-family: 'Source Serif 4', serif; font-size: 0.78rem; letter-spacing: 0.06em; color: var(--ink); opacity: 0.6; padding: 0.9rem 1.1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  nav button:hover { opacity: 1; }
+  nav button.active { opacity: 1; border-bottom-color: var(--accent); color: var(--accent); }
+
+  /* LAYOUT */
+  .container { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .section { display: none; animation: fadeIn 0.35s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  h2 { font-family: 'Playfair Display', serif; font-size: 1.65rem; font-weight: 700; margin-bottom: 0.4rem; line-height: 1.25; }
+  h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; color: var(--accent); margin: 2rem 0 0.6rem; }
+  p { margin-bottom: 1.1rem; }
+  .section-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .divider { border: none; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+  /* CARDS */
+  .thinker-card { border-left: 3px solid var(--accent); background: var(--cream); padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0; }
+  .thinker-card .thinker-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .thinker-card .thinker-dates { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .thinker-card p { margin-bottom: 0; font-size: 0.95rem; }
+
+  .concept-box { border: 1px solid var(--accent); border-radius: 4px; padding: 1.2rem 1.4rem; margin: 1.5rem 0; position: relative; }
+  .concept-box .concept-tag { position: absolute; top: -0.6rem; left: 1rem; background: var(--paper); padding: 0 0.4rem; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+  .concept-box p { margin-bottom: 0; font-size: 0.93rem; }
+
+  /* TIMELINE */
+  .timeline { margin: 1.5rem 0; }
+  .tl-item { display: grid; grid-template-columns: 110px 1fr; gap: 0 1.2rem; margin-bottom: 1rem; align-items: start; }
+  .tl-date { font-family: 'Playfair Display', serif; font-size: 0.85rem; color: var(--gold); text-align: right; padding-top: 0.15rem; font-weight: 700; }
+  .tl-body { border-left: 2px solid var(--line); padding-left: 1rem; font-size: 0.92rem; line-height: 1.55; }
+  .tl-body strong { color: var(--accent); }
+
+  /* KINGDOM GRID */
+  .kingdom-grid { display: grid; grid-template-columns: 1fr; gap: 1.2rem; margin: 1.5rem 0; }
+  @media(min-width: 600px) { .kingdom-grid { grid-template-columns: 1fr 1fr; } }
+  .kingdom-card { border: 1px solid var(--line); border-radius: 6px; padding: 1.3rem; background: var(--cream); position: relative; overflow: hidden; }
+  .kingdom-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); }
+  .kingdom-card .k-period { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .kingdom-card .k-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .kingdom-card .k-capital { font-size: 0.78rem; color: var(--accent); font-style: italic; margin-bottom: 0.7rem; }
+  .kingdom-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 0; }
+
+  /* DEITY TABLE */
+  .deity-table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.88rem; }
+  .deity-table th { background: var(--accent); color: var(--paper); padding: 0.65rem 0.9rem; text-align: left; font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic; }
+  .deity-table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .deity-table tr:nth-child(even) td { background: var(--cream); }
+  .deity-table .deity-name { font-family: 'Playfair Display', serif; font-weight: 700; }
+
+  /* VIDEO */
+  .video-section { background: var(--ink); color: var(--paper); border-radius: 6px; padding: 1.5rem; margin: 2rem 0; }
+  .video-section .video-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .video-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  @media(min-width: 600px) { .video-grid { grid-template-columns: 1fr 1fr; } }
+  .video-card { background: rgba(255,255,255,0.07); border-radius: 4px; overflow: hidden; transition: transform 0.2s; }
+  .video-card:hover { transform: translateY(-2px); }
+  .video-thumb { position: relative; padding-top: 56.25%; background: #111; cursor: pointer; overflow: hidden; }
+  .video-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.2s; }
+  .video-thumb:hover img { opacity: 1; }
+  .play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; background: rgba(122,107,74,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .play-btn svg { width: 18px; fill: white; margin-left: 3px; }
+  .video-info { padding: 0.7rem 0.8rem 0.8rem; }
+  .video-info .v-title { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.2rem; color: var(--paper); }
+  .video-info .v-desc { font-size: 0.78rem; color: rgba(245,240,232,0.6); line-height: 1.4; }
+  .video-info a { color: #c9b87a; font-size: 0.76rem; text-decoration: none; }
+  .video-info a:hover { text-decoration: underline; }
+  .video-embed-container { position: relative; padding-top: 56.25%; background: #000; }
+  .video-embed-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+  /* BIBLIOGRAPHY */
+  .bib-level { margin-bottom: 2rem; }
+  .bib-level h3 { font-style: normal; font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; margin-top: 0; padding-bottom: 0.4rem; border-bottom: 1px solid var(--line); }
+  .bib-item { padding: 0.9rem 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 3px 1fr; gap: 0 1rem; }
+  .bib-bar { background: var(--accent); border-radius: 2px; }
+  .bib-content .bib-ref { font-size: 0.9rem; line-height: 1.5; margin-bottom: 0.3rem; }
+  .bib-content .bib-note { font-size: 0.8rem; color: var(--rust); font-style: italic; }
+  .bib-content .bib-ref em { font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="global-nav">
+  <a href="index_global.html">← Índex General</a>
+  <div class="gn-center">Història de les Religions<span>Una Genealogia del Poder</span></div>
+  <a href="capitol2_interactiu.html">← Capítol 2</a>
+</div>
+
+<header>
+  <div class="chapter-num">3</div>
+  <div class="eyebrow">Història de les Religions · Capítol 3</div>
+  <h1>Mesopotàmia – El Poder com a Cosmos</h1>
+  <p class="subtitle">El primer sistema religiós d'Estat: quan el cosmos reflecteix l'ordre polític</p>
+</header>
+
+<nav id="mainNav">
+  <button class="active" onclick="showSection('intro')">Introducció</button>
+  <button onclick="showSection('regnes')">3.1 Els Quatre Regnes</button>
+  <button onclick="showSection('panteo')">3.2 El Panteó</button>
+  <button onclick="showSection('ziggurat')">3.3 El Ziggurat</button>
+  <button onclick="showSection('mites')">3.4 Mites Fundacionals</button>
+  <button onclick="showSection('rei')">3.5 El Rei Diví</button>
+  <button onclick="showSection('escriptura')">3.6 Escriptura</button>
+  <button onclick="showSection('llegat')">3.7 Llegat</button>
+  <button onclick="showSection('metodologia')">Metodologia</button>
+  <button onclick="showSection('biblio')">📚 Bibliografia</button>
+</nav>
+
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="section active" id="intro">
+    <div class="section-label">Tesi del capítol</div>
+    <h2>Mesopotàmia – El Poder com a Cosmos</h2>
+    <hr class="divider">
+    <p>Mesopotàmia —literalment «la terra entre els rius», entre el Tigris i l'Èufrates— constitueix el bressol de la primera civilització urbana i del primer sistema religiós d'Estat de la història humana. Aquí, fa aproximadament cinc mil anys, va sorgir una forma d'organització social inèdita: la ciutat, amb els seus temples, les seves lleis escrites, els seus arxius i els seus exèrcits professionals. I en el centre d'aquest nou ordre, hi havia una arquitectura religiosa sense precedents.</p>
+    <p>La tesi fonamental d'aquest capítol és que a Mesopotàmia el cosmos i l'ordre polític constitueixen una única i mateixa realitat. Els déus no són entitats abstractes i transcendents: són senyors, funcionaris i propietaris. La ciutat és propietat del seu déu tutelar. El rei és el seu administrador. La guerra és una disputa entre panteons. I la llei no és una convenció humana sinó una prescripció divina inscrita en pedra.</p>
+    <p>Aquesta fusió entre cosmos i poder no és una casualitat: és una tecnologia política de primer ordre. Quan l'ordre social es presenta com un reflex de l'ordre còsmic, la desobediència al rei equival a la rebel·lió contra el déu i, en última instància, al caos primordial. La religió mesopotàmica és, en aquest sentit, l'exemple més antic i més elaborat del que al capítol 1 hem analitzat amb les eines de Weber, Durkheim i Foucault.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Tesi central</span>
+      <p>A Mesopotàmia, religió i política no són dos àmbits separats: són una única realitat. El cosmos és polític, i la política és còsmica. Els déus governen el cel de la mateixa manera que els reis governen la terra. I la legitimitat del rei deriva precisament d'aquesta correspondència entre els dos ordres.</p>
+    </div>
+
+    <div class="video-section">
+      <div class="video-label">📺 Introducció — Mesopotàmia: bressol de la civilització</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'R8VGDTbOmT0')">
+            <img src="https://img.youtube.com/vi/R8VGDTbOmT0/mqdefault.jpg" alt="Mesopotàmia documental">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Mesopotamia: La cuna de la civilización – DW Documental</div>
+            <div class="v-desc">Documental complet de DW en castellà sobre l'origen de la civilització a Mesopotàmia: ciutats, escriptura, temples i poder.</div>
+            <a href="https://www.youtube.com/watch?v=R8VGDTbOmT0" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'EvD2Lci_WgI')">
+            <img src="https://img.youtube.com/vi/EvD2Lci_WgI/mqdefault.jpg" alt="Sumer primera civilitzacio">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Sumer: La Primera Civilización del Mundo</div>
+            <div class="v-desc">Panorama complet de la civilització sumèria: les primeres ciutats, la cuneïforme i els ziggurats. Divulgació de qualitat.</div>
+            <a href="https://www.youtube.com/watch?v=EvD2Lci_WgI" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.1 QUATRE REGNES -->
+  <div class="section" id="regnes">
+    <div class="section-label">3.1 — Cronologia i Diferències</div>
+    <h2>Els quatre regnes de Mesopotàmia</h2>
+    <hr class="divider">
+    <p>Mesopotàmia no és una civilització monolítica sinó una successió de cultures, pobles i imperis que comparteixen un substrat religiós comú però que l'articulen de maneres diferenciades. Comprendre les seves diferències és indispensable per entendre com la religió s'adapta, es transforma i es reutilitza en funció dels interessos polítics de cada moment.</p>
+
+    <div class="kingdom-grid">
+      <div class="kingdom-card">
+        <div class="k-period">c. 5000 – 2350 aC</div>
+        <div class="k-name">Sumer</div>
+        <div class="k-capital">Capitals: Ur, Uruk, Lagaix, Nippur</div>
+        <p>La primera civilització urbana de la història. Els sumeris van inventar l'escriptura cuneïforme, els ziggurats i la primera literatura escrita. L'organització política es basava en les <em>ciutats-estat</em>, cadascuna governada per un rei (<em>lugal</em>) escollit pel déu tutelar de la ciutat. L'autoritat no era hereditària sinó delegada per la divinitat, i podia «passar» d'una ciutat a una altra —tal com recull la mítica Llista Reial Sumèria—. El déu principal del panteó sumeri era Enlil, senyor del vent i de l'autoritat còsmica, amb seu a Nippur, la capital religiosa de tota Mesopotàmia.</p>
+      </div>
+      <div class="kingdom-card">
+        <div class="k-period">c. 2350 – 2150 aC</div>
+        <div class="k-name">Akkad</div>
+        <div class="k-capital">Capital: Akkad (localització exacta desconeguda)</div>
+        <p>El primer imperi de la història, fundat per Sargon d'Akkad (~2350 aC), un personatge d'orígens obscurs que va unificar per primera vegada les ciutats-estat sumeris sota una única autoritat dinàstica. Els accadis van introduir dues innovacions religioses decisives: la <em>divinització del rei en vida</em> —Naram-Sin, nét de Sargon, va ser el primer governant que va reclamar el títol de déu— i la fusió del panteó sumeri amb les divinitats semítiques accàdies (Inanna es va convertir en Ishtar, Enki en Ea). La religió es va convertir en un instrument explícit d'unificació imperial.</p>
+      </div>
+      <div class="kingdom-card">
+        <div class="k-period">c. 1894 – 539 aC</div>
+        <div class="k-name">Babilònia</div>
+        <div class="k-capital">Capital: Babilon (actual Iraq)</div>
+        <p>Babilònia va heretar el llegat sumero-accadi i el va transformar en un sistema religiós imperial de gran sofisticació. El seu gran aportament va ser l'elevació de <em>Marduk</em> —originalment un déu menor de la ciutat de Babilon— a déu suprem del panteó mesopotàmic, una operació teològica legitimada per l'<em>Enuma Elish</em>. Hammurabi (1792–1750 aC) va codificar aquesta teologia en el seu famós Codi de lleis. El període Neobabilònic (626–539 aC), amb Nabucodonosor II, va ser l'apogeu arquitectònic: la Torre de Babel (<em>Etemenanki</em>) i els jardins penjants van ser construïts en aquest període.</p>
+      </div>
+      <div class="kingdom-card">
+        <div class="k-period">c. 2025 – 609 aC</div>
+        <div class="k-name">Assíria</div>
+        <div class="k-capital">Capitals: Assur, Nimrud, Nínive</div>
+        <p>L'Assíria va crear l'imperi més gran de l'Antiguitat fins a Pèrsia. La seva innovació religiosa central va ser la substitució de Marduk per <em>Assur</em> com a déu nacional suprem: els assíris simplement van adaptar la teologia imperial babilònica canviant el nom del déu protector, demostrant com la teologia mesopotàmica era una <em>tecnologia flexible de legitimació política</em>. El rei assiri no era només administrador del déu sinó el seu guerrer: les campanyes militars eren ordres divines. L'Assíria va caure el 612 aC davant l'aliança medo-babilònica, i Nínive, la seva capital, va ser destruïda.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-date">~5000 aC</div><div class="tl-body"><strong>Període d'Ubaid</strong> — Primers assentaments agrícoles al sud de Mesopotàmia. Primers temples de plataforma elevada.</div></div>
+      <div class="tl-item"><div class="tl-date">~3500 aC</div><div class="tl-body"><strong>Uruk</strong> — Primera gran ciutat de la història. Invenció de l'escriptura cuneïforme i dels primers ziggurats.</div></div>
+      <div class="tl-item"><div class="tl-date">~2350 aC</div><div class="tl-body"><strong>Sargon d'Akkad</strong> — Primer imperi de la història. Unificació de les ciutats-estat sumeris.</div></div>
+      <div class="tl-item"><div class="tl-date">~2100 aC</div><div class="tl-body"><strong>Tercera Dinastia d'Ur</strong> — Apogeu sumeri. Construcció del Gran Ziggurat d'Ur per Ur-Nammu.</div></div>
+      <div class="tl-item"><div class="tl-date">1792 aC</div><div class="tl-body"><strong>Hammurabi de Babilon</strong> — Unificació de Mesopotàmia. Redacció del Codi d'Hammurabi.</div></div>
+      <div class="tl-item"><div class="tl-date">883–612 aC</div><div class="tl-body"><strong>Imperi Neoassiri</strong> — El major imperi de l'Antiguitat fins aquell moment. Destrucció de Nínive el 612 aC.</div></div>
+      <div class="tl-item"><div class="tl-date">605–539 aC</div><div class="tl-body"><strong>Nabucodonosor II</strong> — Apogeu babilònic. Destrucció del Temple de Jerusalem. Torre de Babel.</div></div>
+      <div class="tl-item"><div class="tl-date">539 aC</div><div class="tl-body"><strong>Cir el Gran (Pèrsia)</strong> — Conquesta de Babilon. Fi de la civilització mesopotàmica independent.</div></div>
+    </div>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.1 — Els quatre regnes de Mesopotàmia</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'XOhZgAPn_CU')">
+            <img src="https://img.youtube.com/vi/XOhZgAPn_CU/mqdefault.jpg" alt="Sumer Akkad Babilonia Assíria">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Sumer, Akkad, Babilonia y Asiria – Historia Completa</div>
+            <div class="v-desc">Repàs complet i cronològic dels quatre grans regnes de Mesopotàmia, les seves diferències polítiques i religioses.</div>
+            <a href="https://www.youtube.com/watch?v=XOhZgAPn_CU" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.2 PANTEO -->
+  <div class="section" id="panteo">
+    <div class="section-label">3.2 — Teologia i Poder</div>
+    <h2>El panteó mesopotàmic: déus com a funcionaris còsmics</h2>
+    <hr class="divider">
+    <p>El panteó mesopotàmic és una de les construccions teològiques més elaborades de l'antiguitat. No es tracta d'un conjunt de divinitats estàtiques sinó d'un sistema en permanent evolució, on els déus ascendeixen, declinen i es fusionen en funció dels canvis polítics de cada període. La seva estructura revela amb una transparència inusual la mecànica del poder religiós: quan una ciutat conquereix una altra, el seu déu s'eleva; quan un imperi cau, el seu déu es subordina o desapareix.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Principi estructural</span>
+      <p>En el panteó mesopotàmic, la jerarquia dels déus reflecteix exactament la jerarquia dels estats. No és una coincidència: és el mecanisme central de legitimació. Quan Babilon eleva Marduk a déu suprem a través de l'<em>Enuma Elish</em>, no fa res diferent del que fa Assíria quan substitueix Marduk per Assur: adaptar la teologia als interessos de l'hegemonia política del moment.</p>
+    </div>
+
+    <table class="deity-table">
+      <tr><th>Déu / Deessa</th><th>Origen</th><th>Funció còsmica</th><th>Significació política</th></tr>
+      <tr><td><span class="deity-name">Anu</span></td><td>Sumeri</td><td>Déu del cel, pare dels déus, autoritat suprema passiva</td><td>Legitimació última de tota reialesa; els reis reben el seu poder «del cel» (Anu)</td></tr>
+      <tr><td><span class="deity-name">Enlil</span></td><td>Sumeri</td><td>Déu del vent i de l'autoritat activa; senyor de la terra i de les destins</td><td>Seu a Nippur, capital religiosa suprapolítica; la seva benedicció era indispensable per a qualsevol rei</td></tr>
+      <tr><td><span class="deity-name">Enki / Ea</span></td><td>Sumeri / Accadi</td><td>Déu de la saviesa, l'aigua dolça, la màgia i l'artesania</td><td>Protector dels escribes i sacerdots; associat al coneixement tècnic del temple</td></tr>
+      <tr><td><span class="deity-name">Inanna / Ishtar</span></td><td>Sumeris / Accadi</td><td>Deessa de l'amor, la guerra i la fertilitat</td><td>Patrona de la reialesa i de les conquestes militars; el rei era el seu espòs ritual (<em>hieros gamos</em>)</td></tr>
+      <tr><td><span class="deity-name">Marduk</span></td><td>Babilònic</td><td>Déu creador, déu suprem del panteó; senyor de la saviesa i de la justícia</td><td>Justificació teològica de l'hegemonia babilònica; la seva elevació a déu suprem a l'<em>Enuma Elish</em> és un acte polític explícit</td></tr>
+      <tr><td><span class="deity-name">Assur</span></td><td>Assiri</td><td>Déu nacional assiri, adaptat com a déu de la guerra i la conquesta imperial</td><td>El rei assiri era el representant terrenal d'Assur; les guerres eren mandats divins del déu nacional</td></tr>
+      <tr><td><span class="deity-name">Shamash</span></td><td>Accadi / Babilònic</td><td>Déu del sol i de la justícia</td><td>Garant diví de la llei; representat entregant el Codi a Hammurabi a la cèlebre estela del Louvre</td></tr>
+      <tr><td><span class="deity-name">Nanna / Sin</span></td><td>Sumeri / Accadi</td><td>Déu de la lluna, del temps i del calendari</td><td>Seu al Gran Ziggurat d'Ur; el control del calendari lunisolar era un poder sacerdotal decisiu</td></tr>
+    </table>
+
+
+    <h3>Inanna / Ishtar: la divinitat més complexa del panteó</h3>
+    <p>Entre totes les divinitats mesopotàmiques, Inanna —en sumeri— o Ishtar —en accadi— mereix un tractament específic per la seva excepcional complexitat teològica i per la seva influència posterior sobre les tradicions religioses mediterrànies i occidentals. Inanna és, simultàniament, la deessa de l'amor eròtic i de la guerra, de la fertilitat i de la destrucció. Aquesta aparent contradicció no és una incoherència sinó una sofisticada reflexió sobre les forces que generen i destrueixen la vida: el mateix impuls que crea també pot aniquilar.</p>
+    <p>Però la dimensió més extraordinària d'Inanna és el seu mite del <strong>Descens als Inferns</strong> (<em>Inanna's Descent to the Netherworld</em>, ~1900–1600 aC), el primer mite de mort i resurrecció documentat de la història humana. En el relat, Inanna decideix descendre al regne dels morts, governat per la seva germana Ereshkigal. A cada una de les set portes del món inferior, li és retirat un dels seus atributs divins —corona, collaret, armadura, anell, pectoral, bràcalets, roba— fins que arriba despullada de tot poder davant del tron d'Ereshkigal, que la mata i penja el seu cadàver d'un ganxo «com un tros de carn».</p>
+    <p>Tres dies després, el déu de la saviesa Enki envia dos éssers andrògifs que la ressusciten amb l'aliment i l'aigua de la vida. Però les lleis del món dels morts exigeixen un substitut: Inanna condemna el seu espòs Dumuzi a ocupar el seu lloc, establint el cicle estacional de sis mesos a la terra i sis als inferns que explica la mort i el renaixement de la vegetació.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Inanna i la tradició occidental</span>
+      <p>El mite del Descens d'Inanna és el precursor directe de múltiples tradicions religioses posteriors: el mite grec de Persèfone i el cicle de les estacions, el culte de Tammuz/Adonis al món semític (plores litúrgics per la mort del déu), i —de manera estructural, no directa— la narrativa cristiana de la mort i resurrecció en tres dies. La deessa va ser assimilada a Afrodita a Grècia i a Venus a Roma. Alguns estudiosos han assenyalat paral·lels estructurals amb la figura de la Verge Maria com a reina del cel (<em>regina caeli</em>), títol que era un dels epítets originals d'Inanna.</p>
+    </div>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.2 — Inanna i el Descens als Inferns</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'DqDzAhJDYFg')">
+            <img src="https://img.youtube.com/vi/DqDzAhJDYFg/mqdefault.jpg" alt="Inanna Ishtar descens inferns">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">El Descenso de Inanna a los Infiernos – El primer mito de resurrección</div>
+            <div class="v-desc">Explicació completa del mite del descens d'Inanna/Ishtar: les set portes, la mort, la resurrecció i la seva influència sobre les tradicions posteriors.</div>
+            <a href="https://www.youtube.com/watch?v=DqDzAhJDYFg" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">📺 3.2 — Els déus de Mesopotàmia</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'list=PLRAyMUFM4bDrVRLWpTjkqQcJgE-CRuasl')">
+            <img src="https://img.youtube.com/vi/2J_GQi6Qgkc/mqdefault.jpg" alt="Panteó mesopotàmic">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Los dioses de Mesopotamia – Mitología sumeria, acadia y babilónica</div>
+            <div class="v-desc">Explicació dels grans déus mesopotàmics: Anu, Enlil, Enki, Inanna/Ishtar, Marduk i les seves funcions polítiques i còsmiques.</div>
+            <a href="https://www.youtube.com/watch?v=2J_GQi6Qgkc" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.3 ZIGGURAT -->
+  <div class="section" id="ziggurat">
+    <div class="section-label">3.3 — Arquitectura del Poder Sagrat</div>
+    <h2>El ziggurat: temple, estat i economia</h2>
+    <hr class="divider">
+    <p>El ziggurat —paraula derivada de l'accadi <em>ziggarratu</em>, «torre del temple»— és l'expressió arquitectònica més poderosa de la teologia mesopotàmica. No és simplement un lloc de culte: és el centre físic, administratiu i econòmic de la ciutat. La seva forma escalonada, que ascendeix des de la terra fins al cel, materialitza la connexió entre el món humà i el diví, i al seu cim hi residia, simbòlicament, el déu tutelar de la ciutat.</p>
+    <p>Els ziggurats van ser construïts en totes les grans ciutats de Mesopotàmia des del període Uruk (~4000–3100 aC) fins a l'època persa. El més ben conservat és el Gran Ziggurat d'Ur, construït per Ur-Nammu (~2100 aC) i dedicat al déu de la lluna Nanna. La seva base mesurava 64 × 46 metres i s'elevava en tres terrasses fins a una alçada original d'uns 21 metres.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">El temple com a estat total</span>
+      <p>El complex del ziggurat no era exclusivament religiós. Incloïa magatzems de gra, arxius administratius, escoles d'escribes, residències sacerdotals, tallers artesanals i oficines de redistribució econòmica. Els sacerdots eren simultàniament funcionaris religiosos, gestors econòmics, metges, astrònoms i juristes. El temple era, en paraules de l'assiriòleg A. Leo Oppenheim, «una institució que ho absorbia tot».</p>
+    </div>
+
+    <h3>Les tres funcions del ziggurat</h3>
+    <p><strong>Funció religiosa:</strong> El ziggurat era la residència terrenal del déu tutelar de la ciutat. Al seu cim hi havia un santuari (<em>giparru</em>) on s'hi celebraven rituals d'accés restringit, reservats als grans sacerdots. El públic general no hi tenia accés. La construcció i el manteniment del ziggurat eren responsabilitats primàries del rei, que demostrava la seva pietat i la seva legitimitat a través d'aquest esforç arquitectònic.</p>
+    <p><strong>Funció econòmica:</strong> Els temples mesopotàmics eren les principals institucions econòmiques de les seves ciutats. Gestionaven terres agrícoles, ramats, tallers i xarxes comercials. La redistribució dels excedents agrícoles des del temple cap a la població era una funció sacerdotal essencial que lligava la legitimitat religiosa amb la supervivència material de la comunitat.</p>
+    <p><strong>Funció política i administrativa:</strong> Els complexos dels ziggurats allotjaven arxius on es guardaven registres de transaccions comercials, lleis, tractats i astronomia. Els escribes formaven una classe intel·lectual d'origen sacerdotal que gestionava la burocràcia estatal. El control de l'escriptura i del calendari —funcions sacerdotals— equivalia al control del temps, de la memòria col·lectiva i de la legitimitat jurídica.</p>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.3 — El Ziggurat: temple, estat i economia</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'PRJhCNEX_Kw')">
+            <img src="https://img.youtube.com/vi/PRJhCNEX_Kw/mqdefault.jpg" alt="Ziggurat Ur">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">El Ziggurat de Ur – Khan Academy en Español</div>
+            <div class="v-desc">Anàlisi artística i arquitectònica del Gran Ziggurat d'Ur. Explicació de la seva funció religiosa, política i econòmica.</div>
+            <a href="https://www.youtube.com/watch?v=PRJhCNEX_Kw" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'NKpLBLcKfmA')">
+            <img src="https://img.youtube.com/vi/NKpLBLcKfmA/mqdefault.jpg" alt="Torre de Babel">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">La Torre de Babel y el Etemenanki de Babilonia</div>
+            <div class="v-desc">El ziggurat babilònic Etemenanki —possible origen del mite bíblic de la Torre de Babel— i el seu significat religiós i polític.</div>
+            <a href="https://www.youtube.com/watch?v=NKpLBLcKfmA" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.4 MITES -->
+  <div class="section" id="mites">
+    <div class="section-label">3.4 — Teologia Política</div>
+    <h2>Els mites fundacionals i la legitimació reial</h2>
+    <hr class="divider">
+    <p>Els grans mites mesopotàmics no són simplement relats sobre l'origen del món: són documents de teologia política. Cada mite justifica un ordre social concret, legitima una jerarquia determinada i explica per què les coses han de ser com són. Llegits des d'aquesta perspectiva, l'<em>Enuma Elish</em> i l'<em>Epopeia de Gilgamesh</em> revelen amb una precisió sorprenent els mecanismes del poder religiós a l'antiguitat.</p>
+
+    <h3>L'Enuma Elish: la creació com a acte polític</h3>
+    <p>L'<em>Enuma Elish</em> («Quan a les altures», títol derivat de les seves paraules inicials) és el gran mite de creació babilònic, redactat en la seva forma actual cap al 1200 aC però basant-se en tradicions molt més antigues. Narra com el jove déu Marduk derrota la deessa primordial del caos Tiamat, la divideix en dos i amb el seu cos construeix el cel i la terra. Dels ossos del seu consort Quingu crea la humanitat, destinada a servir els déus i a alliberar-los del treball.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Enuma Elish com a propaganda imperial</span>
+      <p>L'acadèmia contemporània llegeix l'<em>Enuma Elish</em> menys com un mite cosmogònic que com un document de propaganda política. Marduk era originalment un déu menor de la petita ciutat de Babilon. La seva elevació a déu suprem del panteó coincideix exactament amb l'ascens polític de Babilon sota Hammurabi. En Assíria, el mateix text va ser adaptat substituint Marduk per Assur, demostrant que l'estructura teològica era una eina reutilitzable al servei de qualsevol poder hegemònic. Durant l'onze dies del festival de Cap d'Any (<em>Akitu</em>), l'<em>Enuma Elish</em> era recitat íntegrament davant l'estàtua de Marduk per recordar a tota la ciutadania el seu lloc en l'ordre còsmic.</p>
+    </div>
+
+    <h3>L'Epopeia de Gilgamesh: heroi, poder i mort</h3>
+    <p>L'<em>Epopeia de Gilgamesh</em> és la primera obra literària de la història, compilada en la seva forma acàdia definitiva cap al 1200 aC a partir de tradicions sumeris que se remunten al 2100 aC. Narra les aventures de Gilgamesh, rei d'Uruk, descrit com a dos terços diví i un terç humà. Després de la mort del seu amic Enkidu, obsessionat pel terror a la mort, Gilgamesh emprèn un viatge en cerca de la immortalitat, però fracassa.</p>
+    <p>El missatge polític és explícit: fins i tot el rei més poderós ha d'acceptar la seva condició mortal. La immortalitat és reservada als déus. Però el llegat —les muralles de la ciutat que ha construït, les lleis que ha promulgat, els temples que ha erigit— és la forma humana de transcendència. L'epopeia legitima el poder reial i, simultàniament, n'estableix els límits.</p>
+
+    <h3>La Llista Reial Sumèria: quan la reialesa va baixar del cel</h3>
+    <p>La Llista Reial Sumèria és un document del ~2100 aC que recull els reis de Sumer des dels temps anteriors al Diluvi. Els primers reis regnaven durant milers o desenes de milers d'anys cadascun. A mesura que la llista avança, els regnats es van escurçant fins a assolir dimensions humanes. La seva frase inaugural ho diu tot: «Quan la reialesa va baixar del cel, la reialesa era a Eridu». La reialesa no és una invenció humana: és un do diví. Tota la legitimitat política deriva d'aquest moment fundacional.</p>
+
+
+    <h3>El Diluvi mesopotàmic: l'Atrahasis i Utnapishtim</h3>
+    <p>El mite del gran diluvi és un dels elements narratius més importants i debatuts de tota la literatura religiosa antiga. La seva versió més antiga documentada és l'<em>Atrahasis</em> accadi (~1700 aC), però les tradicions orals que el sustenten probablement se remunten molt més enrere. En el relat de l'Atrahasis, els déus decideixen destruir la humanitat no per causa del pecat moral sinó per un motiu sorprenentment banal: els éssers humans han crescut tant en nombre que el seu soroll no deixa dormir els déus. Enlil, déu de la tempesta, ordena el diluvi. Però el déu de la saviesa Enki avisa secretament Atrahasis —«el molt savi»— i li ordena que construeixi una embarcació per salvar-se ell, la seva família i els animals.</p>
+    <p>La mateixa història reapareix al tablet XI de l'<em>Epopeia de Gilgamesh</em>, on l'heroi del diluvi s'anomena Utnapishtim. Gilgamesh el visita precisament perquè Utnapishtim és l'únic mortal que ha obtingut la immortalitat dels déus com a recompensa per haver sobreviscut al diluvi. Els paral·lels amb el relat bíblic de Noè (Gènesi 6–9, redactat entre els segles X i VI aC) són tan precises que la influència directa és acadèmicament incontestable:</p>
+
+    <table class="deity-table">
+      <tr><th>Element narratiu</th><th>Atrahasis / Utnapishtim</th><th>Noè (Gènesi)</th></tr>
+      <tr><td>Causa del diluvi</td><td>El soroll humà molesta els déus (Atrahasis); decisió d'Enlil</td><td>La maldat moral de la humanitat; decisió de Jahvè</td></tr>
+      <tr><td>L'heroi</td><td>Atrahasis / Utnapishtim, escollit pel déu Enki/Ea</td><td>Noè, «just i perfecte» als ulls de Déu</td></tr>
+      <tr><td>L'embarcació</td><td>Vaixell de planta quadrada, calafatat amb pega (<em>kupru</em>)</td><td>Arca calafatada amb pega (<em>kofer</em>, cognat de l'accadi)</td></tr>
+      <tr><td>Els animals</td><td>Embarca animals per parelles i «la llavor de tota cosa viva»</td><td>Embarca animals «de tota mena, de dos en dos»</td></tr>
+      <tr><td>Els ocells</td><td>Allibera colom, oreneta i corb per detectar terra ferma</td><td>Allibera corb i colom; el colom torna amb una branca d'olivera</td></tr>
+      <tr><td>Final</td><td>Utnapishtim obté la immortalitat; els déus estableixen nous límits a la humanitat</td><td>Noè rep la benedicció divina; Déu estableix una aliança (<em>berit</em>) amb la humanitat</td></tr>
+    </table>
+
+    <p>La diferència teològica decisiva, com ha assenyalat l'escola acadèmica de TheTorah.com i els estudis de Tikva Frymer-Kensky, és que la tradició bíblica «moralitza» i «monotheïtza» el relat mesopotàmic: el diluvi ja no és un capritx dels déus irritats pel soroll sinó un acte de justícia d'un déu únic davant del pecat moral; i el pacte post-diluvià no estableix límits coercitius a la humanitat sinó una aliança generosa que la beneeix. Aquesta transformació no és anecdòtica: és una revolució teològica i política de primera magnitud.</p>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.4 — El Diluvi mesopotàmic i el seu llegat bíblic</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'Ll5EZCf3fSo')">
+            <img src="https://img.youtube.com/vi/Ll5EZCf3fSo/mqdefault.jpg" alt="Diluvi Atrahasis Noe">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">El Diluvio antes de Noé: Atrahasis y Utnapishtim</div>
+            <div class="v-desc">Comparació rigorosa entre els relats mesopotàmics del diluvi (Atrahasis, Gilgamesh) i el relat bíblic de Noè. Similituds, diferències i la qüestió de la influència directa.</div>
+            <a href="https://www.youtube.com/watch?v=Ll5EZCf3fSo" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">📺 3.4 — L'Enuma Elish i Gilgamesh</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'UBaGJEFkZ0o')">
+            <img src="https://img.youtube.com/vi/UBaGJEFkZ0o/mqdefault.jpg" alt="Enuma Elish">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Enuma Elish: El Mito de la Creación Babilónico</div>
+            <div class="v-desc">Explicació completa de l'Enuma Elish: Marduk, Tiamat, la creació del cosmos i la seva funció com a propaganda política de Babilon.</div>
+            <a href="https://www.youtube.com/watch?v=UBaGJEFkZ0o" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'tKp43MwMQmo')">
+            <img src="https://img.youtube.com/vi/tKp43MwMQmo/mqdefault.jpg" alt="Epopeia Gilgamesh">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">La Epopeya de Gilgamesh – El primer relato literario de la humanidad</div>
+            <div class="v-desc">Resum i anàlisi de l'Epopeia de Gilgamesh: amistat, mort, recerca de la immortalitat i el seu missatge polític sobre els límits del poder.</div>
+            <a href="https://www.youtube.com/watch?v=tKp43MwMQmo" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.5 REI -->
+  <div class="section" id="rei">
+    <div class="section-label">3.5 — Reialesa i Divinitat</div>
+    <h2>El rei com a intermediari diví</h2>
+    <hr class="divider">
+    <p>A Mesopotàmia, la figura del rei (<em>lugal</em> en sumeri, literalment «home gran») ocupa una posició ontològica única: és humà, però actua com a representant terrenal del déu. No és ell mateix un déu —tret del breu experiment de la divinització reial a l'època accàdia—, sinó el seu lloctinent, administrador i guerrer. Aquesta construcció teològica és extraordinàriament eficient: centralitza tot el poder en una figura única sense que aquesta figura assumeixi l'omnipotència divina, i per tant sense haver de respondre de tots els fracassos còsmics.</p>
+
+    <div class="thinker-card">
+      <div class="thinker-name">Naram-Sin d'Akkad</div>
+      <div class="thinker-dates">r. 2254 – 2218 aC · Primer rei divinitzat de la història</div>
+      <p>Naram-Sin, nét de Sargon d'Akkad, va ser el primer governant de la història que va reclamar el títol de déu en vida, afegint el determinatiu diví (DINGIR) davant del seu nom. La seva <em>Estela de Victòria</em> (conservada al Louvre) el representa amb un casc cornut —atribut exclusivament diví— trepitjant els seus enemics. Aquesta innovació teològica va tenir un caràcter polític explícit: en una època d'expansió imperial, la divinització del rei eliminava la mediació sacerdotal entre el govern i el sagrat.</p>
+    </div>
+
+    <h3>El Codi d'Hammurabi: tecnologia religiosa del poder</h3>
+    <p>El Codi d'Hammurabi (1792–1750 aC) és el conjunt legal més complet de l'antiguitat: 282 lleis inscrites en una estela de basalt de 2,25 metres conservada al Museu del Louvre. Però la seva dimensió política és tan important com la jurídica. Al cim de l'estela, Hammurabi apareix representat rebent les lleis del déu de la justícia Shamash, que li lliura el bàcul i l'anell, símbols de l'autoritat. El missatge és inequívoc: les lleis no provenen del rei sinó del déu. Desobeir-les no és un crim polític sinó un pecat còsmic.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Religió i llei: una mateixa cosa</span>
+      <p>Hammurabi es proclama a si mateix <em>bani matim</em> («constructor de la terra») i descriu les seves lleis com una comissió divina de Marduk i Shamash per «fer prevaler la justícia a la terra». La unió entre llei divina i llei humana és total. Aquest model —on la legitimitat del poder descansa en la sanció sobrenatural— tindrà una influència directa sobre el dret mosaïc hebreu, el dret canònic cristià i la <em>sharia</em> islàmica.</p>
+    </div>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.5 — Hammurabi i la llei divina</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'rNsopzmpEWk')">
+            <img src="https://img.youtube.com/vi/rNsopzmpEWk/mqdefault.jpg" alt="Codi Hammurabi">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">El Código de Hammurabi: La ley como mandato divino</div>
+            <div class="v-desc">Anàlisi del Codi d'Hammurabi com a tecnologia política i religiosa: les 282 lleis, la iconografia de l'estela i la seva funció de legitimació del poder.</div>
+            <a href="https://www.youtube.com/watch?v=rNsopzmpEWk" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.6 ESCRIPTURA -->
+  <div class="section" id="escriptura">
+    <div class="section-label">3.6 — Saber i Poder</div>
+    <h2>Religió, escriptura i burocràcia</h2>
+    <hr class="divider">
+    <p>La invenció de l'escriptura cuneïforme a Sumer (~3500 aC) no va ser un acte cultural neutral: va ser una necessitat administrativa del temple. Les primeres tauletes cuneïformes que coneixem no contenen poesia ni mitologia sinó registres de transaccions econòmiques: quant gra es guardava als magatzems del temple, quants animals es sacrificaven, quants jornalers treballaven els camps de la divinitat. L'escriptura va néixer al servei del poder sacerdotal.</p>
+    <p>Aquesta relació entre escriptura i temple va tenir conseqüències profundes. Els escribes (<em>dub-sar</em> en sumeri) eren formats en les escoles del temple (<em>edubba</em>, «casa de les tauletes»), i la seva formació incloïa tant la comptabilitat i el dret com la literatura, l'astronomia i la medicina. Eren simultàniament funcionaris religiosos, buròcrates estatals i intel·lectuals. El control de l'escriptura era el control del passat, del dret i del saber: les tres formes fonamentals de poder simbòlic.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">La cuneïforme com a instrument de poder</span>
+      <p>La cuneïforme era una escriptura complexa que requeria anys d'aprenentatge, cosa que la convertia en un monopoli efectiu d'una classe especialitzada. El fet que els escribes fossin formats als temples garantia el control sacerdotal sobre tot el que s'escrivia i s'arxivava. Fins a la difusió de l'alfabet fenici (~1000 aC), l'escriptura va ser sempre un instrument del poder, no un mitjà de comunicació popular.</p>
+    </div>
+
+    <h3>L'astronomia com a teologia política</h3>
+    <p>Els sacerdots mesopotàmics van desenvolupar la primera astronomia científica de la història. Però el seu objectiu no era la descripció neutral del cel: era la divinació, és a dir, la interpretació de les posicions dels astres com a missatges dels déus sobre el futur del regne. El control del calendari lunisolar —que determinava les dates de les collites, els festivals religiosos i els actes polítics— era una prerrogativa sacerdotal de primer ordre. Qui controlava el temps, controlava la societat.</p>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.6 — L'escriptura cuneïforme</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'zOwP0KUlnZg')">
+            <img src="https://img.youtube.com/vi/zOwP0KUlnZg/mqdefault.jpg" alt="Escritura cuneiforme">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">La escritura cuneiforme: el origen de la escritura</div>
+            <div class="v-desc">Origen, evolució i funcionament de la cuneïforme, la primera escriptura de la humanitat, i la seva relació amb el poder del temple.</div>
+            <a href="https://www.youtube.com/watch?v=zOwP0KUlnZg" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.7 LLEGAT -->
+  <div class="section" id="llegat">
+    <div class="section-label">3.7 — Influències i Herències</div>
+    <h2>Influències i llegat: Mesopotàmia com a matriu de les religions posteriors</h2>
+    <hr class="divider">
+    <p>La religió mesopotàmica no va morir amb la conquesta persa del 539 aC. Va sobreviure, transformada i fragmentada, en les tres grans tradicions religioses que van modelar el món occidental i el Pròxim Orient: el judaisme, el cristianisme i l'islam. La comprensió d'aquest llegat és indispensable per entendre la genealogia del poder religiós en la història.</p>
+
+    <h3>El Diluvi universal</h3>
+    <p>La història del gran diluvi apareix per primera vegada a la literatura sumèria (~2100 aC) i en la seva versió acàdia més elaborada, l'<em>Atrahasis</em> (~1700 aC) i al tablet XI de l'<em>Epopeia de Gilgamesh</em>. El paral·lelisme amb el relat bíblic de Noè (redactat entre els segles X i VI aC) és tan precís —l'heroi construeix una barca, embarca animals per parelles, allibera ocells per detectar terra ferma, i el déu penedeix d'haver enviat el diluvi— que l'influència directa és incontestable. L'assiriòleg Andrew George, traductor de referència de l'Epopeia, ho considera demostrat.</p>
+
+    <h3>La creació de la humanitat</h3>
+    <p>A l'<em>Enuma Elish</em> i a l'<em>Atrahasis</em>, els éssers humans són creats de la sang d'un déu mort (Quingu) barrejada amb argila, per servir els déus i alliberar-los del treball. A la tradició hebrea del Gènesi 2, l'ésser humà és creat de l'argila animada pel buf diví (<em>neshama</em>). La matèria primera —l'argila— és la mateixa; canvia radicalment la finalitat: servitud còsmica versus dignitat de la imago Dei. Aquesta transformació és, en si mateixa, una revolució teològica i política de primer ordre.</p>
+
+    <h3>La llei divina com a mandat reial</h3>
+    <p>El model del Codi d'Hammurabi —un rei que rep les lleis d'un déu i les imposa al seu poble com a mandat sobrenatural— té paral·lels directes amb el relat de Moisès rebent les Taules de la Llei al Sinaí. En ambdós casos, la llei no és una convenció humana sinó una prescripció divina. La diferència decisiva és que el model mesopotàmic legitima el poder d'un rei humà concret, mentre que el model hebreu legitima el poder d'un déu que transcendeix qualsevol figura política particular, obrint la porta al profetisme crític del poder.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">Mesopotàmia i la Bíblia</span>
+      <p>Molts dels elements que considerem característics de la tradició judeocristiana —el diluvi, la creació de l'ésser humà de l'argila, el jardí paradisíac, la torre que toca el cel, els àngels, el calendari setmanal— tenen precedents directes en la literatura mesopotàmica. Això no «invalida» les tradicions bíbliques: les situa en el seu context cultural i genealògic, i permet comprendre com les idees religioses es transformen quan passen d'una cultura a una altra.</p>
+    </div>
+
+
+    <h3>La <em>translatio imperii</em>: de Hammurabi a Carlemany</h3>
+    <p>Un dels llegats més duradors i menys reconeguts de la teologia mesopotàmica és el model de l'<strong>imperi com a missió divina</strong>: la idea que un poder polític concret és el representant terrenal de la voluntat divina i que la seva expansió equival a l'extensió de l'ordre còsmic. Aquest model, que hem vist operar amb tota la seva transparència a través de Hammurabi, Naram-Sin i els reis neoassiris, va sobreviure la caiguda de Mesopotàmia i va ser reutilitzat, adaptat i refinat per totes les tradicions imperials posteriors.</p>
+    <p>La doctrina medieval de la <em>translatio imperii</em> («translació de l'imperi») —que justificava la successió lineal del poder universal des de Babilon fins a Alexandre, de Roma fins a Carlemany i el Sacre Imperi Romano-Germànic— no és altra cosa que la versió cristiana de la mateixa operació teològica que l'<em>Enuma Elish</em> havia realitzat per a Babilon: legitimar un poder polític concret presentant-lo com l'heredeu de l'ordre còsmic diví.</p>
+
+    <div class="concept-box">
+      <span class="concept-tag">El model es repeteix: Hammurabi → Constantí → Carlemany</span>
+      <p><strong>Hammurabi</strong> rep les lleis de Shamash gravades en pedra: la llei humana és llei divina. <strong>Constantí</strong> (312 dC) guanya la batalla del Pont Milvi sota el signe de Crist: la victòria militar és un mandat diví. <strong>Carlemany</strong> és coronat emperador pel Papa Lleó III a Roma el 800 dC: la <em>translatio imperii</em> transfereix el poder universal de Roma als Francs amb sanció pontifícia. En tots tres casos, l'estructura és idèntica: un poder polític concret es presenta com l'executor terrenal de la voluntat d'un déu universal. El déu canvia; el mecanisme, no.</p>
+    </div>
+
+    <p>En el món islàmic, el <em>califat</em> reprodueix la mateixa estructura: el califa és el «successor» (<em>khalifa</em>) del Profeta i, a través d'ell, el representant de Déu (<em>Allah</em>) a la terra. Les guerres de conquesta no són actes d'expansionisme polític ordinari sinó <em>jihad</em>, esforç en el camí de Déu. I les lleis del califat —la <em>sharia</em>— no provenen dels homes sinó de la revelació divina, exactament com el Codi d'Hammurabi provenia de la mà de Shamash. La genealogia teològica és directa, tot i que la tradició islàmica la rebutjaria categòricament.</p>
+    <p>El reconeixement d'aquesta genealogia no és un acte de reduccionisme iconoclasta. És una eina analítica que permet comprendre per quin mecanisme les religions han legitimat repetidament el poder polític al llarg de la història: no per engany sinó perquè aquesta fusió entre cosmos i poder respon a una necessitat humana profunda i recurrent de trobar un fonament que transcendeixi la pura força.</p>
+
+    <div class="video-section">
+      <div class="video-label">📺 3.7 — Translatio imperii: de Babilon a l'Europa cristiana</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'M0YJT4prMWU')">
+            <img src="https://img.youtube.com/vi/M0YJT4prMWU/mqdefault.jpg" alt="Constantí poder diví">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Constantino y el poder divino: cuando el Imperio se hizo cristiano</div>
+            <div class="v-desc">Com Constantí va reutilitzar el model de la reialesa divina mesopotàmica i egípcia per legitimar el poder imperial cristià. La <em>translatio imperii</em> en acció.</div>
+            <a href="https://www.youtube.com/watch?v=M0YJT4prMWU" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="video-section">
+      <div class="video-label">📺 3.7 — El llegat de Mesopotàmia a la Bíblia i les religions posteriors</div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" onclick="embedVideo(this, 'CZEkJz_rNSA')">
+            <img src="https://img.youtube.com/vi/CZEkJz_rNSA/mqdefault.jpg" alt="Mesopotamia Biblia">
+            <div class="play-btn"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          </div>
+          <div class="video-info">
+            <div class="v-title">Mesopotamia y la Biblia: Paralelos y Conexiones</div>
+            <div class="v-desc">Anàlisi dels paral·lels entre la literatura mesopotàmica i els textos bíblics: el Diluvi, la Creació, la Llei divina i la seva genealogia compartida.</div>
+            <a href="https://www.youtube.com/watch?v=CZEkJz_rNSA" target="_blank">▶ Obrir a YouTube</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METODOLOGIA -->
+  <div class="section" id="metodologia">
+    <div class="section-label">Consideracions metodològiques finals</div>
+    <h2>La religió com a sistema total de poder</h2>
+    <hr class="divider">
+    <p>L'anàlisi de la religió mesopotàmica confirma i aprofundeix les tesis teòriques del Capítol 1. A Mesopotàmia podem observar, per primera vegada en la historia documentada, tots els mecanismes que Weber, Durkheim, Foucault i Geertz van descriure des de la seva experiència de les societats modernes: la legitimació de l'autoritat a través del referent sagrat, la cohesió social a través del ritual col·lectiu, el control dels cossos i del temps a través de les institucions religioses, i la construcció simbòlica d'un ordre natural que és, en realitat, un ordre polític.</p>
+    <p>Particularment revelador és el mecanisme de la <em>teologia flexible</em>: el mateix marc narratiu (el déu suprem que venç el caos i crea l'ordre) és reutilitzat per Sumer, Akkad, Babilònia i Assíria, canviant únicament el nom del déu protagonista en funció de les necessitats hegemòniques del moment. La religió mesopotàmica no és un sistema de creences fix i sincer: és una tecnologia política adaptable.</p>
+    <p>Finalment, el llegat de Mesopotàmia sobre les tradicions judeocristianes ens obliga a plantejar una pregunta metodològica incòmoda: fins a quin punt les religions que es presenten a si mateixes com a revelacions originals i úniques són, en realitat, reelaboracions creatives de materials simbòlics preexistents? La resposta a aquesta pregunta no invalida cap tradició religiosa, però canvia radicalment la manera d'entendre la seva genealogia.</p>
+  </div>
+
+  <!-- BIBLIOGRAFIA -->
+  <div class="section" id="biblio">
+    <div class="section-label">Recursos i lectures</div>
+    <h2>Bibliografia comentada</h2>
+    <hr class="divider">
+
+    <div class="bib-level">
+      <h3>🟢 Nivell 1 — Introducció (públic general)</h3>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Kramer, Samuel Noah. <em>La historia empieza en Sumer</em>. Barcelona: Orbis, 1985.</div>
+          <div class="bib-note">El clàssic de divulgació sobre Sumer. Kramer, un dels grans assiriòlegs del segle XX, presenta els «trenta-neuf primers cops» de la humanitat documentats en tauletes sumeris. Molt llegible.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Sandars, N.K. (trad.) <em>El poema de Gilgamesh</em>. Madrid: Alianza Editorial, 1992.</div>
+          <div class="bib-note">La traducció a prosa moderna més accessible de l'Epopeia de Gilgamesh. Imprescindible: és el text fonamental, i llegir-lo directament és irreemplaçable.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Bottéro, Jean. <em>La religión más antigua: Mesopotamia</em>. Madrid: Trotta, 2001.</div>
+          <div class="bib-note">El gran especialista francès en religió mesopotàmica ofereix la síntesi més accessible sobre el tema. Ideal com a primer pas seriós.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bib-level">
+      <h3>🟡 Nivell 2 — Intermedi</h3>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Lara Peinado, Federico. <em>Enuma Elish: Poema babilónico de la Creación</em>. Madrid: Trotta, 1994.</div>
+          <div class="bib-note">Traducció completa i comentada de l'Enuma Elish en castellà, amb introducció acadèmica extensa. La millor edició disponible en la nostra llengua.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Charpin, Dominique. <em>Hammurabi de Babilonia</em>. Madrid: Fondo de Cultura Económica, 2017.</div>
+          <div class="bib-note">La biografia acadèmica de referència sobre Hammurabi, escrita pel principal especialista mundial. Rigorosa i molt llegible. Imprescindible per la secció 3.5.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Leick, Gwendolyn. <em>Mesopotamia: La invención de la ciudad</em>. Barcelona: Paidós, 2002.</div>
+          <div class="bib-note">Reconstrucció de deu grans ciutats mesopotàmiques (Eridu, Uruk, Ur, Nínive, Babilon…) a través de les seves fonts arqueològiques i textuals. Excel·lent per les seccions 3.1 i 3.3.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bib-level">
+      <h3>🔴 Nivell 3 — Avançat (acadèmic)</h3>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Oppenheim, A. Leo. <em>Ancient Mesopotamia: Portrait of a Dead Civilization</em>. Chicago: University of Chicago Press, 1977.</div>
+          <div class="bib-note">La síntesi acadèmica de referència absoluta sobre Mesopotàmia. Oppenheim és crític fins i tot sobre la possibilitat de conèixer la religió mesopotàmica («the great silence of the gods»). Lectura obligatòria per a especialistes.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">George, Andrew R. <em>The Babylonian Gilgamesh Epic: Introduction, Critical Edition and Cuneiform Texts</em>. Oxford: Oxford University Press, 2003.</div>
+          <div class="bib-note">L'edició acadèmica definitiva de l'Epopeia de Gilgamesh en dues volums. Per a investigadors. George és l'autoritat mundial sobre el text.</div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">Black, Antony. <em>A World History of Ancient Political Thought</em>. Oxford: Oxford University Press, 2016. Cap. 4: «Mesopotamia, Assyria, Babylon».</div>
+          <div class="bib-note">Anàlisi comparativa del pensament polític mesopotàmic en perspectiva mundial. El capítol 4 és la referència acadèmica de primer ordre per a la tesi central d'aquest capítol.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bib-level">
+      <h3>🌐 Recursos digitals</h3>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">The Electronic Text Corpus of Sumerian Literature (ETCSL) – Universitat d'Oxford</div>
+          <div class="bib-note">Corpus complet de la literatura sumèria en transliteració i traducció anglesa. Accés gratuït. <a href="https://etcsl.orinst.ox.ac.uk" target="_blank" style="color:var(--rust)">→ etcsl.orinst.ox.ac.uk</a></div>
+        </div>
+      </div>
+      <div class="bib-item">
+        <div class="bib-bar"></div>
+        <div class="bib-content">
+          <div class="bib-ref">World History Encyclopedia — entrades: «Mesopotamia», «Ziggurat», «Enuma Elish», «Code of Hammurabi»</div>
+          <div class="bib-note">Articles acadèmics de divulgació amb bibliografia especialitzada. El millor recurs en línia per a públic general amb ambicions acadèmiques. <a href="https://www.worldhistory.org" target="_blank" style="color:var(--rust)">→ worldhistory.org</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const ids = ['intro','regnes','panteo','ziggurat','mites','rei','escriptura','llegat','metodologia','biblio'];
+  document.querySelectorAll('nav button').forEach((b, i) => {
+    b.classList.toggle('active', ids[i] === id);
+  });
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+function embedVideo(thumbEl, videoId) {
+  const container = document.createElement('div');
+  container.className = 'video-embed-container';
+  container.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" allowfullscreen allow="autoplay"></iframe>`;
+  thumbEl.replaceWith(container);
+}
+</script>
+</body>
+</html>
