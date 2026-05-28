@@ -1,2 +1,2 @@
 # Historia-Religions
-Una genealogis del poder
+Una genealogia del poder
