@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capítol 9 — Taoisme</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#1a1209;--ink-light:#3a2e1c;--parchment:#f0e9da;--cream:#faf6ee;--gold:#b8860b;--gold-light:#d4a843;--gold-dim:#b8860b18;--rust:#8b3a1e;--accent:#6b4c2a;--rule:#b8860b55;--tao-jade:#2d5a4a;--tao-gold:#d4af37}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:'Source Serif 4',Georgia,serif;font-size:18px;line-height:1.75;font-weight:300}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--tao-jade);border-radius:3px}
+.sidebar{position:fixed;top:0;left:0;width:290px;height:100vh;background:#0f1419;overflow-y:auto;transform:translateX(-100%);transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:1000;padding:2rem 0;scrollbar-width:thin;scrollbar-color:#d4af37 #0f1419}
+.sidebar.open{transform:translateX(0)}
+.sidebar-header{padding:3.5rem 1.5rem 1.5rem;border-bottom:1px solid #d4af3722;margin-bottom:1rem}
+.sidebar-title{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--tao-gold);font-weight:700;line-height:1.3}
+.sidebar nav{padding:0 .5rem}
+.sidebar a{display:block;padding:.32rem 1rem;color:#a89a6655;text-decoration:none;font-size:.8rem;transition:color .2s,background .2s;border-radius:3px;line-height:1.4}
+.sidebar a:hover{color:var(--tao-gold);background:#d4af3711}
+.sidebar a.active{color:var(--tao-gold);background:#d4af3718}
+.sidebar a.lvl1{font-weight:600;font-size:.86rem;color:#a89a66dd;margin-top:.4rem;cursor:pointer;position:relative;padding-right:1.5rem}
+.sidebar a.lvl1::after{content:'▶';position:absolute;right:1rem;font-size:.6rem;transition:transform .3s}
+.sidebar a.lvl1.expanded::after{transform:rotate(90deg)}
+.sidebar .lvl2{padding:.32rem 1.5rem;color:#a89a6655;font-size:.76rem;line-height:1.4;cursor:pointer;display:none;max-height:0;overflow:hidden;opacity:0;transition:opacity .3s ease,max-height .3s ease;border-radius:3px}
+.sidebar .lvl2:hover{color:var(--tao-gold);background:#d4af3711}
+.sidebar .lvl2.visible{display:block;max-height:500px;opacity:1}
+.nav-toggle{position:fixed;top:1.5rem;left:1.5rem;z-index:1100;width:44px;height:44px;background:#0f1419;border:1px solid #d4af3744;border-radius:4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--tao-gold);transition:transform .3s,opacity .3s}
+.nav-toggle.open{display:none}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999}
+.overlay.active{display:block}
+.progress-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--tao-jade),var(--tao-gold));z-index:2000;transition:width .1s}
+.content{max-width:800px;margin:0 auto;padding:5rem 2.5rem 8rem}
+section{margin-bottom:5rem}
+h1.chapter-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--tao-jade);line-height:1.15;margin:4rem 0 .5rem}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.35rem,3vw,1.9rem);font-weight:700;color:var(--tao-jade);margin:3.5rem 0 1.5rem;padding-bottom:1rem;border-bottom:2px solid var(--tao-jade);position:relative}
+h2::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:2px;background:linear-gradient(90deg,var(--tao-gold),transparent)}
+h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--tao-gold);margin:2rem 0 .75rem;font-style:normal;letter-spacing:.5px}
+p{margin-bottom:1.3rem;text-align:justify;hyphens:auto}
+p.drop-cap::first-letter{font-family:'Playfair Display',serif;font-size:4.2em;font-weight:700;float:left;line-height:.75;margin:.1em .1em 0 0;color:var(--tao-jade)}
+.concept-box{background:linear-gradient(135deg,#2d5a4a0d 0%,#d4af370d 100%);border-left:4px solid var(--tao-gold);padding:1.5rem;margin:2rem 0;border-radius:4px}
+.concept-box strong{color:var(--tao-jade);font-size:1.05rem}
+.concept-box p{margin:.5rem 0;font-size:.95rem}
+.concept-box em{color:var(--tao-gold);font-style:italic}
+.def-box{background:#2d5a4a08;border-radius:4px;padding:1rem 1.5rem;margin:1.5rem 0;border-left:3px solid var(--tao-jade)}
+.def-box .term{font-family:'Playfair Display',serif;font-size:1rem;color:var(--tao-gold);font-weight:700}
+.def-box .definition{font-size:.9rem;color:var(--ink-light);margin-top:.3rem}
+.soul-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
+.soul-card{background:linear-gradient(135deg,#2d5a4a11 0%,#d4af3711 100%);border:1px solid #2d5a4a33;border-radius:8px;padding:1.5rem;text-align:center;transition:transform .3s,box-shadow .3s}
+.soul-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(45,90,74,.15)}
+.soul-card .deity-name{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--tao-jade);margin-bottom:.5rem}
+.soul-card .deity-role{font-size:.9rem;color:var(--tao-gold);font-style:italic;margin-bottom:1rem}
+.soul-card .deity-desc{font-size:.85rem;line-height:1.6;color:var(--ink-light)}
+.timeline{position:relative;padding:2rem 0;margin:2rem 0}
+.timeline::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--tao-jade) 0%,var(--tao-gold) 100%)}
+.timeline-item{margin-left:80px;margin-bottom:2rem;position:relative}
+.timeline-item::before{content:'';position:absolute;left:-62px;top:6px;width:12px;height:12px;background:var(--tao-jade);border-radius:50%;border:2px solid var(--cream)}
+.timeline-item h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--tao-gold);margin-bottom:.5rem}
+.timeline-item p{font-size:.95rem;color:var(--ink-light);margin:0}
+.back-top{position:fixed;bottom:2rem;right:2rem;width:48px;height:48px;background:linear-gradient(135deg,var(--tao-jade),var(--tao-gold));color:white;border:none;border-radius:50%;font-size:1.5rem;cursor:pointer;opacity:0;transition:opacity .3s;z-index:500;display:flex;align-items:center;justify-content:center}
+.back-top.visible{opacity:1;pointer-events:auto}
+@media(max-width:600px){.content{padding:4rem 1.25rem 6rem}.soul-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+<button class="nav-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
+<div class="overlay" id="overlay"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Capítol 9<br>Taoisme</div>
+  </div>
+  <nav>
+    <a href="#intro" class="lvl1">Introducció</a>
+    
+    <a href="#naturalesa" class="lvl1">Naturalesa del taoisme</a>
+    <div class="lvl2" data-target="visio-general">Visió general</div>
+    <div class="lvl2" data-target="daojia-daojiao">Daojia vs Daojiao</div>
+    <div class="lvl2" data-target="laozi">Laozi: el fundador llegendari</div>
+    
+    <a href="#historic" class="lvl1">Context històric</a>
+    <div class="lvl2" data-target="regnes-combatents">Regnes Combatents</div>
+    <div class="lvl2" data-target="cent-escoles">Les Cent Escoles</div>
+    <div class="lvl2" data-target="xamans-eremites">Xamans i eremites</div>
+    
+    <a href="#textos" class="lvl1">Textos fundacionals</a>
+    <div class="lvl2" data-target="daodejing">Daodejing</div>
+    <div class="lvl2" data-target="zhuangzi">Zhuangzi</div>
+    
+    <a href="#cosmologia" class="lvl1">Cosmologia taoista</a>
+    <div class="lvl2" data-target="dao-natural">El Dao natural</div>
+    <div class="lvl2" data-target="wu-wei">Wu Wei: acció sense esforç</div>
+    
+    <a href="#pract" class="lvl1">Pràctiques espirituals</a>
+    <div class="lvl2" data-target="meditacio">Meditació i respiració</div>
+    <div class="lvl2" data-target="alquimia">Alquímia interna</div>
+    <div class="lvl2" data-target="immortalitat">Immortalitat física</div>
+  </nav>
+</aside>
+
+<div class="content">
+  <h1 class="chapter-title"><span class="ch-num">Capítol 9</span>Taoisme: La Via de la No-Acció</h1>
+
+  <section id="intro">
+    <h2>Introducció</h2>
+    <p class="drop-cap">El taoisme constitueix la resposta més profunda de resistència filosòfica i adaptació existencial davant la violència política i la rigidesa burocràtica. Mentre el confucianisme cercava restaurar l'ordre mitjançant la virtut artifical, el taoisme proposava algo radicalment diferent: retornar al flux natural de l'univers, deixar d'oposar-se i deixar que la realitat es despleguegui per si mateixa.</p>
+    <p>La comprensió del <em>Dao</em> (el Camí) i de <em>wu wei</em> (l'acció sense esforç) com a veritable tecnologia de poder va desdibuixar per sempre les fronteres entre la mística, la medicina corporativa, l'anarquisme intel·lectual i la religió institucionalitzada.</p>
+  </section>
+
+  <section id="naturalesa">
+    <h2>Naturalesa del taoisme</h2>
+    
+    <section id="visio-general">
+      <h3>Visió general</h3>
+      <p>El taoisme és una de les dues grans tradicions indígenes que han configurat la cosmovisió i identitat cultural de la civilització xinesa, essent l'altra el confucianisme. Mentre el confucianisme representa l'esfera pública, el deure social, la jerarquia i l'ordre burocràtic, el taoisme ha representat històricament l'esfera íntima, la connexió amb la natura, la llibertat individual i, sovint, la subversió conscient de les obligacions de l'Estat.</p>
+      <p>Tanmateix, definir el taoisme és complexa, ja que no es tracta d'un sistema dogmàtic tancat, sinó d'un vast entramat de filosofia especulativa, pràctiques d'alquímia, xamanisme antic i religió institucionalitzada.</p>
+    </section>
+
+    <section id="daojia-daojiao">
+      <h3>Daojia vs Daojiao: Superant la falsa dicotomia</h3>
+      <p>Durant el segle XIX, els acadèmics occidentals van classificar el taoisme en dues categories oposades: el "taoisme filosòfic" pur (Daojia) i el "taoisme religiós" (Daojiao), considerant el segon una "degeneració supersticiosa". Aquesta dicotomia es considera hoje errònia.</p>
+      <div class="concept-box">
+        <strong>El consens modern: Taoisme com a continu orgànic</strong>
+        <p>Els conceptes filosòfics de buidor i espontaneïtat dels textos antics són exactament els mateixos fonaments que més tard estructuraran les tècniques de respiració, la medicina, la litúrgia i l'arquitectura dels temples.</p>
+        <p><em>Separar el pensament taoista de la seva pràctica viva seria com intentar comprendre el cristianisme estudiant només la teologia i ignorant les esglésies i els creients.</em></p>
+      </div>
+    </section>
+
+    <section id="laozi">
+      <h3>Laozi: El fundador llegendari</h3>
+      <p>La tradició assenyala a Laozi ("el Vell Mestre") com a autor del Daodejing. Segons la llegenda, va abandonar la civilització cap a l'oest, i el guardià de la frontera li va suplicar que deixés escrita la seva saviesa.</p>
+      <p><strong>Però:</strong> Segons el consens acadèmic modern, Laozi pràcticament no va existir mai com a individu històric. El nom operaria com un pseudònim o figura llegendaria creada per conferir autoritat ancestral a una amalgama de coneixements. El Daodejing seria una compilació d'aforismes de diversos mestres, teixits cap als segles IV-III aC.</p>
+      <div class="def-box">
+        <div class="term">Taishang Laojun — El Laozi deïficat</div>
+        <div class="definition">Amb el temps, el Laozi humà seria transformat en deïtat pels moviments religiosos taoistes, convertint-se en el "Supremo Ancià Deu" i manifestació eterna del Dao.</div>
+      </div>
+    </section>
+  </section>
+
+  <section id="historic">
+    <h2>Context històric</h2>
+    
+    <section id="regnes-combatents">
+      <h3>Els Regnes Combatents: Violència estructural</h3>
+      <p>El taoisme va germinar en un dels escenaris més extrems de desintegració sociopolítica: el període dels Regnes Combatents (Zhanguo, 475-221 aC). La Xina es va fracturar en set grans estats que van lluitar per l'hegemonia total.</p>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Ordre feudal col·lapsa</h4>
+          <p>El poder central es volatilitza, la noblesa perd control</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Revolució militar</h4>
+          <p>Escaramusses aristocràtiques → guerra de masses, ferro, ballestes</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Carnisseria humana</h4>
+          <p>Batalla de Changping: centenars de milers executats</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Crisi civilizacional</h4>
+          <p>Fam, reclutaments forçosos, vides sense valor</p>
+        </div>
+      </div>
+      <p>En aquesta angoixa col·lectiva, els primers pensadors taoistes formularen una nova resposta: <em>la supervivència como máxima prioritat</em>. Només l'arbre retorçat, aquell considerat "inútil", escapa de la destral.</p>
+    </section>
+
+    <section id="cent-escoles">
+      <h3>Les Cent Escoles de Pensament</h3>
+      <p>Davant del caos, la intel·lectualitat xinesa va reaccionar amb un esclat de creativitat: el període de les Cent Escoles (Zhuzi baijia). Mestres errants viatjaven oferint seus tractats sobre com restaurar l'ordre.</p>
+      <p>Dues grans ideologies dominaven:</p>
+      <div class="concept-box">
+        <strong>Confucianisme:</strong> Tornar a l'ideal moral del passat mitjançant cultiu de virtut, estudi, rectificació del llenguatge i respecte absolut a la jerarquia.
+      </div>
+      <div class="concept-box">
+        <strong>Legalisme (Fajia):</strong> Crear un Estat totalitari: lleis implacables, càstigs brutals, censura i control absolut per maximitzar el poder del monarca.
+      </div>
+      <p><strong>La resposta taoista:</strong> Tant la moral artificial confuciana com l'Estat policial legalista formaven part del problema, no de la solució. La única manera de restaurar l'ordre era que l'Estat deixés d'intervenir i permetés que la societat s'autoregulés segons el flux de la naturalesa.</p>
+    </section>
+
+    <section id="xamans-eremites">
+      <h3>Arrels: Xamans i eremites</h3>
+      <p>El taoisme no va néixer exclusivament de la reacció política als Regnes Combatents. Té profundes arrels en pràctiques espirituals perifériques, especialment en l'estat meridional de Chu, vora l'Iantsé.</p>
+      <p>Mentre el nord (bressol del confucianisme) era sec i racional, Chu era aquàtic, selvàtic i mstic. Els xamans del sud (wu) practicaven:</p>
+      <div class="soul-grid">
+        <div class="soul-card">
+          <div class="deity-name">Viatges en èxtasi</div>
+          <div class="deity-role">Vols cap a les estrelles</div>
+          <div class="deity-desc">Comunicació mística amb el cosmos cel·lest</div>
+        </div>
+        <div class="soul-card">
+          <div class="deity-name">Comunicació amb esperits</div>
+          <div class="deity-role">Relacions amb la natura</div>
+          <div class="deity-desc">Esperits de plantes, rius, muntanyes</div>
+        </div>
+        <div class="soul-card">
+          <div class="deity-name">Danses rituals</div>
+          <div class="deity-role">Exorcismes i curacions</div>
+          <div class="deity-desc">Poder per controlar energies invisibles</div>
+        </div>
+        <div class="soul-card">
+          <div class="deity-name">Botànica curativa</div>
+          <div class="deity-role">Alquímia natural</div>
+          <div class="deity-desc">Plantes per viure més temps</div>
+        </div>
+      </div>
+      <p>Aquesta imaginació xamànica serà la base del posterior panteó taoista i del seu interès per la immortalitat física i l'alquímia.</p>
+    </section>
+  </section>
+
+  <section id="textos">
+    <h2>Textos fundacionals</h2>
+    
+    <section id="daodejing">
+      <h3>El Daodejing: Llibre de la Via i la Virtut</h3>
+      <p>El Daodejing (Llibre de la Via i de la Virtut) és el text central de la tradició taoista. Amb només uns cinc mil caràcters xinesos distribuïts en vuitanta-un breus capítols, la seva estructura és aforística, poètica, profundament enigmàtica i deliberadament paradoxal.</p>
+      <div class="def-box">
+        <div class="term">Estructura del Daodejing</div>
+        <div class="definition">No ofereix narrativa lògica ni arguments silogístics, sinó que funciona gairebé com un manual de meditació o tractat de contemplació. Cada capítol és un aforisme que revela aspectes diferents de la mateixa veritat: el Dao.</div>
+      </div>
+    </section>
+
+    <section id="zhuangzi">
+      <h3>El Zhuangzi: Fabulació i paradoxa</h3>
+      <p>Mentre el Daodejing ofereix aforismes concentrats, el Zhuangzi (atribuït al filòsof Zhuang Zhou) utilitza fàbules, diàlegs i paradoxes per comunicar els mateixos princips. Els seus contes són onírics, humorístics i deliberadament absurds.</p>
+      <p>La famosa història: "Zhuangzi somia que era una papallona. Al despertar, no sap si és Zhuangzi que somia ser papallona, o papallona somiant ser Zhuangzi." Aquesta confusió de identitats encarna el taoisme: la dissolució de la separació entre subjecte i objecte.</p>
+    </section>
+  </section>
+
+  <section id="cosmologia">
+    <h2>Cosmologia taoista</h2>
+    
+    <section id="dao-natural">
+      <h3>El Dao: El flux natural primordial</h3>
+      <p>Per a la cosmovisió taoista, l'univers no va ser modelat per un Déu creador que imposés lleis des de l'exterior. L'univers és <em>autogenerat</em>, és el flux natural i espontani d'energies cósmiques.</p>
+      <div class="concept-box">
+        <strong>El Dao</strong>
+        <p>El Camí o la Via — el principi fonamental del cosmos que no pot ser nomenat, esbrinar o conceptualitzat completament. "El Dao que pot ser dit no és l'Eternal Dao".</p>
+        <p>El Dao no és creador, no és personal, no té intencions. <em>Tan sols flueix.</em></p>
+      </div>
+      <p>La màxima prioritat de qualsevol practicant taoista és assolir una alineació perfecta amb aquest flux natural, deixant d'oposar resistència per assolir, paradoxalment, la màxima eficàcia vital.</p>
+    </section>
+
+    <section id="wu-wei">
+      <h3>Wu Wei: L'acció sense esforç</h3>
+      <p>Wu wei (無為, literalment "no-acció") és possiblement el concepte més mal interpretat del taoisme. No significa estar inert o passiu. Significa actuar en harmonia amb la naturalesa, sense forçar, sense resistència, sense ego.</p>
+      <div class="concept-box">
+        <strong>Wu Wei — Accions sense resistència</strong>
+        <p>Com l'aigua que flueix al voltant dels obstacles sense lluitar contra ells. Com l'archer que no "intenta" atiçar, sinó que deixa que la fletxa suri naturalment.</p>
+        <p>La paradoxa: <em>actuant sense actuar, res no es deixa sense fer.</em></p>
+      </div>
+      <p>En contexte polític, wu wei signif significa que un bon govenrant no promulga lleis ni decrets, sinó que permet que la societat s'autoreguli seguint la natura. "Com més lleis i prohibicions, més s'empobreix el poble".</p>
+    </section>
+  </section>
+
+  <section id="pract">
+    <h2>Pràctiques espirituals</h2>
+    
+    <section id="meditacio">
+      <h3>Meditació i tècniques de respiració</h3>
+      <p>Els praticants taoistes desenvoluparen sofisticades tècniques de meditació i regulació de la respiració (qi gong) per cultivar el <em>qi</em> (l'energia vital) i alinear-se amb el Dao.</p>
+    </section>
+
+    <section id="alquimia">
+      <h3>Alquímia interna: transformació de l'energia</h3>
+      <p>L'alquímia taoista no busca transmuar metalls en or, sinó transformar l'energia bruta del cos en essències sutils capaces de transcender la mort.</p>
+    </section>
+
+    <section id="immortalitat">
+      <h3>La cerca de la immortalitat</h3>
+      <p>Un dels objectius més característics del taoisme religiós és la consecució de la immortalitat física o almenys de la longevitat extrema. Aquesta no era vanitat mundana, sinó l'extensió del cultiu espiritual al même cos.</p>
+    </section>
+  </section>
+
+</div>
+
+<a href="#" class="back-top" id="backTop" title="Tornar al principi">↑</a>
+
+<script>
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+  progress.style.width = pct + '%';
+});
+
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => { 
+  backTop.classList.toggle('visible', window.scrollY > 600); 
+});
+
+backTop.addEventListener('click', (e) => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+const navToggle = document.getElementById('navToggle');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+navToggle.addEventListener('click', () => {
+  const open = sidebar.classList.toggle('open');
+  overlay.classList.toggle('active', open);
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+});
+
+// Acordió sidebar dinàmic
+const mainSections = document.querySelectorAll('section[id]:not(section section)');
+const lvl1Links = document.querySelectorAll('.sidebar a.lvl1');
+const lvl2Items = document.querySelectorAll('.sidebar .lvl2');
+
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const sectionId = entry.target.id;
+      
+      lvl2Items.forEach(item => item.classList.remove('visible'));
+      lvl1Links.forEach(link => link.classList.remove('expanded'));
+      
+      lvl1Links.forEach(link => {
+        const href = link.getAttribute('href').substring(1);
+        if (href === sectionId) {
+          link.classList.add('expanded');
+          let current = link.nextElementSibling;
+          while (current && current.classList.contains('lvl2')) {
+            current.classList.add('visible');
+            current = current.nextElementSibling;
+          }
+        }
+      });
+    }
+  });
+}, { threshold: 0.3 });
+
+mainSections.forEach(section => scrollObserver.observe(section));
+
+// Clics lvl1: scroll
+lvl1Links.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const sectionId = link.getAttribute('href').substring(1);
+    const section = document.getElementById(sectionId);
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Clics lvl2: scroll
+lvl2Items.forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = item.getAttribute('data-target');
+    const section = document.getElementById(targetId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
