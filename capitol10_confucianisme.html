@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capítol 10 — Confucianisme: L'Estat burocràtic</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET & BASE ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:        #1a1408;
+  --ink-light:  #3d3020;
+  --parchment:  #f5f0e8;
+  --cream:      #faf7f2;
+  --gold:       #8b6914;
+  --gold-light: #c4a44a;
+  --gold-dim:   #d4b87a22;
+  --rust:       #7a3a1e;
+  --lapis:      #1e3a5f;
+  --lapis-light:#2a5080;
+  --rule:       #c4a44a55;
+  --shadow:     rgba(26,20,8,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ── SCROLLBAR ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 3px; }
+
+/* ── COVER ────────────────────────────────────────────────────────────── */
+.cover {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, #0a2e1a33 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, #1a2e1e22 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, #1e3a0a11 0%, transparent 60%);
+}
+
+.cover-ornament {
+  font-family: 'IM Fell English', serif;
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  position: relative;
+  animation: fadeDown 1.2s ease both;
+}
+
+.cover-rule {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  margin: 0 auto 2.5rem;
+  position: relative;
+  animation: fadeIn 1.4s ease both 0.2s;
+}
+
+.cover-chapter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  color: var(--parchment);
+  line-height: 1;
+  position: relative;
+  letter-spacing: -0.02em;
+  animation: fadeUp 1.2s ease both 0.3s;
+}
+
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  font-style: italic;
+  position: relative;
+  animation: fadeUp 1.2s ease both 0.5s;
+}
+
+.cover-tesi {
+  margin-top: 3rem;
+  max-width: 600px;
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  color: #c8b89a;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  border-top: 1px solid #c4a44a33;
+  border-bottom: 1px solid #c4a44a33;
+  padding: 1.5rem 2rem;
+  animation: fadeUp 1.2s ease both 0.7s;
+}
+
+.cover-tesi strong {
+  color: var(--gold-light);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.cover-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #c4a44a55;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-family: 'Crimson Pro', serif;
+  animation: fadeIn 2s ease both 1.5s;
+}
+
+.cover-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, var(--gold-light));
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ── SIDEBAR NAV ──────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--ink);
+  overflow-y: auto;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  z-index: 1000;
+  padding: 2rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) var(--ink);
+}
+
+.sidebar.open { transform: translateX(0); }
+
+.sidebar-header {
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid #c4a44a22;
+  margin-bottom: 1rem;
+}
+
+.sidebar-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--gold-light);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.sidebar nav { padding: 0 0.5rem; }
+
+.sidebar a {
+  display: block;
+  padding: 0.35rem 1rem;
+  color: #c8b89a99;
+  text-decoration: none;
+  font-size: 0.82rem;
+  font-family: 'Crimson Pro', serif;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 3px;
+  line-height: 1.4;
+}
+
+.sidebar a:hover { color: var(--gold-light); background: #c4a44a11; }
+.sidebar a.active { color: var(--gold-light); background: #c4a44a18; }
+
+.sidebar a.lvl1 { font-weight: 600; font-size: 0.88rem; color: #c8b89add; margin-top: 0.5rem; }
+.sidebar a.lvl2 { padding-left: 1.5rem; }
+.sidebar a.lvl3 { padding-left: 2.2rem; font-size: 0.78rem; }
+
+/* ── NAV TOGGLE ───────────────────────────────────────────────────────── */
+.nav-toggle {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  z-index: 1100;
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+  border: 1px solid #c4a44a44;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: background 0.2s;
+}
+
+.nav-toggle:hover { background: #2a2010; }
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--gold-light);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+.overlay.active { display: block; }
+
+/* ── MAIN CONTENT ─────────────────────────────────────────────────────── */
+.content {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 5rem 2.5rem 8rem;
+}
+
+/* ── SECTIONS ─────────────────────────────────────────────────────────── */
+section { margin-bottom: 5rem; }
+
+/* ── HEADINGS ─────────────────────────────────────────────────────────── */
+h1.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 4rem 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+h1.chapter-title .ch-num {
+  display: block;
+  font-size: 0.75em;
+  font-weight: 300;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-style: italic;
+  margin-bottom: 0.3rem;
+}
+
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 600;
+  color: var(--lapis);
+  margin: 3rem 0 1rem;
+  line-height: 1.25;
+}
+
+h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--rust);
+  margin: 2rem 0 0.75rem;
+  font-style: italic;
+}
+
+h4 {
+  font-family: 'Crimson Pro', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 1.75rem 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-style: normal;
+}
+
+/* ── RULE DIVIDER ─────────────────────────────────────────────────────── */
+.rule {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light) 30%, var(--gold-light) 70%, transparent);
+  margin: 3.5rem 0;
+  opacity: 0.4;
+}
+
+.rule-ornament {
+  text-align: center;
+  margin: 3rem 0;
+  color: var(--gold);
+  font-size: 1.2rem;
+  letter-spacing: 0.5em;
+  opacity: 0.5;
+}
+
+/* ── PARAGRAPHS ───────────────────────────────────────────────────────── */
+p {
+  margin-bottom: 1.3rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+p.drop-cap::first-letter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.2em;
+  font-weight: 700;
+  float: left;
+  line-height: 0.75;
+  margin: 0.1em 0.1em 0 0;
+  color: var(--gold);
+}
+
+/* ── TESI BOX ─────────────────────────────────────────────────────────── */
+.tesi {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 2rem 2.5rem;
+  margin: 2rem 0 4rem;
+  border-left: 3px solid var(--gold-light);
+  position: relative;
+}
+
+.tesi::before {
+  content: 'Tesi';
+  position: absolute;
+  top: -0.7rem;
+  left: 2rem;
+  background: var(--ink);
+  padding: 0 0.75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.tesi p {
+  font-style: italic;
+  color: #d4c8b4;
+  font-size: 1.05rem;
+  margin: 0;
+  text-align: left;
+}
+
+/* ── HIGHLIGHT BOX ────────────────────────────────────────────────────── */
+.highlight {
+  background: var(--gold-dim);
+  border-left: 2px solid var(--gold-light);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--ink-light);
+}
+
+/* ── PAGE BREAK SIMULATION ────────────────────────────────────────────── */
+.section-start {
+  padding-top: 3rem;
+}
+
+/* ── FOOTNOTE STYLE ───────────────────────────────────────────────────── */
+.note {
+  font-size: 0.85rem;
+  color: var(--ink-light);
+  font-style: italic;
+  border-top: 1px solid var(--rule);
+  margin-top: 3rem;
+  padding-top: 1rem;
+  opacity: 0.8;
+}
+
+/* ── PROGRESS BAR ─────────────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 2000;
+  transition: width 0.1s;
+}
+
+/* ── BACK TO TOP ──────────────────────────────────────────────────────── */
+.back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background: var(--ink);
+  border: 1px solid #c4a44a44;
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.back-top.visible { opacity: 1; }
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.8; transform: scaleY(1.1); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .content { padding: 4rem 1.25rem 6rem; }
+  .cover-tesi { padding: 1rem 1.25rem; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- NAV TOGGLE -->
+<button class="nav-toggle" id="navToggle" aria-label="Menú">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Capítol 10<br>Confucianisme — L'Estat burocràtic</div>
+  </div>
+  <nav>
+    <a href="#intro" class="lvl1">Introducció</a>
+    <a href="#s2" class="lvl1">2. Context històric i cultural</a>
+    <a href="#s3" class="lvl1">3. L'arquitectura del pensament confucià</a>
+    <a href="#s35" class="lvl1">3.5 L'ontologia del sagrat</a>
+    <a href="#s4" class="lvl1">4. La institucionalització</a>
+    <a href="#s5" class="lvl1">5. El debat acadèmic</a>
+  </nav>
+</aside>
+
+<!-- COVER -->
+<div class="cover" id="cover">
+  <div class="cover-ornament">Història de les Religions</div>
+  <div class="cover-rule"></div>
+  <h1 class="cover-chapter">Capítol 10</h1>
+  <div class="cover-subtitle">Confucianisme — L'Estat burocràtic</div>
+  <div class="cover-tesi">
+    <strong>Tesi:</strong> Com les idees d'un mestre del segle VI aC van convertir-se en l'espina dorsal del poder imperial xinès durant dos mil·lennis: el ritual com a tecnologia de govern, la família com a model d'Estat.
+  </div>
+  <div class="cover-scroll">
+    <span>Llegir</span>
+    <div class="cover-scroll-line"></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="content">
+
+<section id="intro" class="section-start reveal">
+  <h1 class="chapter-title"><span class="ch-num">Introducció</span>El confucianisme com a tecnologia de govern</h1>
+
+  <p class="drop-cap">En l'estudi de la història de les religions, el confucianisme planteja un dels desafiaments interpretatius més fascinants. Sovint classificat des d'una òptica occidental com una simple escola filosòfica o un codi d'ètica secular, aquesta tradició constitueix, en realitat, una cosmovisió totalitzadora que va funcionar durant més de dos mil·lennis com la veritable religió cívica i d'Estat de l'Imperi xinès.</p>
+
+  <p>A diferència d'altres tradicions que hem analitzat en els capítols anteriors, el confucianisme no articula el seu sistema de creences al voltant d'una revelació divina directa, un panteó complex de divinitats intervencionistes o una escatologia centrada en el més-enllà. El seu focus d'atenció és radicalment immanent: la construcció i el manteniment d'una societat humana harmònica que reflecteixi l'ordre perfecte del cosmos.</p>
+
+  <p>Per aconseguir-ho, el confucianisme converteix el ritual (li) en l'eina principal d'enginyeria social. Dins d'aquest sistema, el ritual transcendeix la mera cerimònia al temple per esdevenir la coreografia meticulosa de tota la vida quotidiana i política. Des de la manera de saludar un pare fins als protocols de l'Emperador a la cort, cada acció pautada té l'objectiu de reforçar els lligams de la comunitat i establir clarament les jerarquies. L'Estat, sota aquesta concepció, no és més que una extensió natural de la família, on la pietat filial es transforma en lleialtat política.</p>
+
+  <p>Des de la perspectiva d'una «genealogia del poder» —el fil conductor d'aquesta obra—, el confucianisme representa una de les tecnologies de govern més sofisticades i duradores de la història humana. Mitjançant la figura del funcionari lletrat (el mandarí), el sistema confucià va crear una elit burocràtica que exercia, a la pràctica, funcions anàlogues a les d'un sacerdocio: ells eren els garants de l'ortodòxia, els conservadors dels textos sagrats i els encarregats d'interpretar la voluntat del Cel.</p>
+
+  <div class="tesi">
+    <p>El problema històric que abordem en aquest capítol és com les idees d'un modest funcionari i mestre del segle VI aC —una època de profund caos social i polític— van ser recollides, reelaborades i sistematitzades fins a convertir-se en l'espina dorsal del poder imperial xinès. Analitzarem com l'ètica es va fer religió, com el ritual va substituir la força militar com a element de cohesió i com aquest sistema va modelar de manera irreversible la identitat de tota l'Àsia Oriental.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="s2" class="reveal">
+  <h1 class="chapter-title"><span class="ch-num">2</span>Context històric i cultural</h1>
+
+  <p class="drop-cap">Per comprendre la naturalesa del confucianisme, cal aplicar una premissa fonamental d'aquesta obra: cap tradició neix del no-res. El pensament confucià no és el producte d'una revelació sobtada, sinó la resposta intel·lectual i religiosa a una crisi històrica profunda, construïda sobre segles de creences ancestrals xineses.</p>
+
+  <p>El segle VI aC —moment en què, segons la nostra cronologia de referència, també sorgeixen el budisme a l'Índia i el zoroastrisme a Pèrsia— és una època de gran efervescència i inestabilitat. A la Xina, aquest període es coneix com l'Era de les Primaveres i Tardors (722–481 aC), una fase de descomposició de la llarga dinastia Zhou.</p>
+
+  <h2>L'enfonsament de l'ordre dels Zhou</h2>
+
+  <p>Durant els seus primers segles (des del c. 1046 aC), la dinastia Zhou havia aconseguit mantenir un regne pròsper i relativament centralitzat, basat en un sistema feudal on els senyors locals juraven lleialtat al monarca. Aquest període va ser posteriorment mitificat com una edat d'or d'harmonia i govern just. No obstant això, al segle VI aC, el poder central dels reis Zhou s'havia pràcticament esfumat. L'imperi s'havia fragmentat en una multiplicitat d'estats feudals que lluitaven constantment entre si per l'hegemonia política i militar. Era una època marcada per la brutalitat de la guerra, la traïció, l'assassinat de monarques i la misèria de la pagesia. En aquest escenari de col·lapse institucional, l'antiga aristocràcia va perdre el seu prestigi moral.</p>
+
+  <p>La pregunta que es feien els pensadors d'aquella època era angoixant: Com es podia restaurar l'ordre en un món que semblava haver perdut el rumb? Confuci (551–479 aC) va trobar la resposta mirant cap al passat, en la recuperació i reinterpretació de dues antigues institucions religioses: el culte als avantpassats i el Mandat del Cel.</p>
+
+  <h2>Antecedents religiosos: El Cel i els Avantpassats</h2>
+
+  <p>El substrat religiós de la Xina preconfuciana es basava en dues idees fonamentals que estructuraven la cosmovisió de la societat.</p>
+
+  <p>La primera era el culte als avantpassats. Existia la convicció que l'esperit dels difunts continuava actiu després de la mort i que tenia capacitat per influir en la fortuna dels vius. Les famílies —especialment les aristocràtiques— havien de mantenir un ritual constant d'ofrenes i sacrificis per apaivagar els avantpassats, rebre'n la benedicció i evitar-ne la ira. Aquest culte va consolidar la família, i no l'individu, com la unitat bàsica de la societat xinesa, establint una cadena ininterrompuda de deures entre generacions passades, presents i futures.</p>
+
+  <p>La segona idea, d'una importància política cabdal, és l'evolució del concepte de la divinitat suprema. Durant la dinastia anterior, els Shang (c. 1600–1046 aC), s'adorava un déu suprem anomenat Shangdi (el Senyor de les Altures), considerat una figura distant, capritxosa i ancestral, estretament lligada a la família reial.</p>
+
+  <p>Quan els Zhou van enderrocar els Shang al segle XI aC, necessitaven justificar la seva rebel·lió i usurpació del tron. Per fer-ho, van introduir un canvi teològic revolucionari: van substituir el déu Shangdi pel concepte de Tian (el Cel). A diferència del déu antic, el Cel no era una deïtat tribal amb preferències de sang, sinó una força còsmica, moral i universal que regulava l'ordre de la natura i de la humanitat.</p>
+
+  <p>D'aquesta teologia en neix el concepte del Mandat del Cel (Tianming). Segons aquesta doctrina acadèmicament ben documentada, el Cel atorga el dret de governar a una persona (el «Fill del Cel») només si aquesta governa amb justícia, virtut i cura pel poble. Si el governant es torna un tirà o és corrupte, perd el Mandat, fet que es manifesta a través de desastres naturals, fams o revoltes populars, legitimant així el seu enderrocament.</p>
+
+  <p>És precisament aquest marc religiós el que hereta Confuci. El seu gran projecte no va ser fundar una nova religió, sinó extreure les implicacions ètiques i socials d'aquestes creences. Per a ell, el Cel havia deixat de parlar directament als homes, però la seva voluntat continuava present en el ritual heretat dels savis del passat.</p>
+
+  <h2>La crisi ritual i els shi</h2>
+
+  <p>El col·lapse de l'autoritat Zhou no només va implicar una fragmentació política i militar, sinó que va desencadenar una profunda crisi ritual i cosmològica. Per a la mentalitat de l'època, l'ordre social i l'ordre natural eren un reflex l'un de l'altre. Quan els senyors feudals locals van començar a usurpar els títols reials i a oficiar rituals i cerimònies musicals que històricament estaven reservats en exclusiva al Fill del Cel, no només estaven trencant una llei terrenal; des de la seva cosmovisió, estaven alterant l'equilibri de l'univers. Aquesta «usurpació dels ritus» explicava, als ulls dels cronistes d'aquell temps, les plagues, les inundacions i el caos endèmic que assolaven el territori.</p>
+
+  <p>A nivell sociològic, seguint les pautes d'anàlisi de Max Weber establertes per al nostre estudi, la descomposició del sistema feudal va generar un fenomen decisiu: l'aparició d'una nova classe social. A mesura que els petits feus eren engolits per estats més grans i militaritzats, una àmplia capa de la baixa aristocràcia va perdre les seves terres ancestrals. Aquest grup, conegut com els shi (cavallers, lletrats o funcionaris), va haver de buscar noves formes de subsistència. Posseïdors del coneixement de les antigues escriptures, la història i els protocols de la cort, els shi van començar a viatjar d'un estat a un altre oferint els seus serveis com a consellers polítics, administradors o especialistes en rituals. Confuci naixeria, precisament, en el si d'aquesta classe shi empobrida.</p>
+
+  <p>Aquest context de mobilitat intel·lectual i crisi estructural va propiciar un procés de racionalització de la religió xinesa primitiva. En l'antiguitat, l'èmfasi de les creences requeia principalment a intentar aplacar els esperits mitjançant la màgia, l'endevinació —com els antics ossos oraculars de la dinastia Shang— i els sacrificis massius. Tanmateix, la violència de l'era de les Primaveres i Tardors va evidenciar que l'acumulació de sacrificis no podia salvar un governant corrupte o incompetent de la invasió enemiga.</p>
+
+  <p>L'evolució del Mandat del Cel va obligar, per tant, a traslladar el pes de la religió des de la interacció espiritual externa cap a la responsabilitat humana. L'acció ritual ja no es concebia com una transacció màgica per comprar el favor d'una divinitat, sinó com un mecanisme per cultivar la virtut interna i garantir l'ordre cívic. Enmig d'una societat a la vora de la desintegració, els antics mites i pràctiques ancestrals necessitaven una reformulació urgent per restaurar el teixit social. Aquest seria el repte fundacional de l'escola confuciana.</p>
+</section>
+
+<hr class="rule">
+
+<section id="s3" class="reveal">
+  <h1 class="chapter-title"><span class="ch-num">3</span>L'arquitectura del pensament confucià</h1>
+
+  <p class="drop-cap">Per entendre l'impacte del confucianisme en la història del poder, hem d'analitzar com aquesta tradició religiosa i filosòfica va dissenyar una estructura de sentit capaç de substituir l'ordre feudal col·lapsat de la dinastia Zhou per un nou model d'ordre social, basat en l'ètica i el civisme.</p>
+
+  <h2>Confuci: la figura històrica i el text sagrat</h2>
+
+  <p>El consens acadèmic actual diferencia clarament entre el Confuci històric i el savi divinitzat per la tradició imperial posterior. Kong Qiu (551–479 aC), conegut a Occident com a Confuci (llatinització de Kong Fuzi, «Mestre Kong»), va ser un funcionari de baix rang de l'estat de Lu. Frustrat pel seu fracàs a l'hora de convèncer els governants del seu temps d'aplicar les seves idees polítiques, va dedicar gran part de la seva vida a l'ensenyament itinerant.</p>
+
+  <p>Ell mateix afirmava: «Jo transmeto, no invento. Confio en el passat i l'estimo». Confuci no es presentava com un profeta portador d'una nova revelació, sinó com un conservador que volia restaurar l'antiga saviesa. Tanmateix, en la seva tasca de transmissió, va transformar radicalment el sentit dels conceptes que ensenyava.</p>
+
+  <p>Les seves ensenyances no van ser escrites per ell, sinó recopilades per generacions successives de deixebles en una obra cabdal: Els Analectes (Lunyu). Aquest llibre esdevindria, a la pràctica, el text sagrat fonamental de la cultura xinesa, exercint una autoritat normativa sobre el pensament, la política i l'educació durant més de dos mil·lennis.</p>
+
+  <h2>El Ritual (Li) com a ordre social i còsmic</h2>
+
+  <p>La pedra angular de l'arquitectura confuciana és el concepte de Li, traduït generalment com a «ritual», «ritus» o «decorum». Originalment, el li feia referència exclusiva a les cerimònies de sacrifici als esperits i als avantpassats. La genialitat evolutiva de Confuci va consistir a expandir aquest concepte religiós fins a abastar tota la interacció humana.</p>
+
+  <p>Per a Confuci, el ritual no es limita a l'espai del temple. Saludar un superior, beure te, el dol per un familiar o les audiències a la cort esdevenen actes rituals. Aquestes accions simbòliques pautades tenen una funció sociològica clara, molt propera a l'anàlisi d'Émile Durkheim: disciplinen les emocions individuals, reforcen les jerarquies i creen cohesió comunitària.</p>
+
+  <div class="highlight">
+    <p>Confuci sostenia que governar mitjançant lleis penals i càstigs només generava conformisme i evasió. En canvi, governar mitjançant el ritual interioritzava la norma: els individus actuaven correctament no per por a la presó, sinó per un profund sentit de la vergonya moral i del deure cap a la comunitat.</p>
+  </div>
+
+  <h2>La interiorització de la norma: Ren i Xiao</h2>
+
+  <p>Ara bé, el ritual executat de manera mecànica és buit. Confuci adverteix que el li només és vàlid si està vivificat pel Ren (humanitat, benevolència o empatia). El Ren és la qualitat moral fonamental que distingeix els éssers humans i consisteix en la capacitat de preocupar-se pels altres.</p>
+
+  <p>L'espai d'entrenament principal per desenvolupar aquestes virtuts és la família, mitjançant el concepte de Xiao o pietat filial. L'obediència, el respecte i la cura cap als pares i els avantpassats són la base de tota la moralitat confuciana.</p>
+
+  <p>Des de la perspectiva de l'evolució del poder polític, el Xiao és un concepte revolucionari per la seva escalabilitat. Confuci concep l'Estat com una macro-família. El respecte que un fill deu al seu pare és estructuralment el mateix que un súbdit deu al seu monarca; i la protecció amorosa d'un pare cap al fill és la mateixa que l'Emperador deu al seu poble. L'ètica familiar es converteix així en tecnologia política.</p>
+
+  <h2>El Junzi: la revolució del mèrit moral</h2>
+
+  <p>La contribució ideològica més subversiva de Confuci va ser la redefinició del concepte de Junzi. Abans d'ell, aquest terme significava literalment «fill del governant» i designava l'aristocràcia de sang. Només es naixia junzi.</p>
+
+  <p>Confuci buida el terme del seu significat biològic i de classe, i el converteix en un estatus moral: el «noble de virtut» o la persona superior. Qualsevol home, independentment del seu origen, podia esdevenir un junzi a través de l'estudi, l'autocultiu i la pràctica del ritual.</p>
+
+  <p>Aquesta profunda transformació intel·lectual va assecar les arrels legitimadores de la vella noblesa hereditària i va establir les bases per a un nou sistema de poder. Si la vàlua d'un home ja no depenia del llinatge sinó de la seva capacitat moral i intel·lectual, el govern havia de recaure en els més preparats. Així naixia la justificació teòrica de la futura burocràcia meritocràtica: l'Estat administrat per funcionaris acadèmics, l'elit dels mandarins.</p>
+
+  <h2>La rectificació dels noms (Zhengming)</h2>
+
+  <p>Un dels conceptes més fascinants i políticament rellevants de l'arquitectura confuciana és la doctrina de la «rectificació dels noms» (Zhengming). Als Analectes, quan un deixeble pregunta a Confuci quina seria la seva primera mesura si li encarreguessin el govern d'un estat, el mestre respon sense dubtar: «Rectificar els noms».</p>
+
+  <p>Confuci ho va resumir en una màxima cèlebre: «Que el governant sigui governant, el ministre ministre, el pare pare, i el fill fill». Si un sobirà no actua amb la benevolència pròpia d'un sobirà, perd la legitimitat del títol, i per tant, perd el dret a exigir obediència. És un mecanisme filosòfic dissenyat per limitar l'absolutisme.</p>
+
+  <h2>Les Cinc Relacions (Wu Lun)</h2>
+
+  <p>El confucianisme no concep l'individu com un ésser aïllat o autònom, sinó com un node dins d'una xarxa densa de relacions comunitàries. Les cinc relacions fonamentals són: sobirà-súbdit, pare-fill, marit-muller, germà gran-germà petit, i amic-amic.</p>
+
+  <p>Excepte l'última, totes aquestes relacions són estrictament jeràrquiques i asimètriques. No obstant això, el rigor acadèmic ens obliga a matisar la idea occidental que el confucianisme és un simple sistema de submissió cega. La relació confuciana és fonamentalment recíproca. El súbdit deu lleialtat al sobirà, però el sobirà té l'obligació ineludible de proporcionar benestar econòmic i seguretat al súbdit; la dona deu respecte al marit, però el marit té el deure de ser just i protector. L'autoritat, en la tradició confuciana, sempre va lligada a la responsabilitat assistencial.</p>
+
+  <h2>El debat antropològic: Menci i Xunzi</h2>
+
+  <p>Confuci va deixar un buit teòric important: si el Ren (benevolència) és l'ideal, la naturalesa humana hi tendeix de manera natural, o bé és egoista per defecte? Aquesta qüestió va generar un dels debats acadèmics més importants de la història xinesa.</p>
+
+  <p><strong>Menci (Mengzi, 372–289 aC)</strong> va defensar un optimisme antropològic radical. Argumentava que la naturalesa humana és innatament bona, de la mateixa manera que l'aigua flueix naturalment cap avall. Tots els humans neixen amb les «llavors» de la compassió, la vergonya, la deferència i el sentit del bé i del mal. La maldat no és natural, sinó el resultat d'un entorn hostil. Menci va ser el gran articulador polític del «Mandat del Cel», justificant històricament el regicidi i la revolució si un governant causava sofriment al poble.</p>
+
+  <p><strong>Xunzi (c. 310–235 aC)</strong>, vivint en l'etapa més sagnant del període dels Regnes Combatents, va formular un pessimisme mordaç. Per a ell, la naturalesa humana és intrínsecament egoista i competitiva. La bondat, per a Xunzi, és una construcció completament artificial; és el producte del càlcul, la cultura i l'esforç. És precisament aquí on Xunzi eleva el ritual (li) a la seva màxima potència. Si som egoistes per naturalesa, només la disciplina fèrria de l'educació i la pràctica constant del ritual i la música ens poden civilitzar i transformar en éssers morals.</p>
+
+  <p>Aquesta bifurcació de pensament proporcionaria al confucianisme la complexitat filosòfica necessària per enfrontar-se a nous reptes polítics, preparant el terreny per a la seva imminent adopció com a religió d'Estat imperial.</p>
+</section>
+
+<hr class="rule">
+
+<section id="s35" class="reveal">
+  <h1 class="chapter-title"><span class="ch-num">3.5</span>L'ontologia del sagrat</h1>
+
+  <p class="drop-cap">L'experiència del sagrat en el confucianisme representa un repte per a l'observador modern, acostumat a entendre «lo sagrat» com allò que es troba fora del món, en una esfera metafísica. En la cosmovisió confuciana, el sagrat no és el que escapa a la naturalesa, sinó allò que la perfecciona. El sagrat és el Li (ritual) quan esdevé l'eix sobre el qual gira l'existència.</p>
+
+  <h2>La litúrgia de l'ordre domèstic: El culte als ancestres</h2>
+
+  <p>El cor de l'experiència religiosa confuciana no es troba en els grans temples, sinó en l'espai privat de la llar. El culte als avantpassats és la «litúrgia de la continuïtat». A cada llar xinesa, l'altar ancestral no és una decoració, sinó una obertura cap a l'altre món. Les tauletes de fusta representen la presència física dels difunts.</p>
+
+  <p>El sagrat, aquí, es manifesta mitjançant l'ofrena quotidiana de menjar, encens i vi. Si l'ancestre no és alimentat mitjançant el ritual, esdevé un esperit errant i maligne, un ésser privat de nom i de lloc que pot portar la desgràcia a la família. Per tant, el ritual té una funció soteriològica: salva l'ancestre de l'oblit i salva la família del desordre.</p>
+
+  <h2>Els rituals de transició: El cicle de vida</h2>
+
+  <p>El Liji (Clàssic dels Ritus) estableix que la vida humana és un procés de gestació ritual. Cada esdeveniment biològic —naixement, maduresa, matrimoni, mort— ha de ser segrestat per la cultura i convertit en un acte litúrgic.</p>
+
+  <p>Els rituals d'iniciació marca el pas a l'edat adulta. El ritual del matrimoni era considerat el fonament de tota l'estabilitat de l'univers. Els rituals de dol eren potser els més sagrats de tots: el dol confucià no era un sentiment passiu, sinó un treball actiu.</p>
+
+  <h2>El Temple del Cel: El sacrifici com a rendició de comptes</h2>
+
+  <p>A escala de l'Imperi, la litúrgia aconsegueix el seu punt culminant en els sacrificis imperials al Temple del Cel (Tiantan). L'Emperador, en dejú ritual durant dies, vestit amb robes cerimonials precises, ascendia a l'Altar circular per oferir el seu propi cos i la seva humilitat al Cel.</p>
+
+  <p>El sacrifici d'un bou, el vi d'arròs i les sedes cremades no eren ofrenes per comprar un déu capritxós. Eren un acte d'estabilització. L'Emperador es presentava davant el Cel com a responsable de tot el que succeïa sota el seu govern. Si hi havia hagut justícia, pau i prosperitat, el ritual era una acció d'agraïment. Si hi havia hagut tirania o desastres naturals, el sacrifici es convertia en una confessió pública i una petició de perdó.</p>
+
+  <h2>L'escriptura com a teofania</h2>
+
+  <p>Finalment, hem d'analitzar la sacralitat de l'escriptura. La cal·ligrafia xinesa, en ser l'eina amb la qual els savis han transmès l'ordre moral del món, és considerada un llegat del Cel. Estudiar els clàssics amb pinzell i tinta no és una feina intel·lectual, és una pràctica d'ascetisme.</p>
+
+  <p>Com a conclusió: el sagrat confucià és, sobretot, una rectificació. El sagrat és aquest món, quan és ordenat per l'ésser humà d'acord amb la virtut i la memòria dels ancestres. Cada acció humana, per insignificant que sigui, té el potencial de ser sagrada si es realitza amb l'actitud correcta.</p>
+</section>
+
+<hr class="rule">
+
+<section id="s4" class="reveal">
+  <h1 class="chapter-title"><span class="ch-num">4</span>La institucionalització</h1>
+
+  <p class="drop-cap">Quan Confuci va morir l'any 479 aC, es considerava a si mateix un fracàs polític. Durant gairebé tres segles, les seves ensenyances no van ser res més que una escola de pensament entre moltes d'altres. De fet, la primera unificació imperial de la Xina sota la dinastia Qin (221–206 aC) es va aconsegir aplicant una filosofia radicalment oposada: el Legisme.</p>
+
+  <p>Durant la dinastia Qin, el confucianisme va estar a punt de desaparèixer a causa de la infame purga coneguda com «la crema de llibres i l'enterrament de lletrats». Va ser la necessitat d'estabilitzar l'Imperi sota la subsegüent dinastia Han (206 aC – 220 dC) el que va propiciar una de les mutacions ideològiques més extraordinàries de la història.</p>
+
+  <h2>La síntesi cosmològica de Dong Zhongshu</h2>
+
+  <p>Els primers emperadors Han es van adonar que un imperi tan vast no es podia governar indefinidament només a través del terror i la força bruta; necessitaven una base de legitimitat ideològica. La solució la va proporcionar el pensador Dong Zhongshu (c. 179–104 aC), que va dissenyar una grandiosa síntesi teològica i política.</p>
+
+  <p>Dong Zhongshu va fusionar l'ètica social confuciana antiga amb teories cosmològiques que estaven en auge, com el Yin i el Yang i els Cinc Elements. En aquesta nova cosmovisió, l'univers (el Cel), la societat humana i l'Estat funcionaven com un únic organisme viu i interconnectat. L'Emperador deixava de ser només un monarca administratiu per convertir-se en l'eix còsmic, l'enllaç sagrat encarregat de mantenir l'harmonia entre el Cel, la Terra i la Humanitat.</p>
+
+  <p>Sota l'emperador Wu de Han, al segle II aC, aquesta nova versió del pensament confucià va ser declarada l'ortodòxia oficial de l'Estat. Els escrits vinculats a Confuci van ser elevats a la categoria de text sagrat, formant els anomenats Cinc Clàssics.</p>
+
+  <h2>La burocràcia divina: els exàmens imperials</h2>
+
+  <p>L'estratègia mestra per consolidar aquest poder va ser la creació d'un sistema institucionalitzat per reclutar funcionaris: els exàmens imperials. Tot i que es van gestar lentament durant els Han i no es van perfeccionar fins a les dinasties Sui i Tang (segles VI-VII), van representar una revolució sociològica sense precedents.</p>
+
+  <p>El sistema avaluava els candidats exclusivament pel seu coneixement exhaustiu dels textos sagrats confucians i la seva capacitat per redactar assajos morals i poètics. El confucianisme va permetre a la Xina substituir l'aristocràcia feudal per una burocràcia lletrada meritocràtica: els mandarins.</p>
+
+  <p>La genialitat d'aquest sistema era la seva capacitat d'absorbir l'ambició humana: qualsevol home brillant de províncies, en comptes de liderar una rebel·lió armada, dedicava la seva vida a estudiar els clàssics per aprovar els exàmens, integrar-se al sistema i ascendir socialment.</p>
+
+  <h2>El culte estatal i la sacralització de Confuci</h2>
+
+  <p>La institucionalització del confucianisme també va implicar una transformació litúrgica de l'espai i el temps de l'Imperi. L'Estat va impulsar la construcció d'un temple dedicat a Confuci a cada prefectura i ciutat important de l'Imperi. El mestre errant va ser canonitzat oficialment, atorgant-se-li títols pòstums cada vegada més exaltats fins a ser venerat gairebé com una divinitat tutelar de la cultura xinesa.</p>
+
+  <p>El confucianisme va assolir així el cim de l'enginyeria sociopolítica. Havia aconseguit que una estructura política fos considerada com a part indestriable de l'ordre sagrat de la natura.</p>
+
+  <h2>El Ministeri dels Ritus</h2>
+
+  <p>L'èxit d'aquesta monumental institucionalització no es pot entendre sense fer referència a la creació del Ministeri dels Ritus (Libu). En l'Imperi xinès, la divisió entre esfera temporal i esfera espiritual era totalment inexistent. El Ministeri dels Ritus actuava com el veritable braç eclesiàstic del govern imperial.</p>
+
+  <p>El que interessava a l'Estat xinès no era l'ortodòxia (la fe interior), sinó l'ortopràxia (la pràctica correcta i meticulosa del ritual). Aquesta sistema de rituals imposats per l'Estat teixia una xarxa de significats compartits que disciplinava els cossos i les ments, assegurant que qualsevol acció social reproduís l'esquema de l'autoritat imperial.</p>
+
+  <h2>El contrapès del Cel</h2>
+
+  <p>Malgrat aquesta maquinària de control, seria un error interpretar el confucianisme únicament com una eina per al despotisme absolut. El sistema ideològic contenia el seu propi mecanisme intern de contrapès. La cosmovisió de Dong Zhongshu va atorgar a la classe lletrada una arma política de primer ordre: els mandarins confucians s'arrogaven el dret d'interpretar els presagis naturals. Si apareixia un cometa inusual o el riu Groc desbordava i causava fam, els ministres podien elevar memorials al tron interpretant aquests fets com advertències del Cel.</p>
+
+  <p>En nombroses ocasions al llarg de la història de la Xina imperial, funcionaris confucians van arriscar l'exili o l'execució per retreure als emperadors els seus excessos, utilitzant els textos sagrats per obligar el monarca a publicar «edictes d'autocrítica». D'aquesta manera, la burocràcia es va erigir com la consciència moral capaç de fiscalitzar el poder.</p>
+
+  <h2>La capil·laritat ideològica</h2>
+
+  <p>Per avaluar l'èxit d'aquesta tecnologia de govern, cal entendre com es va traslladar a les majories camperoles. L'Estat burocràtic xinès no tenia la capacitat de estar present directament a cada llogaret. La solució confuciana va ser delegar l'ordre ideològic a les estructures de parentiu.</p>
+
+  <p>Els clans i els llinatges familiars van adoptar models de comportament copiats de l'administració. A les zones rurals es va fomentar la construcció de temples ancestrals, on l'autoritat patriarcal aplicava el càstig i el premi segons regulacions derivades de l'ortodòxia confuciana oficial. Des del segle XIV, l'Estat va instituir un sistema de lectures comunitàries periòdiques, on es llegien en veu alta els Edictes Sagrats dels emperadors als camperols analfabets. Així, la filosofia d'una elit erudita es va filtrar gradualment en la cultura popular.</p>
+</section>
+
+<hr class="rule">
+
+<section id="s5" class="reveal">
+  <h1 class="chapter-title"><span class="ch-num">5</span>El debat acadèmic: és una religió?</h1>
+
+  <p class="drop-cap">El problema fonamental d'aquest debat acadèmic rau en la definició mateixa del concepte de religió. Si utilitzem el patró heretat dels monoteismes abrahamítics, el confucianisme sembla no encaixar-hi: Confuci evitava parlar del més-enllà i el seu pensament era radicalment immanent.</p>
+
+  <p>Tanmateix, el consens acadèmic actual adverteix que reduir el confucianisme a una «filosofia secular» és un anacronisme històric profund. El confucianisme no es pot entendre sense el seu ancoratge en una cosmovisió sagrada: la creença inamovible en el Mandat del Cel, l'eficàcia espiritual del ritual i l'obligació ineludible del culte als avantpassats.</p>
+
+  <h2>La perspectiva sociològica</h2>
+
+  <p>Max Weber, en la seva obra fonamental <em>La religió de la Xina</em> (1915), va analitzar el confucianisme com una de les grans religions mundials, malgrat el seu intens racionalisme. Des de la perspectiva d'Émile Durkheim, el confucianisme representa potser l'exemple més pur de la religió com a sistema de cohesió social. Si la religió és la societat adorant-se a si mateixa, el confucianisme elimina gairebé per complet els intermediaris místics.</p>
+
+  <h2>Una «religió difusa» i cívica</h2>
+
+  <p>Avui dia, gran part de la sinologia acadèmica utilitza el concepte de «religió difusa». A diferència de les religions «institucionals», la religió difusa no té una existència independent de les institucions socials seculars. En el confucianisme, la família i l'Estat <em>són</em> l'Església. El cap de família és el sacerdot que oficia als avantpassats. L'Emperador és el summe pontífex que connecta el Cel i la Terra. L'administració burocràtica és el clergat que preserva el text sagrat.</p>
+
+  <p>En conclusió, classificar el confucianisme com a religió és imprescindible. És una religió cívica i totalitzadora. Només entenent la seva naturalesa sagrada podem comprendre per què a la Xina imperial la traïció a l'Estat o la desobediència als pares no eren vistes únicament com a delictes civils, sinó com a autèntiques heretgies que alteraven l'equilibri de l'univers.</p>
+</section>
+
+</main>
+
+<a href="#cover" class="back-top" id="backTop" title="Tornar al principi">↑</a>
+
+<script>
+// ── PROGRESS BAR ────────────────────────────────────────────────────────
+const progress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrollTop = doc.scrollTop || document.body.scrollTop;
+  const scrollH = doc.scrollHeight - doc.clientHeight;
+  const pct = scrollH > 0 ? (scrollTop / scrollH) * 100 : 0;
+  progress.style.width = pct + '%';
+});
+
+// ── BACK TO TOP ──────────────────────────────────────────────────────────
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+  backTop.classList.toggle('visible', window.scrollY > 600);
+});
+
+// ── NAV TOGGLE ───────────────────────────────────────────────────────────
+const navToggle = document.getElementById('navToggle');
+const sidebar   = document.getElementById('sidebar');
+const overlay   = document.getElementById('overlay');
+
+navToggle.addEventListener('click', () => {
+  const open = sidebar.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
+  overlay.classList.toggle('active', open);
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  navToggle.classList.remove('open');
+  overlay.classList.remove('active');
+});
+
+// ── ACTIVE NAV LINK ──────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks  = document.querySelectorAll('.sidebar a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ── REVEAL ON SCROLL ─────────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+reveals.forEach(r => revealObs.observe(r));
+</script>
+
+</body>
+</html>
