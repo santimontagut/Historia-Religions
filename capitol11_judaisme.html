@@ -182,8 +182,10 @@ body {
   left: 0;
   width: 290px;
   height: 100vh;
+  max-height: 100vh; /* <-- Afegeix aquesta línia */
   background: var(--ink);
-  overflow-y: auto;
+  overflow-y: auto;  /* <-- Afegeix o comprova aquesta línia */
+  -webkit-overflow-scrolling: touch;
   transform: translateX(-100%);
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   z-index: 1000;
