@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capítol 13 — L'islam: Història, Teologia, Pràctiques i Diversitat</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+
+/* ── RESET & BASE ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:        #1a1408;
+  --ink-light:  #3d3020;
+  --parchment:  #f5f0e8;
+  --cream:      #faf7f2;
+  --gold:       #8b6914;
+  --gold-light: #c4a44a;
+  --gold-dim:   #d4b87a22;
+  --rust:       #7a3a1e;
+  --lapis:      #1e3a5f;
+  --lapis-light:#2a5080;
+  --blue-star:  #1b3a6b;
+  --rule:       #c4a44a55;
+  --shadow:     rgba(26,20,8,0.12);
+}
+
+/* ── DARK MODE: Detectar preferència del sistema ───────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:        #faf7f2;
+    --ink-light:  #e8e4d8;
+    --parchment:  #2a2419;
+    --cream:      #1a1408;
+    --gold:       #d4b87a;
+    --gold-light: #e8d4a0;
+    --gold-dim:   #d4b87a11;
+    --rust:       #d4844a;
+    --lapis:      #6b9fce;
+    --lapis-light:#8fb3d4;
+    --blue-star:  #7ba3d4;
+    --rule:       #d4b87a33;
+    --shadow:     rgba(0,0,0,0.3);
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* ── SCROLLBAR ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: var(--gold-light); border-radius: 3px; }
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-light); }
+}
+
+/* ── COVER ────────────────────────────────────────────────────────────── */
+.cover {
+  min-height: 100vh;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, #1b3a6b33 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, #1e3a5f22 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 20%, #8b691411 0%, transparent 60%);
+}
+
+/* Símbol decoratiu al cover */
+.cover-symbol {
+  position: absolute;
+  font-size: 6rem;
+  opacity: 0.04;
+  pointer-events: none;
+  color: var(--gold-light);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}
+
+.cover-ornament {
+  font-family: 'IM Fell English', serif;
+  color: var(--gold-light);
+  font-size: 1.1rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+  position: relative;
+  animation: fadeDown 1.2s ease both;
+}
+
+.cover-rule {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+  margin: 0 auto 2.5rem;
+  position: relative;
+  animation: fadeIn 1.4s ease both 0.2s;
+}
+
+.cover-arabic {
+  font-family: 'IM Fell English', serif;
+  font-size: 2rem;
+  color: var(--gold-light);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  position: relative;
+  animation: fadeDown 1.2s ease both 0.1s;
+  letter-spacing: 0.2em;
+}
+
+.cover-chapter {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  color: var(--parchment);
+  line-height: 1;
+  position: relative;
+  letter-spacing: -0.02em;
+  animation: fadeUp 1.2s ease both 0.3s;
+}
+
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 300;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  font-style: italic;
+  position: relative;
+  animation: fadeUp 1.2s ease both 0.5s;
+}
+
+.cover-tesi {
+  margin-top: 3rem;
+  max-width: 620px;
+  font-size: 1.2rem;
+  color: var(--gold-light);
+  line-height: 1.8;
+  font-weight: 300;
+  position: relative;
+  animation: fadeUp 1.2s ease both 0.7s;
+  letter-spacing: 0.02em;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── HEADER & NAV ────────────────────────────────────────────────────── */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--ink) 0%, var(--ink)80%, transparent 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+#navToggle {
+  background: none;
+  border: none;
+  color: var(--gold-light);
+  cursor: pointer;
+  font-size: 1.8rem;
+  padding: 0;
+  margin-right: auto;
+  transition: color 0.3s;
+}
+
+#navToggle:hover { color: var(--gold); }
+
+.chapter-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+  margin: 0 auto;
+}
+
+#progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 1001;
+  transition: width 0.1s ease;
+}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────────── */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100vh;
+  background: var(--parchment);
+  border-right: 1px solid var(--rule);
+  overflow-y: auto;
+  padding-top: 80px;
+  padding-bottom: 2rem;
+  z-index: 999;
+  transition: left 0.3s ease;
+}
+
+#sidebar.open { left: 0; }
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 998;
+  transition: opacity 0.3s ease;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sidebar-nav {
+  list-style: none;
+}
+
+.sidebar-nav > li {
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+.sidebar-nav > li > a {
+  display: block;
+  padding: 1rem 1.5rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.sidebar-nav > li > a:hover,
+.sidebar-nav > li > a.active {
+  background: var(--gold-dim);
+  color: var(--gold);
+  border-left-color: var(--gold);
+  padding-left: 2rem;
+}
+
+.sidebar-submenu {
+  list-style: none;
+  background: var(--gold-dim);
+  display: none;
+}
+
+.sidebar-submenu.open { display: block; }
+
+.sidebar-submenu li a {
+  display: block;
+  padding: 0.6rem 1.5rem 0.6rem 2.5rem;
+  color: var(--ink-light);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  border-left: 2px solid transparent;
+}
+
+.sidebar-submenu li a:hover,
+.sidebar-submenu li a.active {
+  background: var(--gold-dim);
+  color: var(--gold);
+  border-left-color: var(--gold);
+  padding-left: 3rem;
+}
+
+/* ── MAIN CONTENT ────────────────────────────────────────────────────── */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  padding-top: 80px;
+}
+
+section {
+  margin: 4rem 0;
+}
+
+section > h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--lapis);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--gold-dim);
+  position: relative;
+}
+
+section > h2::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: var(--gold);
+}
+
+section > p {
+  margin-bottom: 1.5rem;
+  text-align: justify;
+}
+
+section > h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+section > h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+}
+
+/* ── ÍNDEX CONTENTS ──────────────────────────────────────────────────── */
+.index-section {
+  background: var(--gold-dim);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 2px;
+}
+
+.index-section h3 {
+  color: var(--lapis);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.index-list {
+  list-style: none;
+  column-count: 1;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .index-list { column-count: 2; }
+}
+
+.index-list li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  break-inside: avoid;
+}
+
+.index-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 0.7rem;
+}
+
+.index-list li a {
+  color: var(--lapis);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.index-list li a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+/* ── REVEAL ON SCROLL ────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ORNAMENTAL RULES ────────────────────────────────────────────────── */
+.rule-ornament {
+  text-align: center;
+  color: var(--gold);
+  font-size: 1.5rem;
+  letter-spacing: 1em;
+  margin: 3rem 0;
+  opacity: 0.6;
+}
+
+/* ── CALLOUT & NOTES ─────────────────────────────────────────────────── */
+.callout {
+  background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 100%);
+  border-left: 4px solid var(--gold);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  border-radius: 2px;
+  color: var(--ink-light);
+}
+
+.note {
+  background: var(--parchment);
+  border: 1px solid var(--rule);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  color: var(--ink-light);
+}
+
+/* ── BIBLIOGRAPHY ────────────────────────────────────────────────────── */
+.bib-section {
+  margin: 2.5rem 0;
+}
+
+.bib-section h3 {
+  font-size: 1.4rem;
+  color: var(--lapis);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.bib-section h4 {
+  font-size: 1rem;
+  color: var(--ink);
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+}
+
+.bib-entry {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  text-align: justify;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.bib-entry em {
+  color: var(--lapis);
+  font-style: italic;
+}
+
+/* ── BACK TO TOP ──────────────────────────────────────────────────── */
+.back-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.4rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--shadow);
+  z-index: 900;
+}
+
+.back-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-top:hover {
+  background: var(--gold-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────– */
+@media (max-width: 768px) {
+  main { padding: 1.5rem; padding-top: 80px; }
+  section > h2 { font-size: 1.8rem; }
+  section > h3 { font-size: 1.3rem; }
+  .index-list { column-count: 1; }
+}
+
+</style>
+
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header>
+  <button id="navToggle" aria-label="Obrir menú de navegació" aria-expanded="false">☰</button>
+  <div class="chapter-title">Capítol 13 — L'islam</div>
+</header>
+
+<div id="overlay"></div>
+
+<nav id="sidebar">
+  <ul class="sidebar-nav">
+    <li><a href="#cover">Portada</a></li>
+    <li><a href="#s1">13.1. Orígens històrics</a></li>
+    <li><a href="#s2">13.2. Textos sagrats</a></li>
+    <li><a href="#s3">13.3. Creences fonamentals</a></li>
+    <li><a href="#s4">13.4. Els Cinc Pilars</a></li>
+    <li><a href="#s5">13.5. Espiritualitat i ètica</a></li>
+    <li><a href="#s6">13.6. Diversitat de l'islam</a></li>
+    <li><a href="#s7">13.7. Civilització i cultura</a></li>
+    <li><a href="#s8">13.8. Diàleg interreligiós</a></li>
+    <li><a href="#s9">13.9. Societat i qüestions contemporànies</a></li>
+    <li><a href="#s10">13.10. Metodologia</a></li>
+    <li><a href="#s11">13.11. Bibliografia</a></li>
+  </ul>
+</nav>
+
+<!-- ── PORTADA ────────────────────────────────────────────────────────────────── -->
+<section id="cover" class="cover">
+  <div class="cover-symbol">☪</div>
+  
+  <div class="cover-ornament">Capítol</div>
+  <div class="cover-rule"></div>
+  
+  <div class="cover-arabic">بسم الله</div>
+  
+  <h1 class="cover-chapter">L'ISLAM</h1>
+  
+  <h2 class="cover-subtitle">Història, Teologia, Pràctiques i Diversitat</h2>
+  
+  <p class="cover-tesi">Una tradició religiosa de més de mil quatre-cents anys que ha modelat civilitzacions, fermament ancorada en la recitació de l'Alcorà i la comunitat global de creients (umma), i que abraça una profunda diversitat de teologies, pràctiques i contextos culturals.</p>
+</section>
+
+<!-- ── CONTINGUT PRINCIPAL ─────────────────────────────────────────────────── -->
+<main>
+
+  <!-- 13.1. ORÍGENS HISTÒRICS -->
+  <section id="s1" class="reveal">
+    <h2>13.1. Orígens històrics i la gran expansió dels primers segles</h2>
+    
+    <p>L'islam emergeix als primers anys del segle VII en la Península Aràbiga, en un context de tensió entre els grans imperis (l'Imperi Romà Bizantí i el Sassànida), mercantilisme regional, i una diversitat de pràctiques religioses. La figura del profeta Muhàmmad (c. 570–632 dC) és central per a la tradició, així com el seu missatge de monoteisme rigorós i justícia social.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>La Península Aràbiga preislàmica (politeisme, judaisme, cristianitat)</li>
+        <li>El profeta Muhàmmad: vida, revelacions, creixement de la comunitat</li>
+        <li>L'Hègira (622 dC) i la comunitat de Medina (umma)</li>
+        <li>La primera onada d'expansió (632–661 dC): els Califats Bàssida i Omeia</li>
+        <li>L'Imperi Omeia (661–750 dC): consolidació administrativa i cultural</li>
+        <li>El Califat Abàssida (750–1258 dC): l'Edat d'Or islàmica</li>
+      </ul>
+    </div>
+
+    <p>La mort de Muhàmmad marca el primer gir: la qüestió sobre el lideratge de la comunitat fractura l'islam en les seves branques principals (sunnisme i xiisme). Els primers quatre califes (els "ben guiats") són considerats pels sunnites com la culminació de l'autoritat profètica, mentre que els xiites mantenen que la successió divina es transmet a través de la família (Ahl al-Bayt).</p>
+  </section>
+
+  <!-- 13.2. TEXTOS SAGRATS I FONTS -->
+  <section id="s2" class="reveal">
+    <h2>13.2. Textos sagrats i fonts de la fe</h2>
+    
+    <p>L'autoritat religiosa en l'islam està sustentada en tres pilars: l'Alcorà, la Sunna (practiques del Profeta) i els hadits (tradicions reportades). La Xaria (la llei islàmica) i el Fiqh (jurisprudència) es desenvolupen a partir de aquests textos, adaptant-se als contexts locals però mantenint els principis fonamentals.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>L'Alcorà (Al-Qur'an): estructura, 114 sures, versàtil teològica</li>
+        <li>La Sunna i els hadits: autenticitat, coleccions clàssiques</li>
+        <li>La Xaria i el Fiqh: les quatre escoles jurídiques (madhabs)</li>
+        <li>Interpretació i evolució (tafsir, ijtihad)</li>
+      </ul>
+    </div>
+
+    <h3>L'Alcorà</h3>
+    <p>L'Alcorà (literalment "la recitació") és considerat pels musulmans la paraula literal de Déu (Allah) revelada a través del profeta Muhàmmad durant més de vint anys. Els seus 114 capítols (sures) tracten qüestions teològiques, narratives bíbliques, normes legals, ètica i espiritualitat. La seva lingüística és de gran bellesa i precisió, el que ha donat origen a una rica tradició d'estudis filològics i estètics.</p>
+
+    <h3>Hadits i Sunna</h3>
+    <p>La Sunna (el "camí" del Profeta) es preserva a través dels hadits, anècdotes i dits transmesos oralment i posteriorment registrats en col·leccions com les de Sahih al-Bukhari i Sahih Muslim. La seva autenticació va generar una sofisticada ciència (ilm al-hadith) per a verificar cadenes de transmissió (isnad).</p>
+
+    <h3>Xaria i Jurisprudència</h3>
+    <p>La Xaria és el sistema legal islàmic derivat de l'Alcorà, la Sunna, el consens (ijma') i l'analogia (qiyas). Quatre escoles jurídiques principals (madhabs) —Hanafi, Maliki, Shafi'i i Hanbali— interpreten el dret de manera lleugerament diferent, donant flexibilitat al sistema dins de la ortodòxia sunnita.</p>
+  </section>
+
+  <!-- 13.3. CREENCES FONAMENTALS -->
+  <section id="s3" class="reveal">
+    <h2>13.3. Creences fonamentals i teologia</h2>
+    
+    <p>La teologia islàmica (Kalam) es desenvolupa en debat constant amb la filosofia grega, les tradicions abrahàmiques, i la diversitat dins de l'islam. Els conceptes clau inclouen l'unicitat divina (Tawhid), la llibertat i la predestinació, i la natura de la revelació.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>El Tawhid: la unicitat de Déu, rebuig del politeisme i trinitarisme</li>
+        <li>Els Sis Articles de Fe (en el xiisme dels Dotze Imams)</li>
+        <li>La teologia islàmica medieval (Kalam): Mu'tazilites, Ash'arites, Maturidites</li>
+        <li>Atributs divins, creació, profecia i escatologia</li>
+      </ul>
+    </div>
+
+    <h3>El Tawhid</h3>
+    <p>El Tawhid (literalment "unitat") és la declaració fonamental de la fe islàmica: "No hi ha més déu que Déu" (La ilaha illallah). Això representa una reacció vehement contra el politeisme, el materialisme, i la teologia trinitària cristiana. El Tawhid no és merament una proposició mental, sinó una reorientació radical de l'existència cap a l'obediència a la voluntat divina.</p>
+
+    <h3>Kalam (Teologia Racional)</h3>
+    <p>Els mutazilites (segles VIII–X) desenvolupen una teologia que estima la raó en la comprensió de l'Alcorà, argumentant que els atributs divins no són eternals sinó crèations contingents, i que l'home posseeix lliure albedrió. Els ash'arites, seguint al-Ash'ari (874–935), reconcilien la raó amb la revelació, però afirmen la predestinació (qadar) dins d'un marc compatibilista.</p>
+
+    <h3>Escatologia</h3>
+    <p>La docrina islàmica dels darrers dies (Yawm al-Qiyama, el Dia de la Resurrecció) descriu el judici final, la punició dels malvats (jahannnam) i la recompensa dels justos (jannah). Aquesta esperança escatològica motiva la vida moral i, històricament, ha inspirat moviments de reforma i revolució.</p>
+  </section>
+
+  <!-- 13.4. ELS CINC PILARS -->
+  <section id="s4" class="reveal">
+    <h2>13.4. Els Cinc Pilars i la vida religiosa</h2>
+    
+    <p>Els Cinc Pilars de l'Islam són els fonaments de la pràctica religiosa musulmana, manaments que estructuren la vida espiritual i comunitària. Juntament amb la mesquita com a espai comunitari i el calendari islàmic amb les seves festivitats, constitueixen el ritme de la vida religiosa.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>Els Cinc Pilars: Shahada, Salah, Zakat, Sawm, Hajj</li>
+        <li>La mesquita (masjid) i la congregació (jamah)</li>
+        <li>El calendari islàmic i les festivitats (Ramadà, Eid al-Fitr, Eid al-Adha)</li>
+        <li>Ritus i cerimònies</li>
+      </ul>
+    </div>
+
+    <h3>Els Cinc Pilars</h3>
+    <p><strong>1. La Shahada (Testimoniança):</strong> "No hi ha més déu que Déu (Allah) i Muhàmmad és el seu profeta." Aquesta és la declaració de fe que es pronuncia públicament en la conversió a l'islam i es recita múltiples vegades en la vida del creyent.</p>
+
+    <p><strong>2. Salah (Oració):</strong> Cinc oracions diàries executades en moments específics (alba, migdia, mitjan tarda, posta de sol, nit). La oració és un acte de submissió, gratitud i comunicació directa amb Déu.</p>
+
+    <p><strong>3. Zakat (Caritat preceptiva):</strong> Contribució econòmica obligatòria (generalment 2.5% del patrimoni net) per als pobres i necessitats comunitàries. La zakat és considerada una purificació de la riquesa i una afirmació de la justícia social islàmica.</p>
+
+    <p><strong>4. Sawm (Dejuni):</strong> Especialment el dejuni durant el mes del Ramadà (el novè mes del calendari islàmic), des de l'alba fins a la posta de sol. Representa l'autodisciplina, la reflexió espiritual i la solidaritat amb els pobres.</p>
+
+    <p><strong>5. Hajj (Pelegrinatge):</strong> El viatge als llocs sagrats de la Meca, obligatori almenys una vegada en la vida per als que poden fer-ho físicament i econòmicament. El Hajj és una experiència de igualtat global i comunió de milions de creients de tot el món.</p>
+
+    <h3>La mesquita</h3>
+    <p>La mesquita (masjid, "lloc de prosternació") és el centre de la vida comunitària islàmica. No només s'utilitza per a oració, sinó també per a ensenyament religiós, desenvolupament comunitari, i ocasionalment per a assessorament legal. La mesquita simbolitza la igualtat de tots els creients davant de Déu.</p>
+
+    <h3>Calendari i festivitats islàmiques</h3>
+    <p>El calendari islàmic és lunar, amb 12 mesos de 29 o 30 dies. El Ramadà és el mes de dejuni obligatori; el seu final marca l'Eid al-Fitr, una celebració de tres dies. L'Eid al-Adha commemora el sacrifici d'Abraam (Ibrahim) i es celebra durant el Hajj. L'aniversari de Muhàmmad (Mawlid al-Nabi) és observat per moltes comunitats, tot que no és part dels cinc pilars.</p>
+  </section>
+
+  <!-- 13.5. ESPIRITUALITAT, ÈTICA I VIDA QUOTIDIANA -->
+  <section id="s5" class="reveal">
+    <h2>13.5. Espiritualitat, ètica i vida quotidiana</h2>
+    
+    <p>Més allà dels pilars, l'islam estableix un sistema etic integral que governa la vida quotidiana, l'alimentació, la sexualitat, les relacions familiars i la responsabilitat social. El sufisme (tasawwuf) representa una dimensió interna, contemplativa de la religió.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>L'ètica islàmica (akhlaq): virtuts, responsabilitat moral</li>
+        <li>Alimentació halal i normes de vida (ahkam)</li>
+        <li>El sufisme: mística islàmica, ordres (tarikah), maestres espiritual (murshid)</li>
+        <li>Meditació, recordació (dhikr) i experiència contemplativa</li>
+      </ul>
+    </div>
+
+    <h3>Ètica islàmica</h3>
+    <p>L'ètica islàmica (akhlaq) no és merament prescriptiva (prohibit/permès), sinó aspiracional. Els musulmans es considera que viuen en una relació de confiança amb Déu (amanah), responsables pel seu comportament moral. Virtuts fonamentals inclouen la paciència (sabr), la generositat (karam), la honradesa (amanah) i la misericòrdia (rahmah).</p>
+
+    <h3>Halal i normes de vida</h3>
+    <p>Les normes dietètiques islàmiques (halal) prohibeixen animals que es consideren ritualmente impurs (porta, carronya, depredadors), així com l'alcohol. Aquestes restriccions, més que pures prohibicions sanitàries, representen una espiritualització de l'acte de menjar i un record constant de la submissió a Déu.</p>
+
+    <h3>Sufisme</h3>
+    <p>El sufisme (tasawwuf) és la dimensió mística de l'islam, que busca la proximitat experiencial a Déu a través de pràctiques contemplatives. Els sufis van desenvolupar ordres espirituals (tarikah) amb maestres (murshid o shaikh) que guien els deixebles en la progressió espiritual. Pràctiques com el dhikr (recordació de Déu), la meditació (muraqabah) i la poesia mística caracteritzen les tradicions sufis, que han influït profundament en les cultures islàmiques.</p>
+  </section>
+
+  <!-- 13.6. LA DIVERSITAT DE L'ISLAM -->
+  <section id="s6" class="reveal">
+    <h2>13.6. La diversitat de l'islam</h2>
+    
+    <p>L'islam no és una religió monolítica. Malgrat compartir les creences fonamentals, la diversitat teològica, jurídica i cultural és immensa. Les divisions principals sorgeixen de la qüestió de la successió després de Muhàmmad, però també de contextos culturals i hermenèutiques diferents.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>Sunnisme: majoritat global, acceptació dels primeres quatre califes</li>
+        <li>Xiisme: creença en la successió divina (imamah), variances del xiisme (Dotze Imams, Sete Imams, Zaydisme)</li>
+        <li>Ibadisme: tercera gran branca, predominant a Oman</li>
+        <li>Islam contemporani: reformismes, modernismes, integralismes</li>
+      </ul>
+    </div>
+
+    <h3>Sunnisme</h3>
+    <p>Els sunnites (la majoria dels musulmans, aproximadament 85–90%) accepten que els quatre primers califes succeïren a Muhàmmad légitimament, i que la sunna (pràctica) del Profeta es preserva a través de les tradicions de tota la comunitat. No atribueixen autoritat religiosa infalible a cap líder humà después del Profeta. Les quatre escoles jurídiques sunnites (madhabs) ofereixen flexibilitat doctrinal dins de la unitat de principis.</p>
+
+    <h3>Xiisme</h3>
+    <p>Els xiites (aproximadament 10–15% dels musulmans) creuen que la successió és divina: els Imams són guies infalibles (ismah) designats per Déu a través de la investidura profètica (nass). La branca predominant, el xiisme dels Dotze Imams (o Twelver Shi'ism), espera la reaparició del Dotze Imam (el Mahdí) que restaurarà la justícia divina. Els xiites tenen un elaborat sistema de jurisprudència (marja') amb autoritats religioses vives que emetin opinions legals (fatwa).</p>
+
+    <h3>Ibadisme</h3>
+    <p>L'ibadisme, emergent del moviment kharijita dels primers segles islàmics, és una tercera branca menys coneguda però teològicament distinct. Els ibadites creuen que el lideratge religiós es basa en la mèrit, no en la llinatge, i mantenen posicions úniques sobre la predestinació i la condició dels pecadors. Predominant a Oman i amb comunitats disperses a través del Magreb, l'ibadisme representa una continuïtat de la reforma islàmica antiga.</p>
+
+    <h3>Islam contemporani</h3>
+    <p>A partir del segle XIX, l'islam enfrontà modernitats occidentals, colonialisme i transformacions polítiques. Emergiren corrents diversos: reformismes que reinterpretaren la Xaria per a la modernitat (Muhammad Abduh), fundamentalismes que buscaren retornar als orígens (Ikhwan al-Muslimun), nacionalismes islàmics, i desenvolupaments contemporanis com l'islam polític, el feminisme islàmic, i les teologies de l'alliberament.</p>
+  </section>
+
+  <!-- 13.7. CIVILITZACIÓ I APORTACIONS CULTURALS -->
+  <section id="s7" class="reveal">
+    <h2>13.7. Civilització i aportacions culturals</h2>
+    
+    <p>L'Islam ha estat la base de civilitzacions profundament riques que han produït avançaments científics, filosòfics, artístics i arquitectònics de significació mundial. L'Edat d'Or islàmica (aprox. segles IX–XIII) va ser una era de renovació intel·lectual sense precedents.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>L'Edat d'Or islàmica: context, llegat, decadència i mits</li>
+        <li>Ciència islàmica: matemàtiques, astronomia, medicina, química</li>
+        <li>Filosofia islàmica medieval: Al-Kindi, Al-Farabi, Ibn Sina, Ibn Rushd</li>
+        <li>Art i arquitectura islàmiques: ornamentació, caligrafía, mesquita</li>
+        <li>Literatura, música i tradicions intelectuals</li>
+      </ul>
+    </div>
+
+    <h3>L'Edat d'Or islàmica</h3>
+    <p>Entre els segles IX i XIII, especialmente under the Abbasid Caliphate, l'islam va ser el centre de la innovació científica i cultural mundial. Escoles de traducció a Baghdad (Bayt al-Hikma), Córdoba i altres centres van preservar textos grecs, sànscrits i perses, i van produir obres originals en matemàtiques, medicina i astronomia. Aquesta era va coincidir amb el declivi de l'Occident medieval europeu, i els seus assoliments van ser gradalment transmesos a través d'Al-Andalus (Espanya islàmica) a la Cristiandat medieval.</p>
+
+    <h3>Ciència islàmica</h3>
+    <p>Els científics islàmics van desenvolupar l'àlgebra (al-Khwarizmi), l'algorisme, instruments astronòmics sofisticats, tècniques quirúrgiques avançades (Al-Razi), farmacologia, i una física matemàtica que anticipava alguns principis de la ciència moderna. L'observació empírica i la deducció matemàtica eren valorades com a vies de comprensió del demiurge còsmic.</p>
+
+    <h3>Filosofia</h3>
+    <p>Filòsofs com Al-Kindi, Al-Farabi, Ibn Sina i Ibn Rushd van desenvolupar síntesis sofisticades de la filosofia grega (Aristòtil, Plató, Neoplatonisme) amb la teologia islàmica. El seu treball va influir en la filosofia escolàstica medieval cristiana (especialment a través de Tomàs d'Aquino) i es considera un pont fonamental entre el pensament antic i modern.</p>
+
+    <h3>Art i arquitectura</h3>
+    <p>La prohibició dels retrats humans en contextos religiosos va fer que l'art islàmic es desenvolupés amb una sofisticació extraordinaria en ornamentació geomètrica, caligrafía Qurânica, i arquitectura monumental. Les mesquites, les madrasas (escoles), els palaus i els caravanseralls exemplifiquen una estètica que integra funcionalitat, espiritualitat i bellesa.</p>
+  </section>
+
+  <!-- 13.8. ISLAM I ALTRES TRADICIONS RELIGIOSES -->
+  <section id="s8" class="reveal">
+    <h2>13.8. L'islam i les altres tradicions religioses</h2>
+    
+    <p>L'islam es concep a si mateix com la continuació de la tradició abrahàmica (Ibrahim). Els musulmans reconeixen els profetes anteriors (Noe, Abraam, Moisès, Jesús), però afirmen que Muhàmmad és el segell de la profecia. La relació amb el judaisme i el cristianisme ha estat complexa, oscil·lant entre cooperació, convivència (convivencia a Al-Andalus) i conflicte.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>La tradició abrahàmica: herència compartida i diferències teològiques</li>
+        <li>Els Gents del Llibre (Ahl al-Kitab) en la llei islàmica</li>
+        <li>Continuïtats i reinterpretacions: la Cristologia islàmica, la Thorah islàmica</li>
+        <li>Convivència medieval i conflictes moderns</li>
+        <li>Diàleg interreligiós contemporani</li>
+      </ul>
+    </div>
+
+    <h3>La tradició abrahàmica</h3>
+    <p>L'Islam reclama una connexió espiritual directa amb Abraam, considerant-lo el "Amic de Déu" (Khalil Allah) i el primer musulmà. Segons l'Alcorà, Abraam i Ismael van construir la Kaaba a la Meca. Aquesta genealogia espiritual diferencia l'Islam de les tradicions abrahàmiques posteriors, però estableix una unitat fonamental en la submissió monoteista.</p>
+
+    <h3>Els Gents del Llibre</h3>
+    <p>El Qurà referencia els "Gents del Llibre" (judeus i cristians) com a tenedors de revelació anterior, mereixedors de tracte juridic i de drets (dhimmi) en les societats islàmiques, amb obligacions de tributació però de protecció religiosa. Aquest framework, més que la tolerancia moderna, establí un status jurídic als no-musulmans dins de l'estat islàmic.</p>
+
+    <h3>Diàleg contemporani</h3>
+    <p>Après la colonització i l'actualizació política, les relacions entre l'Islam, el cristianisme i el judaisme s'han complicat pels conflictes sobre les terres, els nacional-estados, i les herències colonials. No obstant, les iniciatives de diàleg interreligiós, especialment des del Concili Vaticà II i les declaracions sufis modernes, busquen reencontrar les comuni base espirituals i éticques.</p>
+  </section>
+
+  <!-- 13.9. SOCIETAT, DRET I QÜESTIONS CONTEMPORÀNIES -->
+  <section id="s9" class="reveal">
+    <h2>13.9. Societat, dret i qüestions contemporànies</h2>
+    
+    <p>La Xaria regula no només l'adoració sinó la vida civil, econòmica i familiar. Les qüestions de gènere, família, herència, i drets humans plantejaven als muslims contemporanis dilemes sobre la reinterpretació de principis medievals en contextos moderns de drets individuals i igualtat.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>La dona en l'islam: històricament i actualment</li>
+        <li>Matrimoni, família i herència segons la Xaria</li>
+        <li>Drets humans i llibertat religiosa en els contexts islàmics</li>
+        <li>Reptes contemporanis: feminisme islàmic, LGBTQ+, secularisme</li>
+        <li>Economia islàmica i banca islàmica</li>
+      </ul>
+    </div>
+
+    <h3>La dona en l'islam</h3>
+    <p>El Qurà va significar en alguns respectes un avanç per a les dones aràbigues dels segles VII, garantint drets de propietat, divorci i herència que no tenien en el codi pre-islàmic. No obstant, les interpretacions medievals de la Xaria i les cultures patriarcals locals han limitat l'accés de les dones a l'educació, l'esfera pública i el dret de vot. Els feministes islàmics contemporanis (com Fatima Mernissi, Leila Ahmed i Amina Wadud) reinterpreten els textos per a defendre la igualtat de gènere dins de la tradició islàmica.</p>
+
+    <h3>Família i herència</h3>
+    <p>La família (usrah) és considerada el fonament de la societat islàmica. La Xaria estableix normes per al matrimoni (nikah), el divorci (talaq), la custòdia dels nens, i la distribució d'heretages que difereixen de les lleis occidentals. Els Drets de les dones en aquests dominis ha estat historicalment menys que igualitaris, amb moviments moderns que busquen la reforma.</p>
+
+    <h3>Drets humans i llibertat religiosa</h3>
+    <p>La tensió entre la llei islàmica (Xaria) i els estàndards internacionals de drets humans és significant en molts estats islàmics. Les qüestions de castigs corporals (hudud), pena capital per apostasia, i restriccions sobre les minories religioses engendren debats morals i jurídics intensos.</p>
+
+    <h3>Reptes contemporanis</h3>
+    <p>L'Islam contemporani enfronta desafiaments plurals: l'ascens del secularisme, la crítica del feminisme occidental, la qüestió LGBTQ+, la globalització, i la radicalització violenta en nombre de grups minoritaris (EI, Al-Qaeda). Els musulmans responenen amb una diversitat de visions: tradicionalistes que mantenen la Xaria medieval, reformistes que busquen reinterpretació contextual, i innovadors que creuen en la compatibilitat de l'Islam amb la modernitat secular.</p>
+  </section>
+
+  <!-- 13.10. METODOLOGIA PER A L'ESTUDI -->
+  <section id="s10" class="reveal">
+    <h2>13.10. Metodologia per a l'estudi de l'islam</h2>
+    
+    <p>L'estudi acadèmic de l'Islam ha estat històricament distorsionat per l'Orientalisme (la caracterització occidental que stereotipa l'Oriebt como irracional, despòtic, sensual). Els estudis musulmans contemporanis busquen superar aquests prejudicis através de mètodes historiogràfics rigorosos, filologia, i perspectives antropológiques que respeten l'autocomprensió dels musulmans.</p>
+
+    <div class="index-section">
+      <h3>Temes principals</h3>
+      <ul class="index-list">
+        <li>Historiografia crítica i crítica de les fonts primàries</li>
+        <li>Filologia Qurânica i lingüística islàmica</li>
+        <li>Perspectives antropològiques i sociològiques</li>
+        <li>Superació de l'orientalisme i dels estereotips occidentals</li>
+        <li>Estudis des de dins: visions de musulmans sobre la seva tradició</li>
+      </ul>
+    </div>
+
+    <h3>Historiografia</h3>
+    <p>La reconstrucció de la història islàmica exigeix l'examen crític de fonts (seigures de caligraf islàmic, cristià i jueu), arqueologia, i numismàtica. Els historiadors com al-Tabari, Ibn Hisham i al-Mas'udi ofereixen narratives complexes però no sempre fiables. La historiografia moderna (per exemple Bernard Lewis, Fred Donner) intenta reconciliar les fonts amb l'evidencia arqueológica.</p>
+
+    <h3>Filologia</h3>
+    <p>L'estudi del Qurà requereix filogoia sofisticada: comprendre la lengua àrab dels segles VII–VIII, la síntaxi, la retòrica i l'evolució de les variants textuals (qira'at). Els erudits de llenguatges com Theodor Nöldeke, Régis Blachère i John Wansbrough han contribuïda a filologias précisions del Qurà.</p>
+
+    <h3>Antropologia i sociologia</h3>
+    <p>Els estudis antropologics (Clifford Geertz a Bali, Ernest Gellner sobre berebering) i sociòlogics (Émile Durkheim, Max Weber sobre el protestantisme islàmic) han revelat la complexitat de les pràctiques islàmiques en contextos locals, lluny dels estereotips.</p>
+
+    <h3>Superació de l'Orientalisme</h3>
+    <p>Edward Said, en <em>Orientalisme</em> (1978), critica la tradició occidental de caracteritzar l'Oriebt de forma essencialista i denigradora, establint-la com l'opposite de l'Occident "racional" i "avanç." Els estudis postcolonials han destaat aquesta crítica, insistint en el respecte pel auto-coneixement dels musulmans i la superació de dualismes Oriebt/Occident.</p>
+  </section>
+
+  <!-- 13.11. BIBLIOGRAFIA, FONTS I RECURSOS -->
+  <section id="s11" class="reveal">
+    <h2>13.11. Bibliografia, fonts i recursos</h2>
+
+    <div class="bib-section">
+      <h3>13.11.1. Fonts primàries (Qurà, Hadits, Tafsirs)</h3>
+
+      <h4>Translations del Qurà al català i castellà</h4>
+      <p class="bib-entry">Basset, René, trad. <em>Le Coran: Traduction nouvelle avec introduction et commentaire</em>. París: Maisonneuve, 1982. [Versió en francés; disponible en traduccions secundàries.]</p>
+      <p class="bib-entry">Vernet, Juan, trad. <em>El Alcorán</em>. Barcelona: Planeta, 1979. [Traducció al castellà amb notes introductòries.]</p>
+      <p class="bib-entry">Lings, Martin, trad. <em>The Qur'an</em>. Cambridge: Islamic Texts Society, 1997. [Anglès; és de les millors traduccions literàries.]</p>
+
+      <h4>Coleccions de hadits</h4>
+      <p class="bib-entry">Al-Bukhari (810–870). <em>Sahih al-Bukhari</em>. [Col·lecció de hadits més autoritzada en el sunnisme. Traducció: Khan, Muhammad Muhsin. <em>The Translation of the Meanings of Sahih al-Bukhari</em>. Madina: Islamic University, 1997.]</p>
+      <p class="bib-entry">Muslim ibn al-Hajjaj (821–875). <em>Sahih Muslim</em>. [Segona col·lecció de hadits més important.]</p>
+      <p class="bib-entry">At-Tirmizi (824–892). <em>Jami' at-Tirmizi</em>. [Col·lecció menys rigorosa però amb explicacions de transmissors.]</p>
+
+      <h4>Tafsirs (comentaris Qurànics)</h4>
+      <p class="bib-entry">At-Tabari, Muhammad ibn Jarir (839–923). <em>Jami' al-Bayan fi Tafsir al-Quran</em>. [Tafsir clàssic més influent; inclou narracions històriques.]</p>
+      <p class="bib-entry">Ibn Kathir, 'Imad al-Din Ismail (1301–1373). <em>Tafsir al-Quran al-'Azim</em>. [Tafsir concís però autorita]</p>
+      <p class="bib-entry">Al-Zamakhshari, Abu al-Qasim Mahmud (1075–1144). <em>Al-Kashshaf 'an Haqaiq al-Tanzil</em>. [Tafsir mu'tazilita que enfatitza la razó.]</p>
+
+      <h4>Tractats jurídics i teològics</h4>
+      <p class="bib-entry">Al-Shafi'i, Muhammad ibn Idris (767–820). <em>Al-Risalah</em>. [Fonament de la jurisprudència islàmica; trad. angl. Khadduri, Majid. <em>Islamic Jurisprudence: Shafi'i's Risala</em>. Baltimore: Johns Hopkins University Press, 1961.]</p>
+      <p class="bib-entry">Al-Ghazali, Abu Hamid Muhammad (1058–1111). <em>Ihya' 'Ulum al-Din</em> (La revivificació de les ciències de la religió). [Obra magnum que integra jurisprudència, teologia i espiritualitat.]</p>
+
+      <h4>Filosofia islàmica medieval</h4>
+      <p class="bib-entry">Al-Kindi, Abu Yusuf al-'Ash'ari (801–873). <em>On First Philosophy</em> (Al-'Ilm al-Awwal). [Trad. anglesa: Ivry, Alfred L. <em>Al-Kindi's Metaphysics</em>. Albany: SUNY Press, 1974.]</p>
+      <p class="bib-entry">Al-Farabi, Muhammad ibn Muhammad (872–950). <em>The Political Regime</em> (Al-Siyasa al-Madaniyyah). [Trad. anglesa: Butterworth, Charles E. <em>Alfarabi, The Political Writings: Selected Aphorisms and Other Texts</em>. Ithaca: Cornell University Press, 2001.]</p>
+      <p class="bib-entry">Ibn Sina (Avicenna), Abu 'Ali al-Husayn (980–1037). <em>Kitab al-Shifa</em> (El Lliure de la Curació). [Enciclopèdia filosòfica medieval. Trad. parciala: Mahdavi, M., ed. <em>Avicenna's Psychology</em>. Eastbourne: Harvester, 1984.]</p>
+      <p class="bib-entry">Ibn Rushd (Averroes), Abu al-Walid Muhammad (1126–1198). <em>The Incoherence of the Incoherence</em> (Tahafut al-Tahafut). [Resposta a al-Ghazali. Trad. anglesa: Van den Bergh, Simon. <em>Averroes' Tahafut Al-Tahafut (The Incoherence of the Incoherence)</em>. Londres: Gibb Memorial Trust, 1954.]</p>
+
+      <h4>Espiritualitat i sufisme</h4>
+      <p class="bib-entry">Al-Qushayri, Abu al-Qasim (986–1074). <em>Ar-Risalah al-Qushayriyyah fi 'Ilm al-Taswwuf</em>. [Tractate clàssic sobre sufisme. Trad. angl. Knysh, Alexander D., et al. <em>Al-Qushayri's Epistle on Sufism</em>. Garnet Publishers, 2007.]</p>
+      <p class="bib-entry">Ibn Arabi, Muhyi al-Din (1165–1240). <em>Fusus al-Hikam</em> (La bezels de la Saviesa). [Obra mística monumental de l'ènfasi a la unitat existencial (wahdat al-wujud). Trad. angl. Austin, Ralph W.C. <em>Ibn al-'Arabi: The Bezels of Wisdom</em>. Mahwah: Paulist Press, 1980.]</p>
+      <p class="bib-entry">Rumi, Jalal al-Din Muhammad (1207–1273). <em>Masnavi</em> (Poema espiritual en 6 llibres). [Trad. anglesa: Nicholson, Reynold A. <em>The Mathnavi of Jalalu'ddin Rumi</em>. Cambridge: Harvard University Press, 1925–1940.]</p>
+      <p class="bib-entry">Mulla Sadra, Sadr al-Din Muhammad (1571–1638). <em>Al-Asfar al-Arba'ah</em> (Els quatre viatges de l'intel·ligència). [Metafísica xiita que integra Kalam i filosofia neoplatònica.]</p>
+
+      <h4>História i narrativa</h4>
+      <p class="bib-entry">Ibn Hisham, Muhammad ibn Muhammad (d. 833). <em>Sirat Rasul Allah</em> (Biografia del Profeta). [La més antiga biografia de Muhàmmad. Trad. anglesa: Guillaume, Alfred. <em>The Life of Muhammad</em>. Oxford: Oxford University Press, 1955.]</p>
+      <p class="bib-entry">At-Tabari, Muhammad ibn Jarir (839–923). <em>Tarikh al-Rusul wa al-Muluk</em> (Historia dels profetes i els reis). [Enciclopèdia històrica islàmica. Trad. parciala en anglés: múltiples volums, Albany: SUNY Press.]</p>
+    </div>
+
+    <div class="bib-section">
+      <h3>13.11.2. Teologia, filosofia i dret islàmics: estudis d'erudits occidentals</h3>
+
+      <h4>Teologia islàmica (Kalam) i creences fonamentals</h4>
+      <p class="bib-entry">Wolfson, Harry Austryn. <em>The Philosophy of the Kalam</em>. Cambridge: Harvard University Press, 1976. [Estudi monumental sobre la teologia islàmica racional.]</p>
+      <p class="bib-entry">Frank, Richard M. <em>Early Islamic Theological Theology: Mu'tazilism and Ash'arism</em>. Aldershot: Ashgate, 2007. [Análisis de debats teológics sunnites.]</p>
+      <p class="bib-entry">Abrahamov, Binyamin. <em>Islamic Theology: Traditionalism and Rationalism</em>. Edimburg: Edinburgh University Press, 1998.</p>
+      <p class="bib-entry">Gardet, Louis. <em>God and Man in Islam: Theology of Tawhid</em>. Nueva Delhi: Manohar, 1984. [Explicació clara del concepte central de tawhid.]</p>
+
+      <h4>Filosofia islàmica medieval</h4>
+      <p class="bib-entry">Fakhry, Majid. <em>A History of Islamic Philosophy</em>. 3a ed. Nueva York: Columbia University Press, 2004. [Introducció exhaustiva.]</p>
+      <p class="bib-entry">Corbin, Henry. <em>History of Islamic Philosophy</em>. Trad. Liadain Sherrard i Philip Sherrard. Londres: Kegan Paul International, 1993. [Estudi hermèutic en profunditat.]</p>
+      <p class="bib-entry">Gutas, Dimitri. <em>Greek Thought, Arabic Culture: How the Intellectual Traditions of Greece and India Were Absorbed into Islam</em>. Routledge, 1998. [Sobre la transmissió del saber hel·lènic.]</p>
+      <p class="bib-entry">Ivry, Alfred L. <em>Al-Kindi's Metaphysics: A Translation and Literary Study of al-Kindi's Metaphysics</em>. Albany: SUNY Press, 1974.</p>
+
+      <h4>Jurisprudència islàmica (Fiqh) i Xaria</h4>
+      <p class="bib-entry">Schacht, Joseph. <em>An Introduction to Islamic Law</em>. Oxford: Oxford University Press, 1964. [Manual clàssic sobre les fonts i mètodes del dret islàmic.]</p>
+      <p class="bib-entry">Coulson, Noel J. <em>A History of Islamic Law</em>. Edimburg: Edinburgh University Press, 1964.</p>
+      <p class="bib-entry">Hallaq, Wael B. <em>The Origins and Evolution of Islamic Law</em>. Cambridge: Cambridge University Press, 2005. [Estudi de les fonts de la Xaria i la seva desenvolupament.]</p>
+      <p class="bib-entry">Hallaq, Wael B. <em>A History of Islamic Legal Theories</em>. Cambridge: Cambridge University Press, 1997. [Análisis de les escoles jurídiques islàmiques.]</p>
+
+      <h4>Sufisme</h4>
+      <p class="bib-entry">Nicholson, Reynold A. <em>The Mystics of Islam</em>. Londres: Routledge & Kegan Paul, 1975. [Introducció accessible al sufisme.]</p>
+      <p class="bib-entry">Schimmel, Annemarie. <em>Mystical Dimensions of Islam</em>. Chapel Hill: University of North Carolina Press, 1975. [Estudi exhaustiu de la mística islàmica.]</p>
+      <p class="bib-entry">Karamustafa, Ahmet T. <em>Sufism: The Formative Period</em>. Berkeley: University of California Press, 2007. [História de les origins del sufisme.]</p>
+      <p class="bib-entry">Lewisohn, Leonard, ed. <em>The Heritage of Sufism</em>. 3 vols. Oxford: Oneworld Publications, 1999. [Col·lecció comprensiva de textos sufis.]</p>
+
+      <h4>Exegesi Qurânica (Tafsir)</h4>
+      <p class="bib-entry">Mcauliffe, Jane Dammen. <em>The Qur'anic Christians: An Analysis of Classical and Modern Exegesis</em>. Cambridge: Cambridge University Press, 1991.</p>
+      <p class="bib-entry">Saleh, Walid A. <em>The Formation of the Classical Tafsir Tradition: The Quran Commentary of al-Tabari (d. 310/923)</em>. Leiden: Brill, 2004.</p>
+    </div>
+
+    <div class="bib-section">
+      <h3>13.11.3. História i estudis contemporanis del islam</h3>
+
+      <h4>História general de l'islam</h4>
+      <p class="bib-entry">Kennedy, Hugh. <em>The Prophet and the Age of the Caliphates</em>. 2a ed. Harlow: Pearson, 2004. [Historia de l'islam medieval (600–1050 aprox.)]</p>
+      <p class="bib-entry">Hourani, Albert. <em>A History of the Arab Peoples</em>. Cambridge: Harvard University Press, 1991. [História ampla del pobles àrabs dins i fora de l'islam.]</p>
+      <p class="bib-entry">Black, Antony. <em>The History of Islamic Political Thought: From the Prophet to the Present</em>. 2a ed. Edimburg: Edinburgh University Press, 2011. [Evolució del pensament polític islàmic.]</p>
+      <p class="bib-entry">Lapidus, Ira M. <em>A History of Islamic Societies</em>. 3a ed. Cambridge: Cambridge University Press, 2014. [Estudi global de les societats islàmiques.]</p>
+
+      <h4>Islam medieval i el so impacte cultural</h4>
+      <p class="bib-entry">Al-Hassan, Ahmad Y., i Donald Routley Hill. <em>Islamic Technology: An Illustrated History</em>. Cambridge: Cambridge University Press, 1986. [Ciència i tecnologia islàmica.</p>
+      <p class="bib-entry">Saliba, George. <em>Islamic Science and the Making of the European Renaissance</em>. Cambridge: MIT Press, 2007. [Transmissió del saber científic islàmic a l'Europa medieval.]</p>
+      <p class="bib-entry">Burnett, Charles. <em>The Intellectual Transformation of the Medieval Mediterranean</em>. Routledge, 2010. [Síntesis cultural islàmica-cristiana.]</p>
+      <p class="bib-entry">Lyons, Jonathan. <em>The House of Wisdom: How Arabic Science Saved Ancient Knowledge and Gave Us the Renaissance</em>. Nueva York: Bloomsbury, 2009. [Narrative accessible sobre l'Edat d'Or islàmica.]</p>
+
+      <h4>Sunnisme i xiisme</h4>
+      <p class="bib-entry">Mottahedeh, Roy P. <em>Loyalty and Leadership in an Early Islamic Society</em>. Princeton: Princeton University Press, 1980. [Estructura social del sunnisme medieval.]</p>
+      <p class="bib-entry">Momen, Moojan. <em>An Introduction to Shi'i Islam: The History and Doctrines of Twelver Shi'ism</em>. New Haven: Yale University Press, 1985. [Introducció completa al xiisme dels Dotze Imams.]</p>
+      <p class="bib-entry">Tabataba'i, 'Allamah Sayyid Muhammad Husayn. <em>Shi'ite Islam</em>. Trad. Seyyed Hossein Nasr. Albany: SUNY Press, 1975. [Perspectiva des de dins del xiisme.]</p>
+      <p class="bib-entry">Wiederhold, Lutz. «Ibadism.» A: <em>Encyclopaedia of Islam</em>, vol. III. Leiden: Brill, 1971–. [Entrada acadèmica sobre l'ibadisme.]</p>
+
+      <h4>Islam modern i contemporani</h4>
+      <p class="bib-entry">Hourani, Albert. <em>Arabic Thought in the Liberal Age, 1798–1939</em>. Oxford: Oxford University Press, 1962. [Modernismes islàmics en el segle XIX–XX.]</p>
+      <p class="bib-entry">Kurzman, Charles, ed. <em>Modernist Islam, 1840–1940: A Sourcebook</em>. Oxford: Oxford University Press, 2002.</p>
+      <p class="bib-entry">Kepel, Gilles. <em>The War for Muslim Minds: Islam and the West</em>. Cambridge: Harvard University Press, 2004. [Batalles ideològiques entre l'islam i l'Occident en el segle XXI.]</p>
+      <p class="bib-entry">Nasr, Seyyed Hossein. <em>Islam and the Question of Technology</em>. Edinburgh: Edinburgh University Press, 2015. [Reflexió sobre islam, modernitat i tecnologia.]</p>
+
+      <h4>Feminisme islàmic i qüestions de gènere</h4>
+      <p class="bib-entry">Ahmed, Leila. <em>Women and Gender in Islam: Historical Roots of a Modern Debate</em>. New Haven: Yale University Press, 1992. [Historia de les dones en l'islam.]</p>
+      <p class="bib-entry">Mernissi, Fatima. <em>The Veil and the Male Elite: A Feminist Interpretation of Women's Rights in Islam</em>. Reading: Addison-Wesley, 1991.</p>
+      <p class="bib-entry">Badran, Margot. <em>Feminism in Islam: Secular and Religious Convergences</em>. Oxford: One World Publications, 2009.</p>
+      <p class="bib-entry">Wadud, Amina. <em>Qur'an and Woman: Rereading the Sacred Text from a Woman's Perspective</em>. Nueva York: Oxford University Press, 1999. [Exégesi Qurânica feminista.]</p>
+
+      <h4>Islamisme polític</h4>
+      <p class="bib-entry">Mitchell, Richard P. <em>The Society of the Muslim Brothers</em>. Oxford: Oxford University Press, 1969. [Historia dels Ikhwan al-Muslimun.]</p>
+      <p class="bib-entry">Kepel, Gilles. <em>The Roots of Radical Islam</em>. Trad. Jonathan Rothchild. Londres: Saqi Books, 2005. [Origins de moviments islamistes radical de la segona meitat del segle XX.]</p>
+      <p class="bib-entry">Esposito, John L. <em>Political Islam: Revolution, Radicalism, and the Struggle for Islamic Democracy</em>. Nueva York: Oxford University Press, 1997.</p>
+
+      <h4>Islam i segon ordre, terror, tolerancia</h4>
+      <p class="bib-entry">Esposito, John L., ed. <em>The Oxford Encyclopedia of the Islamic World</em>. Oxford: Oxford University Press, 2009. [Referència completa.]</p>
+      <p class="bib-entry">Said, Edward. <em>Orientalism</em>. Nueva York: Pantheon Books, 1978. [Crítica fonamental de la construcció occidental de l'Oriebt.]</p>
+      <p class="bib-entry">Asad, Talal. <em>Genealogies of Religion: Discipline and Reasons of Power in Christianity and Islam</em>. Baltimore: Johns Hopkins University Press, 1993. [Análisis crítica de la categorització moderna de "religió".]</p>
+    </div>
+
+    <div class="bib-section">
+      <h3>13.11.4. Recursos digitals i en línia</h3>
+
+      <p class="bib-entry"><em>Corpus Quran Project</em> (corpus.quran.com): Plataforma de recerca del Qurà amb text complet, traduccions múltiples i anàlisis lingüística.</p>
+      <p class="bib-entry"><em>IslamicGate.net</em>: Biblioteca digital amb textos primaris en àrab.</p>
+      <p class="bib-entry"><em>Internet Islamic University</em> (iu.edu.pk): Plataforma educativa amb materials islàmics.</p>
+      <p class="bib-entry"><em>The Quran Project</em> (quranproject.org): Versions del Qurà en múltiples idiomes i traduccions erudites.</p>
+      <p class="bib-entry"><em>Libreria Khwarezmiana</em> (khwarezmiana.org): Biblioteca digital de manuscrits islàmics.</p>
+    </div>
+
+    <div class="bib-section">
+      <h3>13.11.5. Cronologia essencial de l'islam (com a annex de consulta)</h3>
+
+      <p class="bib-entry"><strong>c. 570 dC:</strong> Naixement de Muhàmmad a la Meca.</p>
+      <p class="bib-entry"><strong>610 dC:</strong> Primeres revelacions al Profeta Muhàmmad en la cova de Hira.</p>
+      <p class="bib-entry"><strong>622 dC:</strong> L'Hègira (emigració) de Muhàmmad de la Meca a Medina; inici del calendari islàmic.</p>
+      <p class="bib-entry"><strong>625–627 dC:</strong> Batalla de Uhud i Batalla de la Rasa;</p>
+      <p class="bib-entry"><strong>629–631 dC:</strong> Campanyes militars de Muhàmmad; conquesta de la Meca (630 dC).</p>
+      <p class="bib-entry"><strong>632 dC:</strong> Mort de Muhàmmad a Medina; Abu Bakr és elegit com a primer Califa.</p>
+      <p class="bib-entry"><strong>632–661 dC:</strong> Període dels quatre Califes Bàssida (Abu Bakr, 'Umar, 'Uthman, 'Ali); expansió ràpida islàmica.</p>
+      <p class="bib-entry"><strong>656–661 dC:</strong> Cisma del xiisme; batalla del Camel (656) i batalla de Siffin (657).</p>
+      <p class="bib-entry"><strong>661–750 dC:</strong> Imperio Omeia: consolidació del califat; expansió fins al Inde i Europa (batalla de Poitiers, 732).</p>
+      <p class="bib-entry"><strong>750 dC:</strong> Revolta abàssida; caiguda de l'Império Omeia.</p>
+      <p class="bib-entry"><strong>750–1258 dC:</strong> Califat Abàssida; l'Edat d'Or islàmica (segles IX–XIII).</p>
+      <p class="bib-entry"><strong>786–809 dC:</strong> Califat de Harun al-Rashid; apogeu de Baghdad.</p>
+      <p class="bib-entry"><strong>800s–1000s dC:</strong> Floreciment de la teologia (Kalam), filosofia, ciència i medicina islàmiques.</p>
+      <p class="bib-entry"><strong>1096–1291 dC:</strong> Croades; interacció entre l'Islam i la Cristandat medieval occidental.</p>
+      <p class="bib-entry"><strong>1258 dC:</strong> Caiguda de Baghdad davant als Mongols; fi del Califat Abàssida clàssic.</p>
+      <p class="bib-entry"><strong>1453 dC:</strong> Conquesta de Constantinoble per otomans; fi de l'Imperio Romà Bizantí.</p>
+      <p class="bib-entry"><strong>1500s–1800s dC:</strong> Imperis islàmics moderns: Otomans, Safàvida, Mughal.</p>
+      <p class="bib-entry"><strong>1798–1947 dC:</strong> Période de colonialisme europeu en terres musulmanes; reforma islàmica i moviments nacionalistes.</p>
+      <p class="bib-entry"><strong>1924 dC:</strong> Abolició del Califat Otomà; proclamació de la República de Turquia.</p>
+      <p class="bib-entry"><strong>1947–1948 dC:</strong> Independència d'Índia i Pakistan; creació de l'Estat d'Israel; conflicte árabe-israelí.</p>
+      <p class="bib-entry"><strong>1979 dC:</strong> Revolució islàmica a l'Iran; ascens del xiisme polític.</p>
+      <p class="bib-entry"><strong>1989–present:</strong> Guerres islàmiques modernes, terrorisme, i globalització de l'islam.</p>
+    </p>
+    </div>
+  </section>
+
+  <div class="rule-ornament">✦ ✦ ✦</div>
+
+  <p class="note"><strong>Nota sobre recursos en català i castellà:</strong> Per a una introducció sòlida en català sobre l'islam, es recomana Sebastià Janeras, <em>Les religions del món</em> (Barcelona: Cruïlla, 2004), i els capítols corresponents de la <em>Gran Enciclopèdia Catalana</em>. En castellà, és útil Gonzalo Puente Ojea, <em>Historia de las religiones</em> (Madrid: Siglo XXI, 1988) per al context del cristianisme primitiu i la seva relació amb l'islam. Més específicament, Laurie Myerson, <em>Islam: La Historia Completa</em> (Barcelona: Península, 2008) ofereix una narrativa accessible. La major part de la recerca académica de referència es publica en anglès, francés, àrab i alemany; el domini de l'anglès és indispensable per a qualsevol estudi seriós de l'islam.</p>
+
+  <p class="note"><strong>Nota sobre traduccions del Qurà:</strong> La traducció del Qurà al català és limitada; Montserrat Abumalham, <em>El Corán</em> (Barcelona: Claret, 2012) és una de les més accessibles. En castellà, la traducció de Salvador Martínez Peña és extesa. En anglès, les millors son les de Muhammad Asad (1980) i Martin Lings (1997), que combinen exactitud lingüística amb fluidesa literária. Per a estudis erudits, la traducció de Arberry o Pickthall (anglès) són estàndars.</p>
+
+  <p class="note"><strong>Nota final sobre mètode:</strong> L'estudi rigorós de l'Islam requereix humilitat intel·lectual, disposició a superar els prejudicis occidentals, i familiaritat amb les fonts primàries. Els musulmans són els primers intèrprets de la seva tradició; els estudis occidentals han de dialogar amb la autocomprensió islàmica, no substituir-la.</p>
+</section>
+
+</main>
+
+<a href="#cover" class="back-top" id="backTop" aria-label="Tornar al principi del document" title="Tornar al principi">↑</a>
+
+<script>
+// ── PERFORMANCE: Consolidar scroll events amb requestAnimationFrame ──────
+let scrollTicking = false;
+let lastScrollY = 0;
+
+function updateScrollState() {
+  const progress = document.getElementById('progress');
+  const backTop = document.getElementById('backTop');
+  
+  // Actualitzar barra de progés
+  const doc = document.documentElement;
+  const scrollTop = doc.scrollTop || document.body.scrollTop;
+  const scrollH = doc.scrollHeight - doc.clientHeight;
+  const pct = scrollH > 0 ? (scrollTop / scrollH) * 100 : 0;
+  progress.style.width = pct + '%';
+  
+  // Actualitzar botó "back to top"
+  backTop.classList.toggle('visible', window.scrollY > 600);
+  
+  scrollTicking = false;
+}
+
+window.addEventListener('scroll', () => {
+  lastScrollY = window.scrollY;
+  
+  if (!scrollTicking) {
+    window.requestAnimationFrame(updateScrollState);
+    scrollTicking = true;
+  }
+}, { passive: true });
+
+// ── NAV TOGGLE ───────────────────────────────────────────────────────────
+const navToggle = document.getElementById('navToggle');
+const sidebar   = document.getElementById('sidebar');
+const overlay   = document.getElementById('overlay');
+
+navToggle.addEventListener('click', () => {
+  const open = sidebar.classList.toggle('open');
+  navToggle.classList.toggle('open', open);
+  overlay.classList.toggle('active', open);
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  navToggle.classList.remove('open');
+  overlay.classList.remove('active');
+});
+
+// ── ACTIVE NAV LINK ──────────────────────────────────────────────────────
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks  = document.querySelectorAll('.sidebar a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// ── REVEAL ON SCROLL ─────────────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05 });
+
+reveals.forEach(r => revealObs.observe(r));
+</script>
+
+</body>
+</html>
