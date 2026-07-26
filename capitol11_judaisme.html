@@ -22,8 +22,27 @@
   --lapis:      #1e3a5f;
   --lapis-light:#2a5080;
   --blue-star:  #1b3a6b;
-  --rule:       #c4a44a55;
+ --rule:       #c4a44a55;
   --shadow:     rgba(26,20,8,0.12);
+}
+
+/* ── DARK MODE (Detecció automàtica) ──────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink:        #faf7f2;
+    --ink-light:  #e8e4d8;
+    --parchment:  #2a2419;
+    --cream:      #1a1408;
+    --gold:       #d4b87a;
+    --gold-light: #e8d4a0;
+    --gold-dim:   #d4b87a11;
+    --rust:       #d4844a;
+    --lapis:      #6b9fce;
+    --lapis-light:#8fb3d4;
+    --blue-star:  #7ba3d4;
+    --rule:       #d4b87a33;
+    --shadow:     rgba(0,0,0,0.4);
+  }
 }
 
 html { scroll-behavior: smooth; }
