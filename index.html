@@ -8,9 +8,9 @@
 <style>
 :root {
   /* Fons clar i modern */
-  --bg: #fafaf8;
-  --surface: #ffffff;
-  --surface2: #f5f3f0;
+  --bg: #111315;
+  --surface: #1a1d20;
+  --surface2: #22262a;
   
   /* Accent principal – modern i vibrant */
   --gold: #d4652f;
@@ -18,9 +18,9 @@
   --gold-line: rgba(212, 101, 47, 0.25);
   
   /* Text fosc per contrast */
-  --text: #1a1a1a;
-  --text-dim: rgba(26, 26, 26, 0.65);
-  --text-faint: rgba(26, 26, 26, 0.45);
+  --text: #f2efe8;
+  --text-dim: rgba(242,239,232,.72);
+  --text-faint: rgba(242,239,232,.45);
 
   /* Parts amb paleta moderna i clara */
   --p1: #d4652f;   /* Taronja-terra */
@@ -60,13 +60,17 @@ body {
 
 /* ── HERO ── */
 .hero {
+  box-shadow: inset 0 -80px 120px rgba(0,0,0,.25);
+
   position: relative;
   padding: 6rem 2rem 5rem;
   text-align: center;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(212, 101, 47, 0.05) 0%, rgba(107, 91, 149, 0.05) 100%);
+  background: linear-gradient(135deg,#181b1f 0%,#121416 100%);
 }
 .hero::before {
+  filter: blur(1px);
+
   content: '';
   position: absolute; inset: 0;
   background:
@@ -110,7 +114,7 @@ body {
   font-weight: 400;
 }
 .hero .tagline {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--text-dim);
   font-style: italic;
   max-width: 500px;
@@ -131,7 +135,7 @@ body {
   display: block;
 }
 .hero-stat .lbl {
-  font-size: 0.7rem;
+  font-size:0.80rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-dim);
@@ -200,7 +204,7 @@ body {
 }
 .part-titles h2 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: 400;
   color: var(--text);
   line-height: 1.2;
@@ -227,6 +231,8 @@ body {
 
 /* ── CHAPTER CARD ── */
 .chapter-card {
+  border:1px solid rgba(255,255,255,.05);
+
   background: var(--surface);
   padding: 1.8rem 2rem;
   position: relative;
@@ -238,7 +244,7 @@ body {
   overflow: hidden;
   border-left: 4px solid transparent;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.35);
 }
 .chapter-card::before {
   content: '';
@@ -252,17 +258,19 @@ body {
   border-radius: 8px;
 }
 .chapter-card::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 4px; height: 100%;
-  background: var(--part-color, var(--gold));
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.3s ease;
-  border-radius: 4px 0 0 4px;
+  content:'';
+  position:absolute;
+  top:0;left:0;
+  width:100%;
+  height:5px;
+  background:var(--part-color,var(--gold));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s ease;
 }
-.chapter-card:hover { 
+.chapter-card:hover {
+  border-color: rgba(212,101,47,.25);
+ 
   background: var(--surface2);
   border-left-color: var(--part-color, var(--gold));
   box-shadow: 0 8px 24px rgba(212, 101, 47, 0.15);
@@ -295,7 +303,7 @@ body {
   color: var(--text);
 }
 .ch-subtitle {
-  font-size: 0.85rem;
+  font-size:0.95rem;
   line-height: 1.4;
   color: var(--text-dim);
   margin-bottom: 1.2rem;
@@ -331,8 +339,23 @@ body {
   font-weight: 300;
 }
 
+
+.ch-num::before{
+content:'';
+display:inline-block;
+width:8px;height:8px;border-radius:50%;
+background:var(--part-color,var(--gold));
+margin-right:.55rem;
+vertical-align:middle;
+}
+.chapter-card:hover .ch-title{color:var(--part-color,var(--gold));transition:.3s;}
+.ch-arrow{color:var(--part-color,var(--gold));font-size:1.15rem;font-weight:600;}
+.chapter-card:hover .ch-arrow{transform:translateX(6px);}
+
 /* ── FOOTNOTE ── */
 .footnote {
+  color: rgba(242,239,232,.6);
+
   text-align: center;
   padding: 2rem;
   color: var(--text-faint);
@@ -342,6 +365,14 @@ body {
   margin-top: 3rem;
   font-weight: 600;
 }
+
+.timeline{max-width:1100px;margin:1.5rem auto 2.5rem;padding:0 2rem}
+.timeline-line{
+border-top:1px solid rgba(212,101,47,.35);
+display:flex;justify-content:space-between;gap:.5rem;border-top:2px solid rgba(0,0,0,.15);padding-top:.8rem;font-size:.82rem;color:#666;flex-wrap:wrap}
+.timeline-line span::before{content:"● ";color:var(--gold)}
+.part-story{margin-top:.65rem;font-size:1.18rem;line-height:1.6;color:var(--text-dim);font-style:italic;max-width:760px}
+
 </style>
 </head>
 <body>
@@ -373,6 +404,11 @@ body {
   </div>
 </div>
 
+<div class="timeline">
+<div class="timeline-line">
+<span>Paleolític</span><span>Mesopotàmia</span><span>Egipte</span><span>Índia</span><span>Xina</span><span>Judaisme</span><span>Cristianisme</span><span>Islam</span><span>Modernitat</span>
+</div></div>
+
 <div class="container">
 
   <!-- PRIMERA PART -->
@@ -380,7 +416,7 @@ body {
     <div class="part-num">I</div>
     <div class="part-titles">
       <h2>Fonaments del fet religiós</h2>
-      <div class="part-sub">Capítols 1 – 2</div>
+      <div class="part-sub">Capítols 1 – 2</div><div class="part-story">Com els humans van començar a interpretar el món i a construir el primer univers simbòlic.</div>
     </div>
   </div>
   <div class="chapter-grid" style="--part-color: var(--p1)">
@@ -412,7 +448,7 @@ body {
     <div class="part-num">II</div>
     <div class="part-titles">
       <h2>Religions de l'Antiguitat</h2>
-      <div class="part-sub">Capítols 3 – 6</div>
+      <div class="part-sub">Capítols 3 – 6</div><div class="part-story">Les primeres civilitzacions converteixen la religió en una eina d'organització del poder.</div>
     </div>
   </div>
   <div class="chapter-grid" style="--part-color: var(--p2)">
@@ -464,7 +500,7 @@ body {
     <div class="part-num">III</div>
     <div class="part-titles">
       <h2>Grans sistemes asiàtics</h2>
-      <div class="part-sub">Capítols 7 – 10</div>
+      <div class="part-sub">Capítols 7 – 10</div><div class="part-story">A l'Àsia emergeixen grans sistemes filosòfics i espirituals alternatius.</div>
     </div>
   </div>
   <div class="chapter-grid" style="--part-color: var(--p3)">
@@ -516,7 +552,7 @@ body {
     <div class="part-num">IV</div>
     <div class="part-titles">
       <h2>Monoteismes i imperis</h2>
-      <div class="part-sub">Capítols 11 – 13</div>
+      <div class="part-sub">Capítols 11 – 13</div><div class="part-story">Els monoteismes redefineixen la relació entre fe, llei i imperi.</div>
     </div>
   </div>
   <div class="chapter-grid" style="--part-color: var(--p4)">
@@ -555,7 +591,7 @@ body {
     <div class="part-num">V</div>
     <div class="part-titles">
       <h2>Religions del món i modernitat</h2>
-      <div class="part-sub">Capítols 14 – 15 i Conclusions</div>
+      <div class="part-sub">Capítols 14 – 15 i Conclusions</div><div class="part-story">La modernitat transforma el fenomen religiós i obre nous escenaris de creença.</div>
     </div>
   </div>
   <div class="chapter-grid" style="--part-color: var(--p5)">
