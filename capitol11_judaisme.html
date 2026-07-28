@@ -27,6 +27,8 @@
   --sidebar-bg:    #0B1B2E;
   --sidebar-text:  #ffffffcc;
   --sidebar-hover: rgba(255, 255, 255, 0.15);
+  --card-bg:      #f5f0e8;
+  --card-border:  #c4a44a55;
 }
 
 /* ── DARK MODE (Detecció automàtica) ──────────────────────────────────── */
@@ -429,20 +431,19 @@ h4 {
 .rule {
   border: none;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold-light) 30%, var(--gold-light) 70%, transparent);
-  margin: 3.5rem 0;
-  opacity: 0.4;
+  background: linear-gradient(90deg, transparent, var(--gold-light) 20%, var(--gold-light) 80%, transparent);
+  margin: 4rem 0;
+  opacity: 0.5;
 }
 
 .rule-ornament {
   text-align: center;
   margin: 3rem 0;
   color: var(--gold);
-  font-size: 1.2rem;
-  letter-spacing: 0.5em;
-  opacity: 0.5;
+  font-size: 1.5rem;
+  letter-spacing: 0.8em;
+  opacity: 0.6;
 }
-
 /* ── PARAGRAPHS ───────────────────────────────────────────────────────── */
 p {
   margin-bottom: 1.3rem;
@@ -464,16 +465,18 @@ p.drop-cap::first-letter {
 .tesi {
   background: var(--ink);
   color: var(--parchment);
-  padding: 2rem 2.5rem;
-  margin: 2rem 0 4rem;
-  border-left: 3px solid var(--gold-light);
+  padding: 2.5rem;
+  margin: 3rem 0;
+  border-left: 4px solid var(--gold-light);
+  border-radius: 0 4px 4px 0; /* Arrodoniment suau només a la dreta */
   position: relative;
+  background: linear-gradient(135deg, var(--ink) 0%, #2a2419 100%); /* Gradient molt subtil */
 }
 
 .tesi::before {
-  content: 'Tesi';
+  content: 'TESI';
   position: absolute;
-  top: -0.7rem;
+  top: -0.8rem;
   left: 2rem;
   background: var(--ink);
   padding: 0 0.75rem;
@@ -484,24 +487,16 @@ p.drop-cap::first-letter {
   text-transform: uppercase;
 }
 
-.tesi p {
-  font-style: italic;
-  color: #d4c8b4;
-  font-size: 1.05rem;
-  margin: 0;
-  text-align: left;
-}
-
 /* ── HIGHLIGHT / CITA ─────────────────────────────────────────────────── */
 .highlight {
   background: var(--gold-dim);
-  border-left: 2px solid var(--gold-light);
-  padding: 1rem 1.5rem;
-  margin: 1.5rem 0;
+  border-left: 3px solid var(--gold-light);
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
   font-style: italic;
   color: var(--ink-light);
+  border-radius: 0 4px 4px 0;
 }
-
 .cita-autor {
   display: block;
   text-align: right;
@@ -513,79 +508,80 @@ p.drop-cap::first-letter {
   letter-spacing: 0.03em;
 }
 
-/* ── CONCEPT CARDS ────────────────────────────────────────────────────── */
-.tradition-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 3.5rem 0 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--rule);
-}
+/* ── COMPONENTS EDITORIALS: INDEX, CARDS & LISTS ───────────────────────── */
 
-.tradition-icon { font-size: 2rem; line-height: 1; }
-
-.tradition-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--lapis);
-  margin: 0;
-}
-
-/* ── TRIPLE GRID ──────────────────────────────────────────────────────── */
-.triple-path {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+/* 1. Caixes d'Índex */
+.index-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
   margin: 2rem 0;
+  border-radius: 2px;
+}
+.index-section h3 {
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--lapis);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.index-list { list-style: none; column-count: 1; gap: 1.5rem; }
+@media (min-width: 600px) { .index-list { column-count: 2; } }
+.index-list li {
+  margin-bottom: 0.8rem;
+  padding-left: 1.5rem;
+  position: relative;
+  break-inside: avoid;
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-size: 0.95rem;
+}
+.index-list li::before {
+  content: '◆';
+  position: absolute;
+  left: 0;
+  color: var(--gold-light);
+  font-size: 0.7rem;
+  top: 4px;
 }
 
+/* 2. Graelles de Conceptes (Triple i Corrents) */
+.triple-path { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
 .triple-card {
   background: var(--ink);
   color: var(--parchment);
   padding: 1.5rem;
   text-align: center;
+  font-family: 'Crimson Pro', Georgia, serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.triple-card .term {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--gold-light);
-  display: block;
-  margin-bottom: 0.3rem;
+.triple-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--shadow); }
+.triple-card .term { 
+  font-family: 'Cormorant Garamond', serif; 
+  font-size: 1.4rem; 
+  font-weight: 700; 
+  color: var(--gold-light); 
+  display: block; 
+  margin-bottom: 0.3rem; 
 }
+.triple-card .meaning { font-size: 0.85rem; color: #c8b89a; font-style: italic; }
 
-.triple-card .meaning {
-  font-size: 0.85rem;
-  color: #c8b89a;
-  font-style: italic;
+.corrents-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+.corrent-card { 
+  border: 1px solid var(--card-border); 
+  padding: 1.5rem; 
+  background: var(--card-bg); 
+  transition: 0.3s; 
 }
-
-/* ── CORRENTS GRID ────────────────────────────────────────────────────── */
-.corrents-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  margin: 2rem 0;
+.corrent-card:hover { border-color: var(--gold-light); }
+.corrent-card .corrent-nom { 
+  font-family: 'Cormorant Garamond', serif; 
+  font-size: 1.2rem; 
+  font-weight: 700; 
+  color: var(--lapis); 
+  margin-bottom: 0.5rem; 
 }
-
-.corrent-card {
-  border: 1px solid var(--rule);
-  padding: 1.5rem;
-  background: var(--parchment);
-}
-
-.corrent-card .corrent-nom {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--lapis);
-  margin-bottom: 0.5rem;
-}
-
-.corrent-card p { margin-bottom: 0; font-size: 0.92rem; text-align: left; }
+.corrent-card p { font-family: 'Crimson Pro', Georgia, serif; font-size: 0.92rem; margin-bottom: 0; }
 
 /* ── SECTION LEAD ─────────────────────────────────────────────────────── */
 .section-lead {
@@ -1679,23 +1675,34 @@ p.drop-cap::first-letter {
 <a href="#cover" class="back-top" id="backTop" aria-label="Tornar al principi del document" title="Tornar al principi">↑</a>
 
 <script>
-// ── PROGRESS BAR ────────────────────────────────────────────────────────
-const progress = document.getElementById('progress');
-window.addEventListener('scroll', () => {
+// ── PERFORMANCE: Consolidar scroll events amb requestAnimationFrame ──────
+let scrollTicking = false;
+
+function updateScrollState() {
+  const progress = document.getElementById('progress');
+  const backTop = document.getElementById('backTop');
+  
+  // Actualitzar barra de progés
   const doc = document.documentElement;
   const scrollTop = doc.scrollTop || document.body.scrollTop;
   const scrollH = doc.scrollHeight - doc.clientHeight;
   const pct = scrollH > 0 ? (scrollTop / scrollH) * 100 : 0;
-  progress.style.width = pct + '%';
-});
+  if (progress) progress.style.width = pct + '%';
+  
+  // Actualitzar botó "back to top"
+  if (backTop) backTop.classList.toggle('visible', window.scrollY > 600);
+  
+  scrollTicking = false;
+}
 
-// ── BACK TO TOP ──────────────────────────────────────────────────────────
-const backTop = document.getElementById('backTop');
 window.addEventListener('scroll', () => {
-  backTop.classList.toggle('visible', window.scrollY > 600);
-});
+  if (!scrollTicking) {
+    window.requestAnimationFrame(updateScrollState);
+    scrollTicking = true;
+  }
+}, { passive: true });
 
-// ── NAV TOGGLE ───────────────────────────────────────────────────────────
+// ── NAV TOGGLE & OVERLAY ─────────────────────────────────────────────────
 const navToggle = document.getElementById('navToggle');
 const sidebar   = document.getElementById('sidebar');
 const overlay   = document.getElementById('overlay');
@@ -1712,34 +1719,27 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('active');
 });
 
-// ── ACTIVE NAV LINK ──────────────────────────────────────────────────────
+// ── ACTIVE NAV LINK & REVEAL ON SCROLL ───────────────────────────────────
 const sections = document.querySelectorAll('section[id], div[id]');
-const navLinks  = document.querySelectorAll('.sidebar a');
+const navLinks = document.querySelectorAll('.sidebar a');
+const reveals  = document.querySelectorAll('.reveal');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
+    // Gestió del menú actiu
     if (e.isIntersecting) {
       navLinks.forEach(a => {
         a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id);
       });
+      // Gestió de l'animació de revelació
+      if (e.target.classList.contains('reveal')) {
+        e.target.classList.add('visible');
+      }
     }
   });
-}, { rootMargin: '-30% 0px -60% 0px' });
+}, { rootMargin: '-30% 0px -60% 0px', threshold: 0.05 });
 
 sections.forEach(s => observer.observe(s));
-
-// ── REVEAL ON SCROLL ─────────────────────────────────────────────────────
-const reveals = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.05 });
-
-reveals.forEach(r => revealObs.observe(r));
 </script>
 
 </body>
