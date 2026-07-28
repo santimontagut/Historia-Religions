@@ -3,26 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Història de les Religions – Una Genealogia del Poder</title>
+<title>História de les Religions – Una Genealogia del Poder</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 :root {
-  --bg: #0e0c09;
-  --surface: #161310;
-  --surface2: #1e1a14;
-  --gold: #c9a84c;
-  --gold-dim: rgba(201,168,76,0.18);
-  --gold-line: rgba(201,168,76,0.3);
-  --text: #e8e0d0;
-  --text-dim: rgba(232,224,208,0.55);
-  --text-faint: rgba(232,224,208,0.25);
+  /* Fons clar i modern */
+  --bg: #fafaf8;
+  --surface: #ffffff;
+  --surface2: #f5f3f0;
+  
+  /* Accent principal – modern i vibrant */
+  --gold: #d4652f;
+  --gold-dim: rgba(212, 101, 47, 0.12);
+  --gold-line: rgba(212, 101, 47, 0.25);
+  
+  /* Text fosc per contrast */
+  --text: #1a1a1a;
+  --text-dim: rgba(26, 26, 26, 0.65);
+  --text-faint: rgba(26, 26, 26, 0.45);
 
-  --p1: #8b6f5e;   /* Primera part – terra */
-  --p2: #7a6b4a;   /* Segona part – ocre */
-  --p3: #4a6b5e;   /* Tercera part – verd fosc */
-  --p4: #5e4a6b;   /* Quarta part – porpra */
-  --p5: #4a5e6b;   /* Cinquena part – blau grisós */
+  /* Parts amb paleta moderna i clara */
+  --p1: #d4652f;   /* Taronja-terra */
+  --p2: #c89a5c;   /* Ocre calidà */
+  --p3: #3fa373;   /* Verd natural */
+  --p4: #6b5b95;   /* Porpra elegant */
+  --p5: #2e7d9d;   /* Blau piscina */
+  
+  /* Colors per capítol – sistema oficial del curs */
+  --c1:#B08D3C;    /* 1. El fenomen religiós - Or antic */
+  --c2:#3F6A4B;    /* 2. Animisme - Verd bosc */
+  --c3:#A16432;    /* 3. Mesopotàmia - Ocre argila */
+  --c4:#C8A12D;    /* 4. Egipte - Or faraònic */
+  --c5:#466C88;    /* 5. Religions indoeuropees - Blau bronze */
+  --c6:#A53D2D;    /* 6. Zoroastrisme - Vermell foc */
+  --c7:#D47A1F;    /* 7. Hinduisme - Safrà */
+  --c8:#C96A2B;    /* 8. Budisme - Coure ataronjat */
+  --c9:#2F7D68;    /* 9. Taoisme - Verd jade */
+  --c10:#8F2F39;   /* 10. Confucianisme - Vermell imperial */
+  --c11:#285A8A;   /* 11. Judaisme - Blau profund */
+  --c12:#6B4A8B;   /* 12. Cristianisme - Porpra cardenalici */
+  --c13:#1F7A55;   /* 13. Islam - Verd maragda */
+  --c14:#8C4F2A;   /* 14. Religions africanes - Terra vermella */
+  --c15:#56616B;   /* 15. Religions modernes - Gris acer */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -42,14 +64,15 @@ body {
   padding: 6rem 2rem 5rem;
   text-align: center;
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(212, 101, 47, 0.05) 0%, rgba(107, 91, 149, 0.05) 100%);
 }
 .hero::before {
   content: '';
   position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%),
-    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.03) 60px, rgba(201,168,76,0.03) 61px),
-    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px);
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212, 101, 47, 0.08) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(212, 101, 47, 0.03) 60px, rgba(212, 101, 47, 0.03) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(212, 101, 47, 0.02) 60px, rgba(212, 101, 47, 0.02) 61px);
   pointer-events: none;
 }
 .hero-ornament {
@@ -62,13 +85,15 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  font-weight: 600;
 }
 .hero-ornament::before,
 .hero-ornament::after {
   content: '';
   width: 60px;
-  height: 1px;
-  background: var(--gold-line);
+  height: 2px;
+  background: var(--gold);
+  opacity: 0.4;
 }
 .hero h1 {
   font-family: 'Cormorant Garamond', serif;
@@ -82,6 +107,7 @@ body {
 .hero h1 em {
   font-style: italic;
   color: var(--gold);
+  font-weight: 400;
 }
 .hero .tagline {
   font-size: 1rem;
@@ -108,7 +134,8 @@ body {
   font-size: 0.7rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-dim);
+  font-weight: 600;
 }
 
 /* ── PROGRESS BAR ── */
@@ -124,19 +151,21 @@ body {
   color: var(--text-faint);
   margin-bottom: 0.5rem;
   letter-spacing: 0.1em;
+  font-weight: 600;
 }
 .pb-track {
-  height: 3px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 2px;
+  height: 5px;
+  background: rgba(26, 26, 26, 0.1);
+  border-radius: 3px;
   overflow: hidden;
 }
 .pb-fill {
   height: 100%;
-  width: 33.3%; /* 2 de 15 capítols */
-  background: linear-gradient(90deg, var(--p1), var(--gold));
-  border-radius: 2px;
+  width: 73.3%;
+  background: linear-gradient(90deg, var(--p1), var(--p4));
+  border-radius: 3px;
   transition: width 1s ease;
+  box-shadow: 0 2px 8px rgba(212, 101, 47, 0.3);
 }
 
 /* ── CONTAINER ── */
@@ -149,22 +178,23 @@ body {
   gap: 1.5rem;
   margin: 4rem 0 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 2px solid rgba(26, 26, 26, 0.08);
   position: relative;
 }
 .part-header::before {
   content: '';
   position: absolute;
-  bottom: -1px; left: 0;
-  width: 60px; height: 1px;
+  bottom: -2px; left: 0;
+  width: 100px; height: 2px;
   background: var(--part-color, var(--gold));
+  border-radius: 2px;
 }
 .part-num {
   font-family: 'Cormorant Garamond', serif;
   font-size: 3.5rem;
   font-weight: 300;
   color: var(--part-color, var(--gold));
-  opacity: 0.35;
+  opacity: 0.25;
   line-height: 1;
   flex-shrink: 0;
 }
@@ -181,131 +211,143 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-top: 0.2rem;
+  font-weight: 600;
 }
 
 /* ── CHAPTER GRID ── */
 .chapter-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 4px;
-  overflow: hidden;
+  gap: 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
 }
 
 /* ── CHAPTER CARD ── */
 .chapter-card {
   background: var(--surface);
-  padding: 1.6rem 1.8rem;
+  padding: 1.8rem 2rem;
   position: relative;
   text-decoration: none;
   color: inherit;
   display: block;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
   cursor: pointer;
   overflow: hidden;
+  border-left: 4px solid transparent;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(26, 26, 26, 0.08);
+}
+.chapter-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(212, 101, 47, 0.08), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  border-radius: 8px;
 }
 .chapter-card::after {
   content: '';
   position: absolute;
   top: 0; left: 0;
-  width: 3px; height: 100%;
+  width: 4px; height: 100%;
   background: var(--part-color, var(--gold));
   transform: scaleY(0);
   transform-origin: bottom;
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease;
+  border-radius: 4px 0 0 4px;
 }
-.chapter-card:hover { background: var(--surface2); }
+.chapter-card:hover { 
+  background: var(--surface2);
+  border-left-color: var(--part-color, var(--gold));
+  box-shadow: 0 8px 24px rgba(212, 101, 47, 0.15);
+  transform: translateY(-2px);
+}
 .chapter-card:hover::after { transform: scaleY(1); }
 
 .chapter-card.available:hover .ch-arrow { opacity: 1; transform: translateX(0); }
 .chapter-card.available .ch-arrow {
   opacity: 0;
   transform: translateX(-6px);
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .ch-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 700;
   letter-spacing: 0.2em;
-  color: var(--part-color, var(--gold));
-  opacity: 0.7;
-  margin-bottom: 0.5rem;
   text-transform: uppercase;
+  color: var(--part-color, var(--gold));
+  margin-bottom: 0.5rem;
 }
 .ch-title {
   font-family: 'Cormorant Garamond', serif;
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
   color: var(--text);
-  line-height: 1.25;
-  margin-bottom: 0.4rem;
 }
 .ch-subtitle {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  font-style: italic;
+  font-size: 0.85rem;
   line-height: 1.4;
-}
-.ch-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1.2rem;
-}
-.ch-status {
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  border-radius: 2px;
-}
-.ch-status.ready {
-  background: rgba(201,168,76,0.12);
-  color: var(--gold);
-  border: 1px solid rgba(201,168,76,0.2);
-}
-.ch-status.soon {
-  background: rgba(255,255,255,0.04);
-  color: var(--text-faint);
-  border: 1px solid rgba(255,255,255,0.07);
-}
-.ch-arrow {
-  color: var(--gold);
-  font-size: 1rem;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+  min-height: 2.8em;
 }
 
-/* Capítols disponibles tenen un shimmer subtil */
-.chapter-card.available {
-  background: linear-gradient(135deg, var(--surface) 0%, rgba(201,168,76,0.03) 100%);
+.ch-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-faint);
+}
+.ch-status {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.ch-status.ready {
+  background: rgba(63, 163, 115, 0.12);
+  color: #2d7d5f;
+  border: 1px solid rgba(63, 163, 115, 0.25);
+}
+.ch-status.soon {
+  background: rgba(26, 26, 26, 0.06);
+  color: var(--text-dim);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+}
+.ch-arrow {
+  font-size: 1rem;
+  font-weight: 300;
 }
 
 /* ── FOOTNOTE ── */
 .footnote {
   text-align: center;
-  padding: 3rem 2rem;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem;
   color: var(--text-faint);
-  font-size: 0.82rem;
-  font-style: italic;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  border-top: 1px solid rgba(26, 26, 26, 0.08);
+  margin-top: 3rem;
+  font-weight: 600;
 }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.hero { animation: fadeUp 0.8s ease both; }
-.part-header { animation: fadeUp 0.5s ease both; }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
 <div class="hero">
-  <div class="hero-ornament">Història de les Religions</div>
+  <div class="hero-ornament">História de les Religions</div>
   <h1>Una Genealogia<br>del <em>Poder</em></h1>
   <p class="tagline">De l'animisme paleolític a la modernitat: com les religions han construït, legitimat i transformat les societats humanes</p>
   <div class="hero-stats">
@@ -318,16 +360,16 @@ body {
       <span class="lbl">Capítols</span>
     </div>
     <div class="hero-stat">
-      <span class="num">10</span>
+      <span class="num">11</span>
       <span class="lbl">Disponibles</span>
     </div>
   </div>
   <div class="progress-bar">
     <div class="pb-label">
       <span>Progrés del treball</span>
-      <span>11 / 15 capítols</span>
+      <span>12 / 15 capítols</span>
     </div>
-    <div class="pb-track"><div class="pb-fill" style="width:66.7%"></div></div>
+    <div class="pb-track"><div class="pb-fill"></div></div>
   </div>
 </div>
 
@@ -343,7 +385,7 @@ body {
   </div>
   <div class="chapter-grid" style="--part-color: var(--p1)">
 
-    <a class="chapter-card available" href="capitol1_interactiu.html">
+    <a class="chapter-card available" href="capitol1_interactiu.html" style="--part-color:var(--c1);">
       <div class="ch-num">Capítol 1</div>
       <div class="ch-title">El fenomen religiós com a fet històric</div>
       <div class="ch-subtitle">Arquitectura de sentit, ciència cognitiva i grans teories: Geertz, Durkheim, Marx, Weber, Foucault, Eliade</div>
@@ -353,7 +395,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol2_interactiu.html">
+    <a class="chapter-card available" href="capitol2_interactiu.html" style="--part-color:var(--c2);">
       <div class="ch-num">Capítol 2</div>
       <div class="ch-title">L'animisme – L'estructura social ancestral</div>
       <div class="ch-subtitle">Ontologia, perspectivisme amerindi, xamanisme, economia del do i tradicions animistes mundials</div>
@@ -375,7 +417,7 @@ body {
   </div>
   <div class="chapter-grid" style="--part-color: var(--p2)">
 
-    <a class="chapter-card available" href="capitol3_interactiu.html">
+    <a class="chapter-card available" href="capitol3_interactiu.html" style="--part-color:var(--c3);">
       <div class="ch-num">Capítol 3</div>
       <div class="ch-title">Mesopotàmia – El poder com a cosmos</div>
       <div class="ch-subtitle">Sumer, Akkad, Babilònia i Assíria: els quatre regnes, els déus com a funcionaris còsmics, el ziggurat i Hammurabi</div>
@@ -385,7 +427,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol4_interactiu.html">
+    <a class="chapter-card available" href="capitol4_interactiu.html" style="--part-color:var(--c4);">
       <div class="ch-num">Capítol 4</div>
       <div class="ch-title">Egipte – Enginyeria de l'eternitat</div>
       <div class="ch-subtitle">Ma'at, faraó diví, Osiris, el Llibre dels Morts i el llegat egipci sobre les religions del món</div>
@@ -395,7 +437,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol5_interactiu.html">
+    <a class="chapter-card available" href="capitol5_interactiu.html" style="--part-color:var(--c5);">
       <div class="ch-num">Capítol 5</div>
       <div class="ch-title">Religions indoeuropees – Mites de sobirania i guerra</div>
       <div class="ch-subtitle">Dumézil i l'estructura trifuncional: sobirania, guerra i fertilitat als panteons grec, romà, nòrdic, celta i eslau</div>
@@ -405,7 +447,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol6_zoroastrisme.html">
+    <a class="chapter-card available" href="capitol6_zoroastrisme.html" style="--part-color:var(--c6);">
       <div class="ch-num">Capítol 6</div>
       <div class="ch-title">Zoroastrisme – Ètica i Imperi</div>
       <div class="ch-subtitle">Zaratustra, el dualisme còsmic, l'Imperi Aquemènida i la influència sobre els monoteismes abrahamítics</div>
@@ -427,7 +469,7 @@ body {
   </div>
   <div class="chapter-grid" style="--part-color: var(--p3)">
 
-    <a class="chapter-card available" href="capitol7_hinduisme.html">
+    <a class="chapter-card available" href="capitol7_hinduisme.html"  style="--part-color:var(--c7);">
       <div class="ch-num">Capítol 7</div>
       <div class="ch-title">Hinduisme – L'enginyeria social del dharma</div>
       <div class="ch-subtitle">Vedes, castes, ioga i bhakti: religió com a estructura social total</div>
@@ -437,7 +479,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol8_budisme.html">
+    <a class="chapter-card available" href="capitol8_budisme.html" style="--part-color:var(--c8);">
       <div class="ch-num">Capítol 8</div>
       <div class="ch-title">Budisme – Una revolució ètica i política</div>
       <div class="ch-subtitle">Siddharta, el Dhamma, la Sangha i la difusió per l'Àsia com a projecte polític</div>
@@ -447,7 +489,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol9_taoisme.html">
+    <a class="chapter-card available" href="capitol9_taoisme.html" style="--part-color:var(--c9);">
       <div class="ch-num">Capítol 9</div>
       <div class="ch-title">Taoisme – Resistència filosòfica</div>
       <div class="ch-subtitle">Laozi, Zhuangzi, el Tao com a principi immanent i la crítica a l'ordre confucià</div>
@@ -457,7 +499,7 @@ body {
       </div>
     </a>
 
-    <a class="chapter-card available" href="capitol10_confucianisme.html">
+    <a class="chapter-card available" href="capitol10_confucianisme.html" style="--part-color:var(--c10);">
       <div class="ch-num">Capítol 10</div>
       <div class="ch-title">Confucianisme – L'Estat burocràtic</div>
       <div class="ch-subtitle">Ritus, jerarquia i pietat filial: la religió com a tecnologia de govern imperial</div>
@@ -479,7 +521,7 @@ body {
   </div>
   <div class="chapter-grid" style="--part-color: var(--p4)">
 
-    <a class="chapter-card available" href="capitol11_judaisme.html">
+    <a class="chapter-card available" href="capitol11_judaisme.html" style="--part-color:var(--c11);">
       <div class="ch-num">Capítol 11</div>
       <div class="ch-title">Judaisme – Identitat i diàspora</div>
       <div class="ch-subtitle">Del politeisme cananeu al monoteisme rabínic: llei, exili i construcció de la identitat col·lectiva</div>
@@ -496,12 +538,15 @@ body {
       <div class="ch-footer"><span class="ch-status soon">En preparació</span></div>
     </div>
 
-    <div class="chapter-card">
+    <a class="chapter-card available" href="capitol13_islam.html" style="--part-color:var(--c13);">
       <div class="ch-num">Capítol 13</div>
       <div class="ch-title">Islam – Fe i expansió</div>
       <div class="ch-subtitle">Mahoma, el Corà, la Umma i la construcció d'un nou ordre polític, jurídic i cultural</div>
-      <div class="ch-footer"><span class="ch-status soon">En preparació</span></div>
-    </div>
+      <div class="ch-footer">
+        <span class="ch-status ready">✦ Disponible</span>
+        <span class="ch-arrow">→</span>
+      </div>
+    </a>
 
   </div>
 
